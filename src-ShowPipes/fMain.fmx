@@ -1,0 +1,70 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 480
+  ClientWidth = 950
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object FlowLayout1: TFlowLayout
+    Align = Client
+    Size.Width = 950.000000000000000000
+    Size.Height = 453.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Justify = Left
+    JustifyLastLine = Left
+    FlowDirection = LeftToRight
+    object GridLayout1: TGridLayout
+      ItemHeight = 64.000000000000000000
+      ItemWidth = 64.000000000000000000
+      Orientation = Horizontal
+      Size.Width = 200.000000000000000000
+      Size.Height = 100.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+    end
+    object GridLayout2: TGridLayout
+      ItemHeight = 64.000000000000000000
+      ItemWidth = 64.000000000000000000
+      Orientation = Horizontal
+      Position.X = 200.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 100.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+    end
+    object GridLayout3: TGridLayout
+      ItemHeight = 64.000000000000000000
+      ItemWidth = 64.000000000000000000
+      Orientation = Horizontal
+      Position.X = 400.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 100.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+    end
+    object GridLayout4: TGridLayout
+      ItemHeight = 64.000000000000000000
+      ItemWidth = 64.000000000000000000
+      Orientation = Horizontal
+      Position.X = 600.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 100.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
+  end
+  object Switch1: TSwitch
+    Align = Top
+    IsChecked = False
+    Size.Width = 950.000000000000000000
+    Size.Height = 27.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    OnSwitch = Switch1Switch
+  end
+end
