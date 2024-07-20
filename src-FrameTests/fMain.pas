@@ -37,9 +37,9 @@ type
     procedure btnCheckboxClick(Sender: TObject);
     procedure btnTrackbarClick(Sender: TObject);
   private
-    { Déclarations privées }
+  protected
+    procedure InitSVGToBitmap;
   public
-    { Déclarations publiques }
   end;
 
 var
@@ -54,7 +54,13 @@ uses
   uUIItemsList,
   uUIElements,
   Gamolf.RTL.Joystick,
-  uJoystickManager, fCheckBox, fDialogBox, fImageButtons, fTrackBar;
+  uJoystickManager,
+  fCheckBox,
+  fDialogBox,
+  fImageButtons,
+  fTrackBar,
+  PuzzleAssets2,
+  Olf.Skia.SVGToBitmap;
 
 procedure TfrmMain.btnCheckboxClick(Sender: TObject);
 var
@@ -157,6 +163,8 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   item: tuiitem;
 begin
+  InitSVGToBitmap;
+
   lblGamepadOnOff.Visible := false;
 
   UIItems.NewLayout;
@@ -189,6 +197,14 @@ procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
 var KeyChar: WideChar; Shift: TShiftState);
 begin
   UIItems.KeyDown(Key, KeyChar, Shift);
+end;
+
+procedure TfrmMain.InitSVGToBitmap;
+var
+  i: integer;
+begin
+  for i := 0 to length(SVGSVG) - 1 do
+    TOlfSVGBitmapList.AddItemAt(i, SVGSVG[i]);
 end;
 
 procedure TfrmMain.Timer1Timer(Sender: TObject);
