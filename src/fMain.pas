@@ -183,16 +183,50 @@ var KeyChar: WideChar; Shift: TShiftState);
 var
   item: tuiitem;
 begin
-  UIItems.KeyDown(Key, KeyChar, Shift);
+  if CurrentGame.IsRunning then
+  begin
+    if assigned(CurrentGame.CurPipe) then
+    begin
+      if (Key = vkLeft) and (KeyChar = #0) then
+      begin
+        CurrentGame.CurPipe.GoToLeft;
+        Key := 0;
+        KeyChar := #0;
+      end
+      else if (Key = vkright) and (KeyChar = #0) then
+      begin
+        CurrentGame.CurPipe.GoToRight;
+        Key := 0;
+        KeyChar := #0;
+      end
+      else if (Key = vkDown) and (KeyChar = #0) then
+      begin
+        CurrentGame.CurPipe.vy := CurrentGame.CurPipe.vy * 2;
+        Key := 0;
+        KeyChar := #0;
+      end
+      else if (Key = 0) and (KeyChar = ' ') then
+      begin
+        CurrentGame.CurPipe.RotateRight;
+        Key := 0;
+        KeyChar := #0;
+      end;
+    end;
+  end;
+  if (Key <> 0) and (KeyChar <> #0) then
+    UIItems.KeyDown(Key, KeyChar, Shift);
   if ((Key = 0) and (KeyChar = ' ')) or ((Key = vkReturn) and (KeyChar = #0))
   then
-  // TODO : si écran de jeu, la touche espace doit faire une rotation de l'élement en cours
   begin
     item := UIItems.Focused;
     if assigned(item) and assigned(item.TagObject) and
-      (item.TagObject is TCOntrol) and
-      assigned((item.TagObject as TCOntrol).OnClick) then
-      (item.TagObject as TCOntrol).OnClick(item.TagObject as TCOntrol);
+      (item.TagObject is TControl) and
+      assigned((item.TagObject as TControl).OnClick) then
+    begin
+      (item.TagObject as TControl).OnClick(item.TagObject as TControl);
+      Key := 0;
+      KeyChar := #0;
+    end
   end;
 end;
 
@@ -202,16 +236,17 @@ begin
   begin
     if assigned(CurrentGame.CurPipe) then
     begin
-      CurrentGame.CurPipe.Screeny := CurrentGame.CurPipe.Screeny +
-        CurrentGame.CurPipe.vy;
-      CurrentGame.CurPipe.vy := CurrentGame.CurPipe.vy + 0.01;
-      if (CurrentGame.CurPipe.Screeny + CurrentGame.CurPipe.height >=
-        lGameZonePlay.height) then
+      if (CurrentGame.CurPipe.GrilleY + 1 < CNBRow) and
+        not assigned(CurrentGame.GetGrid(CurrentGame.CurPipe.GrilleX,
+        CurrentGame.CurPipe.GrilleY + 1)) then
       begin
-        CurrentGame.CurPipe.Screeny := lGameZonePlay.height -
-          CurrentGame.CurPipe.height;
-        // TODO : traiter immobilisation de l'élément, alimentation éventuelle en eau, etc
-        CurrentGame.CurPipe.vy := 0;
+        CurrentGame.CurPipe.Screeny := CurrentGame.CurPipe.Screeny +
+          CurrentGame.CurPipe.vy;
+        CurrentGame.CurPipe.vy := CurrentGame.CurPipe.vy + 0.01;
+      end
+      else
+      begin
+        CurrentGame.CurPipe.StopFalling;
         SendNewPipe;
       end;
     end
@@ -228,23 +263,48 @@ var
   handled: boolean;
   item: tuiitem;
 begin
-  UIItems.GamepadButtonDown(Button, handled);
+  handled := false;
+  if CurrentGame.IsRunning and (Button = TJoystickButtons.a) and
+    assigned(CurrentGame.CurPipe) then
+  begin
+    CurrentGame.CurPipe.RotateRight;
+    handled := true;
+  end;
+  if not handled then
+    UIItems.GamepadButtonDown(Button, handled);
   if not handled then
     if Button = TJoystickButtons.a then
-    // TODO : selon l'écran actif (pas en zone de jeu)
     begin
       item := UIItems.Focused;
       if assigned(item) and assigned(item.TagObject) and
-        (item.TagObject is TCOntrol) and
-        assigned((item.TagObject as TCOntrol).OnClick) then
-        (item.TagObject as TCOntrol).OnClick(item.TagObject as TCOntrol);
+        (item.TagObject is TControl) and
+        assigned((item.TagObject as TControl).OnClick) then
+      begin
+        (item.TagObject as TControl).OnClick(item.TagObject as TControl);
+        handled := true;
+      end;
     end;
 end;
 
 procedure TfrmMain.GamepadManager1DirectionPadChange(const GamepadID: Integer;
 const Value: TJoystickDPad);
 begin
-  UIItems.GamepadMove(Value);
+  if CurrentGame.IsRunning then
+  begin
+    if assigned(CurrentGame.CurPipe) then
+    begin
+      case Value of
+        TJoystickDPad.Left, TJoystickDPad.TopLeft, TJoystickDPad.BottomLeft:
+          CurrentGame.CurPipe.GoToLeft;
+        TJoystickDPad.right, TJoystickDPad.TopRight, TJoystickDPad.BottomRight:
+          CurrentGame.CurPipe.GoToRight;
+        TJoystickDPad.Bottom:
+          CurrentGame.CurPipe.vy := CurrentGame.CurPipe.vy * 2;
+      end;
+    end;
+  end
+  else
+    UIItems.GamepadMove(Value);
 end;
 
 procedure TfrmMain.InitAboutDialogBox;
@@ -316,10 +376,8 @@ begin
   if (lGameZoneLeft.ChildrenCount = 0) then
   begin
     // TODO : mettre un TScaleLayout pour adapter automatiquement la taille de la zone de jeu
-    lGameZone.width := (1 + CNbCol + 1) * cpipesize;
-    // TODO : voir si 10 colonnes sont ok
-    lGameZone.height := (1 + CNbRow) * cpipesize;
-    // TODO : passer éventuellement à 20 lignes
+    lGameZone.Width := (1 + CNbCol + 1) * cpipesize;
+    lGameZone.height := (1 + CNBRow) * cpipesize;
 
     bmp1 := getBitmapFromSVG(TSVGSVGIndex.EauHdb, cpipesize, cpipesize,
       rBackground.fill.bitmap.bitmap.BitmapScale, 0);
@@ -327,14 +385,14 @@ begin
       bmp2 := getBitmapFromSVG(TSVGSVGIndex.EauHgb, cpipesize, cpipesize,
         rBackground.fill.bitmap.bitmap.BitmapScale, 0);
       try
-        lGameZoneLeft.width := cpipesize;
-        lGameZoneRight.width := cpipesize;
-        for i := 0 to CNbRow - 1 do
+        lGameZoneLeft.Width := cpipesize;
+        lGameZoneRight.Width := cpipesize;
+        for i := 0 to CNBRow - 1 do
         begin
           // Left pipe
           r := TRectangle.Create(self);
           r.parent := lGameZoneLeft;
-          r.width := cpipesize;
+          r.Width := cpipesize;
           r.height := cpipesize;
           r.Position.x := 0;
           r.Position.y := r.height * i;
@@ -345,7 +403,7 @@ begin
           // Right pipe
           r := TRectangle.Create(self);
           r.parent := lGameZoneRight;
-          r.width := cpipesize;
+          r.Width := cpipesize;
           r.height := cpipesize;
           r.Position.x := 0;
           r.Position.y := r.height * i;
@@ -364,10 +422,10 @@ begin
     // Left pipe bottom
     r := TRectangle.Create(self);
     r.parent := lGameZoneLeft;
-    r.width := cpipesize;
+    r.Width := cpipesize;
     r.height := cpipesize;
     r.Position.x := 0;
-    r.Position.y := r.height * CNbRow;
+    r.Position.y := r.height * CNBRow;
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
     r.fill.bitmap.WrapMode := twrapmode.TileStretch;
@@ -381,10 +439,10 @@ begin
     // Right pipe bottom
     r := TRectangle.Create(self);
     r.parent := lGameZoneRight;
-    r.width := cpipesize;
+    r.Width := cpipesize;
     r.height := cpipesize;
     r.Position.x := 0;
-    r.Position.y := r.height * CNbRow;
+    r.Position.y := r.height * CNBRow;
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
     r.fill.bitmap.WrapMode := twrapmode.TileStretch;
@@ -405,9 +463,9 @@ begin
       begin
         r := TRectangle.Create(self);
         r.parent := lGameZoneBottom;
-        r.width := cpipesize;
+        r.Width := cpipesize;
         r.height := cpipesize;
-        r.Position.x := r.width * i;
+        r.Position.x := r.Width * i;
         r.Position.y := 0;
         r.Stroke.Kind := TBrushKind.None;
         r.fill.Kind := TBrushKind.bitmap;
@@ -443,6 +501,7 @@ begin
   end;
 
   // TODO : à compléter
+  CurrentGame.init;
   CurrentGame.IsRunning := true;
   GameLoop.Enabled := true;
 end;
@@ -475,7 +534,7 @@ procedure TfrmMain.InitHomeScreen;
     result.GetUIItem.TagObject := result;
     result.parent := AParent;
     result.Position.x := 0;
-    result.width := AParent.width;
+    result.Width := AParent.Width;
     result.height := 54;
     result.Position.y := AParent.height;
     result.Text := AText;
@@ -500,7 +559,7 @@ begin
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
   item.GamePadButtons := [TJoystickButtons.b];
 
-  lHomeButtons.width := 104;
+  lHomeButtons.Width := 104;
   lHomeButtons.height := 0;
 
   btn := AddButton(lHomeButtons, 'Play', nil, ButtonPlayClick);
@@ -508,7 +567,7 @@ begin
   btn := AddButton(lHomeButtons, 'Options', btn, ButtonOptionsClick);
   btn := AddButton(lHomeButtons, 'Hall of fames', btn, ButtonHallOfFameClick);
   btn := AddButton(lHomeButtons, 'Credits', btn, ButtonCreditsClick);
-  btn := AddButton(lHomeButtons, 'Quit', btn, ButtonQuitClick);
+  AddButton(lHomeButtons, 'Quit', btn, ButtonQuitClick);
 end;
 
 procedure TfrmMain.InitMainFormCaption;
@@ -560,9 +619,9 @@ begin
   Pipe.parent := lGameZonePlay;
   Pipe.SVGIndex := TSVGSVGIndex(random(CSVGPipeHgd - CSVGPipeDb + 1) +
     CSVGPipeDb);
-  Pipe.ScreenX := random(CNbCol) * Pipe.width;
+  Pipe.ScreenX := random(CNbCol) * Pipe.Width;
   Pipe.Screeny := 0;
-  Pipe.vy := 2; // TODO : mettre une constante pour la valeur de chute de départ
+  Pipe.vy := CDefaultVY;
   CurrentGame.CurPipe := Pipe;
 end;
 
@@ -574,7 +633,6 @@ begin
 
   if assigned(FCurrentLayout) then
   begin
-    // TODO : ajouter une animation de masquage ?
     FCurrentLayout.Visible := false;
     case Value of
       TGameScreens.Home:
@@ -627,7 +685,6 @@ begin
   begin
     UIItems.NewLayout;
     InitProc;
-    // TODO : ajouter une animation d'affichage ?
     FCurrentLayout.Visible := true;
     FCurrentLayout.BringToFront;
   end;
