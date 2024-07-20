@@ -50,7 +50,8 @@ implementation
 
 uses
   System.TypInfo,
-  Olf.Skia.SVGToBitmap;
+  Olf.Skia.SVGToBitmap,
+  uSVGToImages;
 
 { TForm2 }
 
@@ -59,117 +60,19 @@ var
   bmp: tbitmap;
   img: timage;
   lbl: TLabel;
-  MargeHaut, MargeBas, MargeGauche, MargeDroite: single;
-  BMPScale: single;
 begin
-  MargeHaut := 0;
-  MargeDroite := 0;
-  MargeBas := 0;
-  MargeGauche := 0;
-  case Id of
-    TSVGSVGIndex.EauDb:
-      begin
-        MargeHaut := 100 * ((117.55 - 87.9) / 117.55);
-        MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
-      end;
-    TSVGSVGIndex.EauGb:
-      begin
-        MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
-        MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
-      end;
-    TSVGSVGIndex.EauGd:
-      begin
-        MargeHaut := 100 * ((117.55 - 58.6) / 117.55) / 2;
-        MargeDroite := 0;
-        MargeBas := 100 * ((117.55 - 58.6) / 117.55) / 2;
-        MargeGauche := 0;
-      end;
-    TSVGSVGIndex.EauGdb:
-      MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
-    TSVGSVGIndex.EauGdh:
-      MargeBas := 100 * ((117.55 - 87.9) / 117.55);
-    TSVGSVGIndex.EauHb:
-      begin
-        MargeDroite := 100 * ((117.55 - 58.6) / 117.55) / 2;
-        MargeGauche := 100 * ((117.55 - 58.6) / 117.55) / 2;
-      end;
-    TSVGSVGIndex.EauHd:
-      begin
-        MargeBas := 100 * ((117.55 - 87.9) / 117.55);
-        MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
-      end;
-    TSVGSVGIndex.EauHdb:
-      MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
-    TSVGSVGIndex.EauHg:
-      begin
-        MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
-        MargeBas := 100 * ((117.55 - 88.05) / 117.55);
-      end;
-    TSVGSVGIndex.EauHgb:
-      MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
-    TSVGSVGIndex.PipeDb:
-      begin
-        MargeHaut := 100 * ((117.55 - 87.9) / 117.55);
-        MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
-      end;
-    TSVGSVGIndex.PipeGb:
-      begin
-        MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
-        MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
-      end;
-    TSVGSVGIndex.PipeGd:
-      begin
-        MargeHaut := 100 * ((117.55 - 58.6) / 117.55) / 2;
-        MargeBas := 100 * ((117.55 - 58.6) / 117.55) / 2;
-      end;
-    TSVGSVGIndex.PipeGdb:
-      MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
-    TSVGSVGIndex.PipeHb:
-      begin
-        MargeDroite := 100 * ((117.55 - 58.6) / 117.55) / 2;
-        MargeGauche := 100 * ((117.55 - 58.6) / 117.55) / 2;
-      end;
-    TSVGSVGIndex.PipeHd:
-      begin
-        MargeBas := 100 * ((117.55 - 87.9) / 117.55);
-        MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
-      end;
-    TSVGSVGIndex.PipeHdb:
-      MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
-    TSVGSVGIndex.PipeHg:
-      begin
-        MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
-        MargeBas := 100 * ((117.55 - 88.05) / 117.55);
-      end;
-    TSVGSVGIndex.PipeHgb:
-      MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
-    TSVGSVGIndex.PipeHgd:
-      MargeBas := 100 * ((117.55 - 87.9) / 117.55);
-  end;
-
   img := timage.Create(self);
-  img.Parent := GL;
-
+  img.Parent := gl;
   img.WrapMode := TImageWrapMode.Original;
-  BMPScale := img.Bitmap.BitmapScale;
 
-  bmp := TOlfSVGBitmapList.Bitmap(ord(Id),
-    round(BMPScale * GL.ItemWidth * (100 - MargeGauche - MargeDroite) / 100),
-    round(BMPScale * GL.Itemheight * (100 - MargeHaut - MargeBas) / 100));
-
-  img.Bitmap.SetSize(round(img.width * img.Bitmap.BitmapScale),
-    round(img.height * img.Bitmap.BitmapScale));
-  img.Bitmap.Clear(TAlphaColors.Snow);
-  img.Bitmap.Canvas.BeginScene;
+  bmp := getBitmapFromSVG(Id, img.width, img.height, img.bitmap.BitmapScale,
+    talphacolors.Yellow);
   try
-    img.Bitmap.Canvas.DrawBitmap(bmp, bmp.BoundsF,
-      trectf.Create((img.Bitmap.width * MargeGauche / 100) / BMPScale,
-      (img.Bitmap.height * MargeHaut / 100) / BMPScale,
-      (bmp.width + img.Bitmap.width * MargeGauche / 100) / BMPScale,
-      (bmp.height + img.Bitmap.height * MargeHaut / 100) / BMPScale), 1);
+    img.bitmap.Assign(bmp);
   finally
-    img.Bitmap.Canvas.EndScene;
+    bmp.free;
   end;
+
   lbl := TLabel.Create(self);
   lbl.Parent := img;
   lbl.Align := talignlayout.client;
