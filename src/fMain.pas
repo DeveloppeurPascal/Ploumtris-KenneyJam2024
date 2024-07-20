@@ -562,7 +562,7 @@ begin
     CSVGPipeDb);
   Pipe.ScreenX := random(CNbCol) * Pipe.width;
   Pipe.Screeny := 0;
-  Pipe.vy := 1;
+  Pipe.vy := 2; // TODO : mettre une constante pour la valeur de chute de départ
   CurrentGame.CurPipe := Pipe;
 end;
 
