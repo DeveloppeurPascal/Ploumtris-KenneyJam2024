@@ -63,6 +63,7 @@ var
   i: integer;
   lbl: TLabel;
   MargeHaut, MargeBas, MargeGauche, MargeDroite: single;
+  BMPScale: single;
 begin
   for i := 0 to length(SVGSVG) - 1 do
   begin
@@ -155,20 +156,29 @@ begin
       TSVGSVGIndex.PipeHgd:
         MargeBas := 100 * ((117.55 - 87.9) / 117.55);
     end;
-    bmp := TOlfSVGBitmapList.Bitmap(i,
-      round(GridLayout1.ItemWidth * (100 - MargeGauche - MargeDroite) / 100),
-      round(GridLayout1.Itemheight * (100 - MargeHaut - MargeBas) / 100));
+
     img := timage.Create(self);
     img.Parent := GridLayout1;
-    img.Bitmap.SetSize(round(img.Width), round(img.Height));
+
+    img.WrapMode := TImageWrapMode.Original;
+    BMPScale := img.Bitmap.BitmapScale;
+
+    bmp := TOlfSVGBitmapList.Bitmap(i,
+      round(BMPScale * GridLayout1.ItemWidth * (100 - MargeGauche - MargeDroite)
+      / 100), round(BMPScale * GridLayout1.Itemheight * (100 - MargeHaut -
+      MargeBas) / 100));
+
+    img.Bitmap.SetSize(round(img.width * img.Bitmap.BitmapScale),
+      round(img.height * img.Bitmap.BitmapScale));
     img.Bitmap.Clear(TAlphaColors.Snow);
+    // showmessage(img.bitmap.Width.tostring+','+img.bitmap.Height.tostring);exit;
     img.Bitmap.Canvas.BeginScene;
     try
       img.Bitmap.Canvas.DrawBitmap(bmp, bmp.BoundsF,
-        trectf.Create(img.Bitmap.Width * MargeGauche / 100,
-        img.Bitmap.Height * MargeHaut / 100, bmp.Width + img.Bitmap.Width *
-        MargeGauche / 100, bmp.Height + img.Bitmap.Height * MargeHaut /
-        100), 1);
+        trectf.Create((img.Bitmap.width * MargeGauche / 100) / BMPScale,
+        (img.Bitmap.height * MargeHaut / 100) / BMPScale,
+        (bmp.width + img.Bitmap.width * MargeGauche / 100) / BMPScale,
+        (bmp.height + img.Bitmap.height * MargeHaut / 100) / BMPScale), 1);
     finally
       img.Bitmap.Canvas.EndScene;
     end;
