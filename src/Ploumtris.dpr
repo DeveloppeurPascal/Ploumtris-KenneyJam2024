@@ -14,7 +14,8 @@ uses
   Gamolf.FMX.MusicLoop in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.FMX.MusicLoop.pas',
   uUIElements in '..\src-temp\uUIElements.pas',
   Olf.RTL.CryptDecrypt in '..\lib-externes\librairies\src\Olf.RTL.CryptDecrypt.pas',
-  Olf.RTL.Params in '..\lib-externes\librairies\src\Olf.RTL.Params.pas';
+  Olf.RTL.Params in '..\lib-externes\librairies\src\Olf.RTL.Params.pas',
+  Gamolf.RTL.Scores in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Scores.pas';
 
 {$R *.res}
 
