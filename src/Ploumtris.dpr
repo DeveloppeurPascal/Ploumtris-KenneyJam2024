@@ -3,6 +3,7 @@ program Ploumtris;
 uses
   System.StartUpCopy,
   FMX.Forms,
+  FMX.Skia,
   fMain in 'fMain.pas' {frmMain},
   uJoystickManager in '..\src-temp\uJoystickManager.pas',
   Gamolf.FMX.Joystick in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.FMX.Joystick.pas',
@@ -23,11 +24,17 @@ uses
   PuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas',
   uConfig in 'uConfig.pas',
   uUIItemsList in 'uUIItemsList.pas',
-  uSVGToImages in 'uSVGToImages.pas';
+  uSVGToImages in 'uSVGToImages.pas',
+  Olf.Skia.SVGToBitmap in '..\lib-externes\librairies\src\Olf.Skia.SVGToBitmap.pas',
+  cTextButton in 'cTextButton.pas' {cadTextButton: TFrame},
+  uConsts in 'uConsts.pas',
+  uPipeParts in 'uPipeParts.pas',
+  uCurrentGame in 'uCurrentGame.pas';
 
 {$R *.res}
 
 begin
+  GlobalUseSkia := True;
   Application.Initialize;
   Application.CreateForm(TdmLogo, dmLogo);
   Application.CreateForm(TfrmMain, frmMain);
