@@ -3,6 +3,7 @@ program FrameTests;
 uses
   System.StartUpCopy,
   FMX.Forms,
+  FMX.Skia,
   fMain in 'fMain.pas' {frmMain},
   fTextButtons in 'fTextButtons.pas' {frmTextButtons},
   uUIItemsList in '..\src\uUIItemsList.pas',
@@ -19,11 +20,15 @@ uses
   fCheckBox in 'fCheckBox.pas' {frmCheckBox},
   fDialogBox in 'fDialogBox.pas' {frmDialogBox},
   fImageButtons in 'fImageButtons.pas' {frmImageButtons},
-  uSVGToImages in '..\src\uSVGToImages.pas';
+  uSVGToImages in '..\src\uSVGToImages.pas',
+  cTextButton in '..\src\cTextButton.pas' {cadTextButton: TFrame},
+  PuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas',
+  Olf.Skia.SVGToBitmap in '..\lib-externes\librairies\src\Olf.Skia.SVGToBitmap.pas';
 
 {$R *.res}
 
 begin
+  GlobalUseSkia := True;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TDataModule1, DataModule1);
