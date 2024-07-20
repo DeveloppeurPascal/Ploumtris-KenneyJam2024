@@ -14,19 +14,37 @@ uses
   FMX.Graphics,
   FMX.Dialogs,
   Olf.FMX.AboutDialog,
-  uDMLogo;
+  uDMLogo, FMX.Layouts;
 
 type
+{$SCOPEDENUMS ON}
+  TGameScreens = (None, Home, Game, HallOfFames, Options, Credits);
+
   TfrmMain = class(TForm)
     OlfAboutDialog1: TOlfAboutDialog;
+    lBackground: TLayout;
+    lHome: TLayout;
+    lGame: TLayout;
+    lOptions: TLayout;
+    lCredits: TLayout;
+    lHallOfFames: TLayout;
     procedure OlfAboutDialog1URLClick(const AURL: string);
     procedure FormCreate(Sender: TObject);
   private
-
+    FCurrentScreen: TGameScreens;
+    FCurrentLayout: TLayout;
+    procedure SetCurrentScreen(const Value: TGameScreens);
   protected
     procedure InitAboutDialogBox;
     procedure InitMainFormCaption;
+    procedure InitHomeScreen;
+    procedure InitGameScreen;
+    procedure InitHallOfFamesScreen;
+    procedure InitOptionsScreen;
+    procedure InitCreditsScreen;
   public
+    property CurrentScreen: TGameScreens read FCurrentScreen
+      write SetCurrentScreen;
   end;
 
 var
@@ -43,6 +61,20 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   InitAboutDialogBox;
   InitMainFormCaption;
+
+  FCurrentLayout := nil;
+  FCurrentScreen := TGameScreens.None;
+  lHome.Visible := false;
+  lGame.Visible := false;
+  lHallOfFames.Visible := false;
+  lOptions.Visible := false;
+  lCredits.Visible := false;
+
+  tthread.ForceQueue(nil,
+    procedure
+    begin
+      CurrentScreen := TGameScreens.Home;
+    end);
 end;
 
 procedure TfrmMain.InitAboutDialogBox;
@@ -77,6 +109,26 @@ begin
     OlfAboutDialog1.URL;
 end;
 
+procedure TfrmMain.InitCreditsScreen;
+begin
+  // TODO : à compléter
+end;
+
+procedure TfrmMain.InitGameScreen;
+begin
+  // TODO : à compléter
+end;
+
+procedure TfrmMain.InitHallOfFamesScreen;
+begin
+  // TODO : à compléter
+end;
+
+procedure TfrmMain.InitHomeScreen;
+begin
+  // TODO : à compléter
+end;
+
 procedure TfrmMain.InitMainFormCaption;
 begin
 {$IFDEF DEBUG}
@@ -88,9 +140,61 @@ begin
     OlfAboutDialog1.VersionNumero;
 end;
 
+procedure TfrmMain.InitOptionsScreen;
+begin
+  // TODO : à compléter
+end;
+
 procedure TfrmMain.OlfAboutDialog1URLClick(const AURL: string);
 begin
   url_Open_In_Browser(AURL);
+end;
+
+procedure TfrmMain.SetCurrentScreen(const Value: TGameScreens);
+begin
+  lBackground.Visible := true;
+
+  if assigned(FCurrentLayout) then
+    FCurrentLayout.Visible := false;
+  // TODO : ajouter une animation de masquage ?
+
+  FCurrentScreen := Value;
+
+  case Value of
+    TGameScreens.Home:
+      begin
+        FCurrentLayout := lHome;
+        InitHomeScreen;
+      end;
+    TGameScreens.Game:
+      begin
+        FCurrentLayout := lGame;
+        InitGameScreen;
+      end;
+    TGameScreens.HallOfFames:
+      begin
+        FCurrentLayout := lHallOfFames;
+        InitHallOfFamesScreen;
+      end;
+    TGameScreens.Options:
+      begin
+        FCurrentLayout := lOptions;
+        InitOptionsScreen;
+      end;
+    TGameScreens.Credits:
+      begin
+        FCurrentLayout := lCredits;
+        InitCreditsScreen;
+      end
+  else
+    FCurrentLayout := nil;
+  end;
+  if assigned(FCurrentLayout) then
+  begin
+    // TODO : ajouter une animation d'affichage ?
+    FCurrentLayout.Visible := true;
+    FCurrentLayout.BringToFront;
+  end;
 end;
 
 end.
