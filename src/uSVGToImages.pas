@@ -107,6 +107,13 @@ begin
       MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
     TSVGSVGIndex.PipeHgd:
       MargeBas := 100 * ((117.55 - 87.9) / 117.55);
+    TSVGSVGIndex.BtnOn:
+      begin
+        MargeHaut := 100 * ((54 - 44) / 54) / 2;
+        MargeBas := 100 * ((54 - 44) / 54) / 2;
+        MargeGauche := 100 * ((104 - 94) / 104) / 2;
+        MargeDroite := 100 * ((104 - 94) / 104) / 2;
+      end;
   end;
   bmp := TOlfSVGBitmapList.Bitmap(ord(Index),
     round(width * (100 - MargeGauche - MargeDroite) / 100),
