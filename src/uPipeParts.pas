@@ -31,6 +31,7 @@ type
   protected
     procedure RefreshBackgroundImage;
     procedure DoResized; override;
+    function ParentWidth: single;
   public
     property SVGIndex: tsvgsvgindex read FSVGIndex write SetSVGIndex;
     property HasLeftConnection: boolean read GetHasLeftConnection;
@@ -45,15 +46,21 @@ type
     property Vy: single read FVy write SetVy;
     constructor Create(AOwner: TComponent); override;
     procedure AfterConstruction; override;
+    procedure GoToLeft;
+    procedure GoToRight;
+    procedure StopFalling;
+    procedure RotateRight;
   end;
 
 implementation
 
 uses
   FMX.Graphics,
+  FMX.Controls,
   System.SysUtils,
   uConsts,
-  uSVGToImages;
+  uSVGToImages,
+  uCurrentGame;
 
 { TPipePart }
 
@@ -71,8 +78,8 @@ end;
 constructor TPipePart.Create(AOwner: TComponent);
 begin
   inherited;
-  FGrilleX := -1;
-  FGrilleY := -1;
+  FGrilleX := 0;
+  FGrilleY := 0;
   FSVGIndex := tsvgsvgindex.PipeHdbg;
   FVy := 0;
 end;
@@ -139,6 +146,30 @@ begin
   result := position.y;
 end;
 
+procedure TPipePart.GoToLeft;
+begin
+  if (GrilleX > 0) and not assigned(CurrentGame.GetGrid(GrilleX - 1, GrilleY))
+  then
+    CurrentGame.CurPipe.ScreenX := CurrentGame.CurPipe.ScreenX -
+      CurrentGame.CurPipe.width;
+end;
+
+procedure TPipePart.GoToRight;
+begin
+  if (GrilleX + 1 < CNbCol) and not assigned(CurrentGame.GetGrid(GrilleX + 1,
+    GrilleY)) then
+    CurrentGame.CurPipe.ScreenX := CurrentGame.CurPipe.ScreenX +
+      CurrentGame.CurPipe.width;
+end;
+
+function TPipePart.ParentWidth: single;
+begin
+  if parent is tcontrol then
+    result := (parent as tcontrol).width
+  else
+    result := 0;
+end;
+
 procedure TPipePart.RefreshBackgroundImage;
 var
   bmp: TBitmap;
@@ -152,18 +183,82 @@ begin
   end;
 end;
 
+procedure TPipePart.RotateRight;
+begin
+  case FSVGIndex of
+    tsvgsvgindex.pipeDb:
+      SVGIndex := tsvgsvgindex.pipeGb;
+    tsvgsvgindex.pipeGb:
+      SVGIndex := tsvgsvgindex.pipeHd;
+    tsvgsvgindex.pipeGd:
+      SVGIndex := tsvgsvgindex.pipeHb;
+    tsvgsvgindex.pipeGdb:
+      SVGIndex := tsvgsvgindex.pipeHgb;
+    tsvgsvgindex.pipeHb:
+      SVGIndex := tsvgsvgindex.pipeGd;
+    tsvgsvgindex.pipeHd:
+      SVGIndex := tsvgsvgindex.pipeDb;
+    tsvgsvgindex.pipeHdb:
+      SVGIndex := tsvgsvgindex.pipeGdb;
+    tsvgsvgindex.PipeHdbg:
+      SVGIndex := tsvgsvgindex.PipeHdbg;
+    tsvgsvgindex.pipeHg:
+      SVGIndex := tsvgsvgindex.pipeHd;
+    tsvgsvgindex.pipeHgb:
+      SVGIndex := tsvgsvgindex.pipehGd;
+    tsvgsvgindex.pipehGd:
+      SVGIndex := tsvgsvgindex.pipeHdb;
+    tsvgsvgindex.EauDb:
+      SVGIndex := tsvgsvgindex.EauGb;
+    tsvgsvgindex.EauGb:
+      SVGIndex := tsvgsvgindex.EauHd;
+    tsvgsvgindex.EauGd:
+      SVGIndex := tsvgsvgindex.EauHb;
+    tsvgsvgindex.EauGdb:
+      SVGIndex := tsvgsvgindex.EauHgb;
+    tsvgsvgindex.EauGdh:
+      SVGIndex := tsvgsvgindex.EauGdh;
+    tsvgsvgindex.EauHb:
+      SVGIndex := tsvgsvgindex.EauGd;
+    tsvgsvgindex.EauHd:
+      SVGIndex := tsvgsvgindex.EauDb;
+    tsvgsvgindex.EauHdb:
+      SVGIndex := tsvgsvgindex.EauGdb;
+    tsvgsvgindex.EauHdbg:
+      SVGIndex := tsvgsvgindex.EauHdbg;
+    tsvgsvgindex.EauHg:
+      SVGIndex := tsvgsvgindex.EauHd;
+    tsvgsvgindex.EauHgb:
+      SVGIndex := tsvgsvgindex.EauGdh;
+  end;
+end;
+
 procedure TPipePart.SetGrilleX(const Value: integer);
 begin
-  FGrilleX := Value;
+  if (FGrilleX <> Value) then
+  begin
+    CurrentGame.SetGrid(FGrilleX, FGrilleY, nil);
+    FGrilleX := Value;
+    CurrentGame.SetGrid(FGrilleX, FGrilleY, self);
+  end;
 end;
 
 procedure TPipePart.SetGrilleY(const Value: integer);
 begin
-  FGrilleY := Value;
+  if (FGrilleY <> Value) then
+  begin
+    CurrentGame.SetGrid(FGrilleX, FGrilleY, nil);
+    FGrilleY := Value;
+    CurrentGame.SetGrid(FGrilleX, FGrilleY, self);
+  end;
 end;
 
 procedure TPipePart.SetHasWater(const Value: boolean);
+var
+  recursif: boolean;
 begin
+  recursif := (not HasWater) and Value;
+
   if Value then
     case FSVGIndex of
       tsvgsvgindex.pipeDb:
@@ -214,16 +309,41 @@ begin
       tsvgsvgindex.EauHgb:
         SVGIndex := tsvgsvgindex.pipeHgb;
     end;
+
+  if recursif then
+  begin // passage de "pipe" à "eau", on répercute sur les voisins
+    if HasLeftConnection and (GrilleX > 0) and
+      assigned(CurrentGame.GetGrid(GrilleX - 1, GrilleY)) and
+      CurrentGame.GetGrid(GrilleX - 1, GrilleY).HasRightConnection then
+      CurrentGame.GetGrid(GrilleX - 1, GrilleY).HasWater := true;
+
+    if HasRightConnection and (GrilleX < CNbCol - 1) and
+      assigned(CurrentGame.GetGrid(GrilleX + 1, GrilleY)) and
+      CurrentGame.GetGrid(GrilleX + 1, GrilleY).HasLeftConnection then
+      CurrentGame.GetGrid(GrilleX + 1, GrilleY).HasWater := true;
+
+    if HasUpConnection and (GrilleY > 0) and
+      assigned(CurrentGame.GetGrid(GrilleX, GrilleY - 1)) and
+      CurrentGame.GetGrid(GrilleX, GrilleY - 1).HasDownConnection then
+      CurrentGame.GetGrid(GrilleX, GrilleY - 1).HasWater := true;
+
+    if HasDownConnection and (GrilleY < CNbrow - 1) and
+      assigned(CurrentGame.GetGrid(GrilleX, GrilleY + 1)) and
+      CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasUpConnection then
+      CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasWater := true;
+  end;
 end;
 
 procedure TPipePart.SetScreenX(const Value: single);
 begin
   position.x := Value;
+  GrilleX := trunc(position.x / width);
 end;
 
 procedure TPipePart.SetScreenY(const Value: single);
 begin
   position.y := Value;
+  GrilleY := trunc(position.y / width);
 end;
 
 procedure TPipePart.SetSVGIndex(const Value: tsvgsvgindex);
@@ -240,6 +360,45 @@ end;
 procedure TPipePart.SetVy(const Value: single);
 begin
   FVy := Value;
+end;
+
+procedure TPipePart.StopFalling;
+begin
+  Vy := 0;
+  ScreenY := GrilleY * height;
+
+  if HasLeftConnection and not HasWater then
+  begin
+    if (GrilleX = 0) then
+      HasWater := true
+    else if assigned(CurrentGame.GetGrid(GrilleX - 1, GrilleY)) and
+      CurrentGame.GetGrid(GrilleX - 1, GrilleY).HasRightConnection then
+      HasWater := CurrentGame.GetGrid(GrilleX - 1, GrilleY).HasWater;
+  end;
+
+  if HasRightConnection and not HasWater then
+  begin
+    if (GrilleX = CNbCol - 1) then
+      HasWater := true
+    else if assigned(CurrentGame.GetGrid(GrilleX + 1, GrilleY)) and
+      CurrentGame.GetGrid(GrilleX + 1, GrilleY).HasLeftConnection then
+      HasWater := CurrentGame.GetGrid(GrilleX + 1, GrilleY).HasWater;
+  end;
+
+  if HasUpConnection and not HasWater then
+  begin
+    if (GrilleY > 0) and assigned(CurrentGame.GetGrid(GrilleX, GrilleY - 1)) and
+      CurrentGame.GetGrid(GrilleX, GrilleY - 1).HasDownConnection then
+      HasWater := CurrentGame.GetGrid(GrilleX, GrilleY - 1).HasWater;
+  end;
+
+  if HasDownConnection and not HasWater then
+  begin
+    if (GrilleY < CNbrow - 1) and
+      assigned(CurrentGame.GetGrid(GrilleX, GrilleY + 1)) and
+      CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasUpConnection then
+      HasWater := CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasWater;
+  end;
 end;
 
 end.
