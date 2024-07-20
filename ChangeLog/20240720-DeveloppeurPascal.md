@@ -5,7 +5,7 @@
 * correction des affichages d'images vectorielles par rapport au BitmapScale de l'écran sur lequel elles s'affichent
 * choix du nom de projet pour "Ploumtris"
 * mise à jour du dépôt de code avec le bon nom
-* création de la fiche sur itch et soumission à la gamejam
+* création de la fiche sur itch.io et soumission à la gamejam
 * création du projet dans Delphi
 * ajout des unités permettant de prendre en charge les éléments du jeu
 * mise à jour des informations de version, icones, ...
@@ -32,3 +32,57 @@
 * ajout d'actions de clôture lors du changement d'écran (pour nettoyer les éléments créés dans leur initialisation)
 * passage de l'écran principal en plein écran
 * implémentation de la prise en charge des gamepad et clavier par la librairie des éléments d'UI sur la fiche principale du jeu
+
+## 21h30 - minuit
+
+* prise en charge des déplacements horizontaux de la pièce qui tombent
+* prise en charge de la rotation de la pièce qui tombe
+* prise en charge du changement de statut au contact des rebords de l'écran
+* prise en charge de la grille des éléments tombés
+* prise en charge du passage à "eau" au contact d'autres éléments ayant ce statut
+* traiter flèche bas et DPAD bas pour accélérer	la chute de la pièce
+
+## à suivre
+
+* mettre en place la boucle de musique
+
+* faire boite de dialogue pour texte ou autres contenus
+
+* prise en charge du débordement par le haut de l'écran et donc de la fin de partie
+* ajouter l'écran de fin de partie
+
+* prise en charge d'une connection de la colonne gauche à la colonne de droite
+* prise en charge du score
+
+* faire écran des crédits du jeu
+
+* faire tcheckbox graphique
+* faire ttrackbar graphique
+* faire écran des options
+
+* faire écran des scores
+
+
+* corriger : touche ESC inopérante en cours de partie
+* corriger : les boutons du menu sur l'accueil ne sont plus actifs quand on sort de l'écran de jeu mais passent depuis les autres écrans
+
+
+* récupérer image de gamepad
+* récupérer image de clavier
+* récupérer image bouton A
+* récupérer image bouton A
+* récupérer image DPAD (gauche, droite, bas)
+* récupérer image touche ESC
+* récupérer image touche SPACE
+* récupérer image touche RETURN
+* récupérer image touche flèches (gauche, droite, bas)
+* afficher la liste des boutons/touches utilisables en bas de l'écran
+* afficher un truc disant quand 1 gamepad est détecté (et le masquer en automatique)
+* afficher un truc disant quand 1 gamepad est perdu (et le masquer en automatique)
+
+* traiter le resize de l'écran (s'assurer que la zone de jeu est toujorus dans l'écran)
+
+* ajouter les contrôles tactiles pour iOS et Android
+* ajouter le titre du jeu au moins sur l'écran du menu
+
+* éliminer "ParentWidth" de uPipeParts.pas
