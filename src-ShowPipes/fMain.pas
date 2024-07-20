@@ -288,4 +288,10 @@ begin
   ShowGridFromSwitch;
 end;
 
+initialization
+
+{$IFDEF DEBUG}
+  ReportMemoryLeaksOnShutdown := true;
+{$ENDIF}
+
 end.
