@@ -14,7 +14,8 @@ uses
   FMX.Graphics,
   FMX.Dialogs,
   Olf.FMX.AboutDialog,
-  uDMLogo, FMX.Layouts;
+  uDMLogo,
+  FMX.Layouts;
 
 type
 {$SCOPEDENUMS ON}
@@ -55,7 +56,8 @@ implementation
 {$R *.fmx}
 
 uses
-  u_urlOpen;
+  u_urlOpen,
+  uUIItemsList;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
@@ -151,12 +153,17 @@ begin
 end;
 
 procedure TfrmMain.SetCurrentScreen(const Value: TGameScreens);
+var
+  InitProc: TProc;
 begin
   lBackground.Visible := true;
 
   if assigned(FCurrentLayout) then
+  begin
     FCurrentLayout.Visible := false;
-  // TODO : ajouter une animation de masquage ?
+    // TODO : ajouter une animation de masquage ?
+    UIItems.RemoveLayout;
+  end;
 
   FCurrentScreen := Value;
 
@@ -164,37 +171,46 @@ begin
     TGameScreens.Home:
       begin
         FCurrentLayout := lHome;
-        InitHomeScreen;
+        InitProc := InitHomeScreen;
       end;
     TGameScreens.Game:
       begin
         FCurrentLayout := lGame;
-        InitGameScreen;
+        InitProc := InitGameScreen;
       end;
     TGameScreens.HallOfFames:
       begin
         FCurrentLayout := lHallOfFames;
-        InitHallOfFamesScreen;
+        InitProc := InitHallOfFamesScreen;
       end;
     TGameScreens.Options:
       begin
         FCurrentLayout := lOptions;
-        InitOptionsScreen;
+        InitProc := InitOptionsScreen;
       end;
     TGameScreens.Credits:
       begin
         FCurrentLayout := lCredits;
-        InitCreditsScreen;
+        InitProc := InitCreditsScreen;
       end
   else
     FCurrentLayout := nil;
+    InitProc := nil;
   end;
   if assigned(FCurrentLayout) then
   begin
+    UIItems.NewLayout;
+    InitProc;
     // TODO : ajouter une animation d'affichage ?
     FCurrentLayout.Visible := true;
     FCurrentLayout.BringToFront;
   end;
 end;
+
+initialization
+
+{$IFDEF DEBUG}
+  ReportMemoryLeaksOnShutdown := true;
+{$ENDIF}
 
 end.
