@@ -12,7 +12,9 @@ uses
   iOSapi.GameController in '..\lib-externes\Delphi-Game-Engine\src\iOSapi.GameController.pas',
   Macapi.GameController in '..\lib-externes\Delphi-Game-Engine\src\Macapi.GameController.pas',
   Gamolf.FMX.MusicLoop in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.FMX.MusicLoop.pas',
-  uUIElements in '..\src-temp\uUIElements.pas';
+  uUIElements in '..\src-temp\uUIElements.pas',
+  Olf.RTL.CryptDecrypt in '..\lib-externes\librairies\src\Olf.RTL.CryptDecrypt.pas',
+  Olf.RTL.Params in '..\lib-externes\librairies\src\Olf.RTL.Params.pas';
 
 {$R *.res}
 
