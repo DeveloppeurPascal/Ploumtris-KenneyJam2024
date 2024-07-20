@@ -477,7 +477,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="fMain.pas">
-            <Form>Form1</Form>
+            <Form>frmMain</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="..\src-temp\uJoystickManager.pas"/>
@@ -497,6 +497,14 @@
             <Form>OlfAboutDialogForm</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="uDMLogo.pas">
+            <Form>dmLogo</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\lib-externes\librairies\src\u_urlOpen.pas"/>
+        <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas"/>
+        <DCCReference Include="uConfig.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

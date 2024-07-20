@@ -3,7 +3,7 @@ program Ploumtris;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  fMain in 'fMain.pas' {Form1},
+  fMain in 'fMain.pas' {frmMain},
   uJoystickManager in '..\src-temp\uJoystickManager.pas',
   Gamolf.FMX.Joystick in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.FMX.Joystick.pas',
   Gamolf.RTL.Joystick.DirectInput.Win in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Joystick.DirectInput.Win.pas',
@@ -17,12 +17,17 @@ uses
   Olf.RTL.Params in '..\lib-externes\librairies\src\Olf.RTL.Params.pas',
   Gamolf.RTL.Scores in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Scores.pas',
   Olf.FMX.AboutDialog in '..\lib-externes\AboutDialog-Delphi-Component\src\Olf.FMX.AboutDialog.pas',
-  Olf.FMX.AboutDialogForm in '..\lib-externes\AboutDialog-Delphi-Component\src\Olf.FMX.AboutDialogForm.pas' {OlfAboutDialogForm};
+  Olf.FMX.AboutDialogForm in '..\lib-externes\AboutDialog-Delphi-Component\src\Olf.FMX.AboutDialogForm.pas' {OlfAboutDialogForm},
+  uDMLogo in 'uDMLogo.pas' {dmLogo: TDataModule},
+  u_urlOpen in '..\lib-externes\librairies\src\u_urlOpen.pas',
+  PuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas',
+  uConfig in 'uConfig.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TdmLogo, dmLogo);
+  Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.
