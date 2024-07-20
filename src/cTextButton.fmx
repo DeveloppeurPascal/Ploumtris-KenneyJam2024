@@ -1,0 +1,27 @@
+object cadTextButton: TcadTextButton
+  Size.Width = 320.000000000000000000
+  Size.Height = 240.000000000000000000
+  Size.PlatformDefault = False
+  OnMouseDown = FrameMouseDown
+  OnMouseUp = FrameMouseUp
+  OnMouseLeave = FrameMouseLeave
+  object rBackground: TRectangle
+    Align = Client
+    Fill.Bitmap.WrapMode = TileStretch
+    Fill.Kind = Bitmap
+    HitTest = False
+    Size.Width = 320.000000000000000000
+    Size.Height = 240.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    OnResized = rBackgroundResized
+    object Text1: TText
+      Align = Client
+      HitTest = False
+      Size.Width = 320.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'button'
+    end
+  end
+end
