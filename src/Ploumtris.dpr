@@ -22,7 +22,8 @@ uses
   u_urlOpen in '..\lib-externes\librairies\src\u_urlOpen.pas',
   PuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas',
   uConfig in 'uConfig.pas',
-  uUIItemsList in 'uUIItemsList.pas';
+  uUIItemsList in 'uUIItemsList.pas',
+  uSVGToImages in 'uSVGToImages.pas';
 
 {$R *.res}
 

@@ -506,6 +506,7 @@
         <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas"/>
         <DCCReference Include="uConfig.pas"/>
         <DCCReference Include="uUIItemsList.pas"/>
+        <DCCReference Include="uSVGToImages.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
