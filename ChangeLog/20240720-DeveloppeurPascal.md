@@ -17,4 +17,18 @@
 * ajout de la prise en charge des niveaux d'interface dans le projet principal
 * sur le projet de test/création des composants graphiques pour l'interface utilisateur, mise en place des écrans de test et prise en charge de la librairie UIElements (gamepad + clavier sont opérationnels)
 
-## 13h - 
+## 13h - 20h
+
+* externalisation de la création des bitmaps depuis les SVG en tenant compte des marges pour les tuyaux
+* mise à jour des programmes de tests d'affichage avec la nouvelle unité
+* création d'un cadre pour les boutons de menus avec texte
+* mise en place d'un écran de test des boutons textuels
+* création de l'écran d'accueil avec la mise en place des boutons, leurs interactions à la souris, au clavier et au gamepad
+* mise en place d'une image de background avec un gradiant
+* création de l'écran de jeu et dessin du contour de la zone de jeu
+* création d'une classe pour gérer un élément de tuyau (pièce qui chute et change d'état)
+* création d'une classe pour gérer la partie en cours
+* mise en place de la boucle de jeu
+* ajout d'actions de clôture lors du changement d'écran (pour nettoyer les éléments créés dans leur initialisation)
+* passage de l'écran principal en plein écran
+* implémentation de la prise en charge des gamepad et clavier par la librairie des éléments d'UI sur la fiche principale du jeu
