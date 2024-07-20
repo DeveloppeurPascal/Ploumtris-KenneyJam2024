@@ -60,6 +60,7 @@ var
   img: timage;
   lbl: TLabel;
   MargeHaut, MargeBas, MargeGauche, MargeDroite: single;
+  BMPScale: single;
 begin
   MargeHaut := 0;
   MargeDroite := 0;
@@ -145,19 +146,27 @@ begin
     TSVGSVGIndex.PipeHgd:
       MargeBas := 100 * ((117.55 - 87.9) / 117.55);
   end;
-  bmp := TOlfSVGBitmapList.Bitmap(ord(Id),
-    round(GL.ItemWidth * (100 - MargeGauche - MargeDroite) / 100),
-    round(GL.Itemheight * (100 - MargeHaut - MargeBas) / 100));
+
   img := timage.Create(self);
   img.Parent := GL;
-  img.Bitmap.SetSize(round(img.Width), round(img.Height));
+
+  img.WrapMode := TImageWrapMode.Original;
+  BMPScale := img.Bitmap.BitmapScale;
+
+  bmp := TOlfSVGBitmapList.Bitmap(ord(Id),
+    round(BMPScale * GL.ItemWidth * (100 - MargeGauche - MargeDroite) / 100),
+    round(BMPScale * GL.Itemheight * (100 - MargeHaut - MargeBas) / 100));
+
+  img.Bitmap.SetSize(round(img.width * img.Bitmap.BitmapScale),
+    round(img.height * img.Bitmap.BitmapScale));
   img.Bitmap.Clear(TAlphaColors.Snow);
   img.Bitmap.Canvas.BeginScene;
   try
     img.Bitmap.Canvas.DrawBitmap(bmp, bmp.BoundsF,
-      trectf.Create(img.Bitmap.Width * MargeGauche / 100,
-      img.Bitmap.Height * MargeHaut / 100, bmp.Width + img.Bitmap.Width *
-      MargeGauche / 100, bmp.Height + img.Bitmap.Height * MargeHaut / 100), 1);
+      trectf.Create((img.Bitmap.width * MargeGauche / 100) / BMPScale,
+      (img.Bitmap.height * MargeHaut / 100) / BMPScale,
+      (bmp.width + img.Bitmap.width * MargeGauche / 100) / BMPScale,
+      (bmp.height + img.Bitmap.height * MargeHaut / 100) / BMPScale), 1);
   finally
     img.Bitmap.Canvas.EndScene;
   end;
@@ -174,23 +183,23 @@ begin
   ShowGridFromSwitch;
   GridLayout1.ItemWidth := CTileSize;
   GridLayout1.Itemheight := CTileSize;
-  GridLayout1.Width := GridLayout1.ItemWidth * 4;
-  GridLayout1.Height := GridLayout1.Itemheight * 4;
+  GridLayout1.width := GridLayout1.ItemWidth * 4;
+  GridLayout1.height := GridLayout1.Itemheight * 4;
 
   GridLayout2.ItemWidth := GridLayout1.ItemWidth;
   GridLayout2.Itemheight := GridLayout1.Itemheight;
-  GridLayout2.Width := GridLayout1.Width;
-  GridLayout2.Height := GridLayout1.Height;
+  GridLayout2.width := GridLayout1.width;
+  GridLayout2.height := GridLayout1.height;
 
   GridLayout3.ItemWidth := GridLayout1.ItemWidth;
   GridLayout3.Itemheight := GridLayout1.Itemheight;
-  GridLayout3.Width := GridLayout3.ItemWidth * 3;
-  GridLayout3.Height := GridLayout3.Itemheight * 3;
+  GridLayout3.width := GridLayout3.ItemWidth * 3;
+  GridLayout3.height := GridLayout3.Itemheight * 3;
 
   GridLayout4.ItemWidth := GridLayout3.ItemWidth;
   GridLayout4.Itemheight := GridLayout3.Itemheight;
-  GridLayout4.Width := GridLayout3.Width;
-  GridLayout4.Height := GridLayout3.Height;
+  GridLayout4.width := GridLayout3.width;
+  GridLayout4.height := GridLayout3.height;
 
   AddImage(TSVGSVGIndex.PipeDb, GridLayout1);
   AddImage(TSVGSVGIndex.PipeGd, GridLayout1);
