@@ -21,7 +21,8 @@ uses
   uDMLogo in 'uDMLogo.pas' {dmLogo: TDataModule},
   u_urlOpen in '..\lib-externes\librairies\src\u_urlOpen.pas',
   PuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas',
-  uConfig in 'uConfig.pas';
+  uConfig in 'uConfig.pas',
+  uUIItemsList in 'uUIItemsList.pas';
 
 {$R *.res}
 
