@@ -344,6 +344,7 @@
             <Form>frmImageButtons</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="..\src\uSVGToImages.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

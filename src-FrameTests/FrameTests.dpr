@@ -18,7 +18,8 @@ uses
   fTrackBar in 'fTrackBar.pas' {frmTrackBar},
   fCheckBox in 'fCheckBox.pas' {frmCheckBox},
   fDialogBox in 'fDialogBox.pas' {frmDialogBox},
-  fImageButtons in 'fImageButtons.pas' {frmImageButtons};
+  fImageButtons in 'fImageButtons.pas' {frmImageButtons},
+  uSVGToImages in '..\src\uSVGToImages.pas';
 
 {$R *.res}
 
