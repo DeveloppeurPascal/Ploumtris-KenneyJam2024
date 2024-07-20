@@ -7,7 +7,9 @@ object frmMain: TfrmMain
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  FullScreen = True
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   DesignerMasterStyle = 0
   object OlfAboutDialog1: TOlfAboutDialog
     Titre = 'Ploumtris'
@@ -21,8 +23,8 @@ object frmMain: TfrmMain
     URL = 'https://ploumtris.gamolf.fr'
     onURLClick = OlfAboutDialog1URLClick
     Copyright = '2024 Patrick Pr'#233'martin'
-    Left = 304
-    Top = 224
+    Left = 464
+    Top = 120
   end
   object lBackground: TLayout
     Align = Contents
@@ -30,6 +32,23 @@ object frmMain: TfrmMain
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
+    object rBackground: TRectangle
+      Align = Contents
+      Fill.Kind = Gradient
+      Fill.Gradient.Points = <
+        item
+          Color = claBlack
+          Offset = 0.000000000000000000
+        end
+        item
+          Color = xFF167C91
+          Offset = 1.000000000000000000
+        end>
+      Size.Width = 640.000000000000000000
+      Size.Height = 480.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
   end
   object lHome: TLayout
     Align = Contents
@@ -37,6 +56,10 @@ object frmMain: TfrmMain
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
+    object lHomeButtons: TLayout
+      Align = Center
+      TabOrder = 0
+    end
   end
   object lGame: TLayout
     Align = Contents
@@ -44,6 +67,39 @@ object frmMain: TfrmMain
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
+    object lGameZone: TLayout
+      Align = Center
+      TabOrder = 0
+      object lGameZonePlay: TLayout
+        Align = Client
+        Size.Width = 0.000000000000000000
+        Size.Height = 0.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+      end
+      object lGameZoneRight: TLayout
+        Align = MostRight
+        Size.Width = 50.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+      end
+      object lGameZoneBottom: TLayout
+        Align = Bottom
+        Position.X = 50.000000000000000000
+        Size.Width = 0.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+      object lGameZoneLeft: TLayout
+        Align = MostLeft
+        Size.Width = 50.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+      end
+    end
   end
   object lOptions: TLayout
     Align = Contents
@@ -65,5 +121,18 @@ object frmMain: TfrmMain
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 6
+  end
+  object GamepadManager1: TGamepadManager
+    SynchronizedEvents = True
+    OnButtonDown = GamepadManager1ButtonDown
+    OnDirectionPadChange = GamepadManager1DirectionPadChange
+    Left = 288
+    Top = 120
+  end
+  object GameLoop: TTimer
+    Interval = 16
+    OnTimer = GameLoopTimer
+    Left = 440
+    Top = 232
   end
 end
