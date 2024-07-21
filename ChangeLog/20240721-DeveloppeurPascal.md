@@ -12,42 +12,16 @@
 * prise en charge d'une connection de la colonne gauche à la colonne de droite
 * prise en charge du score
 
-## à suivre
 
+## 14h45 - 18h30
+
+* déplacement de la zone d'affichage du score en bas de la zone de jeu
 * faire écran des crédits du jeu
+* correction de la prise en charge des touches du clavier qui n'étaient plus traitées en dehors des actions pendant une partie
+* correction de la sortie du plein écran sur Mac avec la touche ESC qui n'était plus interceptée par le programme et rendait la main au fonctionnement normale de macOS plutôt que sortir de l'écran en cours ou du programme.
+* création d'un cadre pour dessiner le titre à partir d'un assemblage de tuyaux
+* ajout du titre sur le background de l'écran (en affichage vertical)
+* correction de l'affichage du score dans la fenêtre de GAME OVER sur Mac (pas assez de lignes pour forcer le TText à s'agrandir ???)
+* correction de violations d'accès sur Mac en utilisant la souris sur les boutons graphiques (leur suppression se faisait dans l'événement gérant le clic et la suite plantait, un classique, différer les suppressions d'éléments liés aux événements pour éviter ça)
 
-
-* corriger : touche ESC inopérante en cours de partie
-* corriger : le plein écran sur le Mac en désactivant ESC ou l'interceptant (il repasse en fenêtre)
-* corriger : touche flèches inopérantes sur menu principal
-* corriger : les boutons du menu sur l'accueil ne sont plus actifs quand on sort de l'écran de jeu mais passent depuis les autres écrans
-* sur écran GAME OVER, le score n'est pas affiché alors qu'il est bien passé dans le texte (revoir les sauts de ligne sur l'affichge du texte, peut-être basculer en HTML)
-
-
-* faire tcheckbox graphique
-* faire ttrackbar graphique
-* faire écran des options
-
-
-* faire écran du hall of fames
-
-
-* récupérer image de gamepad
-* récupérer image de clavier
-* récupérer image bouton A
-* récupérer image bouton A
-* récupérer image DPAD (gauche, droite, bas)
-* récupérer image touche ESC
-* récupérer image touche SPACE
-* récupérer image touche RETURN
-* récupérer image touche flèches (gauche, droite, bas)
-* afficher la liste des boutons/touches utilisables en bas de l'écran
-* afficher un truc disant quand 1 gamepad est détecté (et le masquer en automatique)
-* afficher un truc disant quand 1 gamepad est perdu (et le masquer en automatique)
-
-
-* traiter le resize de l'écran (s'assurer que la zone de jeu est toujorus dans l'écran)
-
-
-* ajouter les contrôles tactiles pour iOS et Android
-* ajouter le titre du jeu au moins sur l'écran du menu
+* released version 1.0 - 20240721
