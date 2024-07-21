@@ -1,0 +1,65 @@
+object frmPloumtrisTitle: TfrmPloumtrisTitle
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 589
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object HorzScrollBox1: THorzScrollBox
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 567.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 640.000000000000000000
+    Viewport.Height = 551.000000000000000000
+    object GridLayout1: TGridLayout
+      ItemHeight = 64.000000000000000000
+      ItemWidth = 64.000000000000000000
+      Orientation = Horizontal
+      Position.X = 296.000000000000000000
+      Position.Y = 216.000000000000000000
+      TabOrder = 0
+    end
+    inline cadPloumtrisTitle2: TcadPloumtrisTitle
+      HitTest = False
+      Position.X = 193.000000000000000000
+      Position.Y = 128.000000000000000000
+      Size.Width = 760.000000000000000000
+      Size.Height = 273.000000000000000000
+      Size.PlatformDefault = False
+    end
+    inline cadPloumtrisTitle1: TcadPloumtrisTitle
+      HitTest = False
+      Position.X = 48.000000000000000000
+      Position.Y = 344.000000000000000000
+      Size.Width = 225.000000000000000000
+      Size.Height = 114.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Size.Width = 64.000000000000000000
+    Size.Height = 64.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+  end
+  object Button1: TButton
+    Align = Bottom
+    Position.Y = 567.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'Button1'
+    TextSettings.Trimming = None
+    OnClick = Button1Click
+  end
+end
