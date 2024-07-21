@@ -40,7 +40,7 @@ object frmMain: TfrmMain
     Size.PlatformDefault = False
     TextSettings.HorzAlign = Trailing
     Text = 'Gamepad connected.'
-    TabOrder = 6
+    TabOrder = 7
   end
   object btnImageButtons: TButton
     Align = Top
@@ -69,7 +69,7 @@ object frmMain: TfrmMain
     Size.Width = 630.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 4
+    TabOrder = 5
     Text = 'btnTrackbar'
     TextSettings.Trimming = None
     OnClick = btnTrackbarClick
@@ -110,5 +110,21 @@ object frmMain: TfrmMain
     OnTimer = Timer1Timer
     Left = 304
     Top = 224
+  end
+  object btnPloumtrisTitle: TButton
+    Align = Top
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 165.000000000000000000
+    Size.Width = 630.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'btnPloumtrisTitle'
+    TextSettings.Trimming = None
+    OnClick = btnPloumtrisTitleClick
   end
 end

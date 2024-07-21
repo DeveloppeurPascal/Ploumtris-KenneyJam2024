@@ -26,6 +26,7 @@ type
     btnTrackbar: TButton;
     btnCheckbox: TButton;
     btnDialogBox: TButton;
+    btnPloumtrisTitle: TButton;
     procedure btnTextButtonsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: WideChar;
@@ -36,6 +37,7 @@ type
     procedure btnDialogBoxClick(Sender: TObject);
     procedure btnCheckboxClick(Sender: TObject);
     procedure btnTrackbarClick(Sender: TObject);
+    procedure btnPloumtrisTitleClick(Sender: TObject);
   private
   protected
     procedure InitSVGToBitmap;
@@ -60,7 +62,7 @@ uses
   fImageButtons,
   fTrackBar,
   PuzzleAssets2,
-  Olf.Skia.SVGToBitmap;
+  Olf.Skia.SVGToBitmap, fPloumtrisTitle;
 
 procedure TfrmMain.btnCheckboxClick(Sender: TObject);
 var
@@ -91,6 +93,18 @@ var
   frm: TfrmImageButtons;
 begin
   frm := TfrmImageButtons.Create(self);
+  try
+    frm.ShowModal;
+  finally
+    frm.Free;
+  end;
+end;
+
+procedure TfrmMain.btnPloumtrisTitleClick(Sender: TObject);
+var
+  frm: TfrmPloumtrisTitle;
+begin
+  frm := TfrmPloumtrisTitle.Create(self);
   try
     frm.ShowModal;
   finally
