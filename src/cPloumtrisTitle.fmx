@@ -1,0 +1,25 @@
+object cadPloumtrisTitle: TcadPloumtrisTitle
+  HitTest = False
+  Size.Width = 320.000000000000000000
+  Size.Height = 240.000000000000000000
+  Size.PlatformDefault = False
+  OnResized = FrameResized
+  object GridLayout1: TGridLayout
+    HitTest = False
+    ItemHeight = 64.000000000000000000
+    ItemWidth = 64.000000000000000000
+    Orientation = Horizontal
+    Position.X = 136.000000000000000000
+    Position.Y = 96.000000000000000000
+    TabOrder = 0
+  end
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    HitTest = False
+    Position.X = 144.000000000000000000
+    Position.Y = 104.000000000000000000
+    Visible = False
+  end
+end
