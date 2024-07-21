@@ -75,18 +75,19 @@ object frmMain: TfrmMain
         Size.Width = 0.000000000000000000
         Size.Height = 0.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 2
+        TabOrder = 3
       end
       object lGameZoneRight: TLayout
         Align = MostRight
         Size.Width = 50.000000000000000000
-        Size.Height = 50.000000000000000000
+        Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
+        TabOrder = 2
       end
       object lGameZoneBottom: TLayout
         Align = Bottom
         Position.X = 50.000000000000000000
+        Position.Y = -25.000000000000000000
         Size.Width = 0.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
@@ -95,39 +96,34 @@ object frmMain: TfrmMain
       object lGameZoneLeft: TLayout
         Align = MostLeft
         Size.Width = 50.000000000000000000
-        Size.Height = 50.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 3
-      end
-    end
-    object lGameTexts: TLayout
-      Align = Bottom
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 450.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 25.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 1
-      object rGameTextsBackground: TRectangle
-        Align = Contents
-        Fill.Color = claWhite
-        Opacity = 0.600000023841857900
-        Size.Width = 630.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
+        TabOrder = 4
       end
-      object lblScore: TLabel
-        Align = Contents
-        Size.Width = 630.000000000000000000
+      object lGameTexts: TLayout
+        Align = MostBottom
+        Position.Y = 25.000000000000000000
+        Size.Width = 50.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.HorzAlign = Center
-        Text = 'lblScore'
         TabOrder = 1
+        object rGameTextsBackground: TRectangle
+          Align = Contents
+          Fill.Color = claWhite
+          Opacity = 0.600000023841857900
+          Size.Width = 50.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblScore: TLabel
+          Align = Contents
+          Size.Width = 50.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          Text = 'lblScore'
+          TabOrder = 1
+        end
       end
     end
   end
