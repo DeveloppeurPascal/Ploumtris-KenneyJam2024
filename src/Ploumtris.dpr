@@ -29,7 +29,9 @@ uses
   cTextButton in 'cTextButton.pas' {cadTextButton: TFrame},
   uConsts in 'uConsts.pas',
   uPipeParts in 'uPipeParts.pas',
-  uCurrentGame in 'uCurrentGame.pas';
+  uCurrentGame in 'uCurrentGame.pas',
+  uBackgroundMusic in 'uBackgroundMusic.pas',
+  cDialogBox in 'cDialogBox.pas' {cadDialogBox: TFrame};
 
 {$R *.res}
 

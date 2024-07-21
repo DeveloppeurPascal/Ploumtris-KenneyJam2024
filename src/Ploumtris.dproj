@@ -5,11 +5,10 @@
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Platform Condition="'$(Platform)'==''">OSXARM64</Platform>
         <TargetedPlatforms>169107</TargetedPlatforms>
         <AppType>Application</AppType>
         <MainSource>Ploumtris.dpr</MainSource>
-        <ProjectName Condition="'$(ProjectName)'==''">Ploumtris</ProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -353,6 +352,8 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Build>1</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.1;InternalName=;LegalCopyright=2024 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.gamolf.ploumtris;ProductName=$(MSBuildProjectName);ProductVersion=1.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -517,6 +518,12 @@
         <DCCReference Include="uConsts.pas"/>
         <DCCReference Include="uPipeParts.pas"/>
         <DCCReference Include="uCurrentGame.pas"/>
+        <DCCReference Include="uBackgroundMusic.pas"/>
+        <DCCReference Include="cDialogBox.pas">
+            <Form>cadDialogBox</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -819,6 +826,110 @@
                         <RemoteDir>.\</RemoteDir>
                         <Operation>0</Operation>
                         <RemoteName>sk4d.dll</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Debug" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Release" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Release" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_PRIVATE\musiques\Loinduciel-VictorDesveaux\Ploumtris-V2.mp3" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteName>Ploumtris-V2.mp3</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
