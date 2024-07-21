@@ -23,7 +23,8 @@ uses
   uSVGToImages in '..\src\uSVGToImages.pas',
   cTextButton in '..\src\cTextButton.pas' {cadTextButton: TFrame},
   PuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas',
-  Olf.Skia.SVGToBitmap in '..\lib-externes\librairies\src\Olf.Skia.SVGToBitmap.pas';
+  Olf.Skia.SVGToBitmap in '..\lib-externes\librairies\src\Olf.Skia.SVGToBitmap.pas',
+  cDialogBox in '..\src\cDialogBox.pas' {cadDialogBox: TFrame};
 
 {$R *.res}
 
