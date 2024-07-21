@@ -151,7 +151,7 @@ begin
 
   rBackground.padding.left := width * 30 / 276;
   rBackground.padding.top := height * 38 / 276;
-  rBackground.padding.right := padding.left;
+  rBackground.padding.right := rBackground.padding.left;
   rBackground.padding.bottom := height * 30 / 276;
 end;
 
@@ -175,6 +175,8 @@ procedure TcadDialogBox.RefreshButtons;
     result.height := 54;
     // TODO : taille W/H à calculer au prorata de la hauteur de la zone parente
 
+    result.BackgroundColor := talphacolors.white;
+
     result.Text := Text;
   end;
 
@@ -190,7 +192,7 @@ begin
   case FDialogType of
     TDialogBoxType.Information, TDialogBoxType.Error:
       begin
-        btn := AddButton('Back', btn); // TODO : traduire textes
+        btn := AddButton('Home', btn); // TODO : traduire textes
         btn.GetUIItem.KeyShortcuts.Add(vkEscape, #0, []);
         btn.GetUIItem.KeyShortcuts.Add(vkHardwareBack, #0, []);
         btn.GetUIItem.KeyShortcuts.Add(vkReturn, #0, []);
@@ -200,9 +202,8 @@ begin
         btn.onclick := ButtonBackClick;
         btn.GetUIItem.SetFocus;
 
-        // btn.Position.x := (lButtons.width - btn.width) / 2;
-        btn.align := talignlayout.center;
-        // TODO : corriger le centrage du bouton dans la zone correspondante, il apparaît décalé vers la droite
+        btn.Position.x := (lButtons.width - btn.width) / 2;
+        // btn.align := talignlayout.center;
       end;
   else
     raise exception.Create('Confirmation dialog box not implemented !');
