@@ -22,6 +22,7 @@ object cadTextButton: TcadTextButton
       Size.Height = 240.000000000000000000
       Size.PlatformDefault = False
       Text = 'button'
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
     end
   end
 end
