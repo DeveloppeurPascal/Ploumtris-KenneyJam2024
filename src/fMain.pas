@@ -19,7 +19,10 @@ uses
   Gamolf.RTL.Joystick,
   uJoystickManager,
   FMX.Objects,
-  cDialogBox, FMX.Controls.Presentation, FMX.StdCtrls;
+  cDialogBox,
+  FMX.Controls.Presentation,
+  FMX.StdCtrls,
+  cPloumtrisTitle;
 
 type
 {$SCOPEDENUMS ON}
@@ -46,6 +49,8 @@ type
     lGameTexts: TLayout;
     rGameTextsBackground: TRectangle;
     lblScore: TLabel;
+    GameTitle: TcadPloumtrisTitle;
+    lblVersion: TLabel;
     procedure OlfAboutDialog1URLClick(const AURL: string);
     procedure FormCreate(Sender: TObject);
     procedure GamepadManager1ButtonDown(const GamepadID: Integer;
@@ -63,7 +68,6 @@ type
   protected
     procedure InitAboutDialogBox;
     procedure InitMainFormCaption;
-    procedure InitSVGToBitmap;
     procedure InitHomeScreen;
     procedure CloseHomeScreen;
     procedure InitGameScreen;
@@ -148,12 +152,20 @@ end;
 
 procedure TfrmMain.CloseCreditsScreen;
 begin
-  freeandnil(FDialogBox);
+  tthread.forcequeue(nil,
+    procedure
+    begin
+      freeandnil(FDialogBox);
+    end);
 end;
 
 procedure TfrmMain.CloseGameOverScreen;
 begin
-  freeandnil(FDialogBox);
+  tthread.forcequeue(nil,
+    procedure
+    begin
+      freeandnil(FDialogBox);
+    end);
 end;
 
 procedure TfrmMain.CloseGameScreen;
@@ -167,6 +179,8 @@ begin
   CurrentGame.CurPipe := nil;
   while (lGameZonePlay.ChildrenCount > 0) do
     lGameZonePlay.Children[0].free;
+
+  GameTitle.Visible := true;
 end;
 
 procedure TfrmMain.CloseHallOfFamesScreen;
@@ -176,8 +190,12 @@ end;
 
 procedure TfrmMain.CloseHomeScreen;
 begin
-  while lHomeButtons.ChildrenCount > 0 do
-    lHomeButtons.Children[0].free;
+  tthread.forcequeue(nil,
+    procedure
+    begin
+      while lHomeButtons.ChildrenCount > 0 do
+        lHomeButtons.Children[0].free;
+    end);
 end;
 
 procedure TfrmMain.CloseOptionsScreen;
@@ -189,8 +207,6 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
-  InitSVGToBitmap;
-
   InitAboutDialogBox;
   InitMainFormCaption;
 
@@ -203,7 +219,7 @@ begin
       .tolower.EndsWith('screen') then
       (Children[i] as TLayout).Visible := false;
 
-  tthread.ForceQueue(nil,
+  tthread.forcequeue(nil,
     procedure
     begin
       TBackgroundMusic.current.OnOff(tconfig.current.BackgroundMusic);
@@ -246,7 +262,7 @@ begin
       end;
     end;
   end;
-  if (Key <> 0) and (KeyChar <> #0) then
+  if (Key <> 0) or (KeyChar <> #0) then
     UIItems.KeyDown(Key, KeyChar, Shift);
   if ((Key = 0) and (KeyChar = ' ')) or ((Key = vkReturn) and (KeyChar = #0))
   then
@@ -392,8 +408,6 @@ begin
 end;
 
 procedure TfrmMain.InitCreditsScreen;
-var
-  item: tuiitem;
 begin
   FDialogBox := TcadDialogBox.GetNewInstance(self, TDialogBoxType.Information,
     TDialogBoxBackgroundColor.Vert, OlfAboutDialog1.Description.Text.trim +
@@ -413,7 +427,8 @@ begin
   // TODO : afficher la capture de l'écran de jeu en background
   FDialogBox := TcadDialogBox.GetNewInstance(self, TDialogBoxType.Information,
     TDialogBoxBackgroundColor.Orange, 'GAME OVER' + slinebreak + slinebreak +
-    'Your final score is ' + CurrentGame.Score.tostring);
+    'Your final score is ' + CurrentGame.Score.tostring + slinebreak +
+    slinebreak);
   FDialogBox.OnClick := ButtonGameOverBackClick;
   // TODO : rendre la fenêtre un peu plus "sexy"
 end;
@@ -425,6 +440,8 @@ var
   r: TRectangle;
   bmp1, bmp2: tbitmap;
 begin
+  GameTitle.Visible := false;
+
   // Gestion du bouton "B" et ESCape
   item := UIItems.AddUIItem(
     procedure(const Sender: TObject)
@@ -628,8 +645,8 @@ begin
 
   btn := AddButton(lHomeButtons, 'Play', nil, ButtonPlayClick);
   btn.IsSelected := true;
-  btn := AddButton(lHomeButtons, 'Options', btn, ButtonOptionsClick);
-  btn := AddButton(lHomeButtons, 'Hall of fames', btn, ButtonHallOfFameClick);
+  // TODO : btn := AddButton(lHomeButtons, 'Options', btn, ButtonOptionsClick);
+  // TODO : btn := AddButton(lHomeButtons, 'Hall of fames', btn, ButtonHallOfFameClick);
   btn := AddButton(lHomeButtons, 'Credits', btn, ButtonCreditsClick);
   AddButton(lHomeButtons, 'Quit', btn, ButtonQuitClick);
 end;
@@ -643,6 +660,9 @@ begin
 {$ENDIF}
   caption := caption + OlfAboutDialog1.Titre + ' v' +
     OlfAboutDialog1.VersionNumero;
+
+  lblVersion.Text := 'v' + OlfAboutDialog1.VersionNumero + '-' +
+    OlfAboutDialog1.VersionDate;
 end;
 
 procedure TfrmMain.InitOptionsScreen;
@@ -660,14 +680,6 @@ begin
   item.GamePadButtons := [TJoystickButtons.b];
 
   // TODO : à compléter
-end;
-
-procedure TfrmMain.InitSVGToBitmap;
-var
-  i: Integer;
-begin
-  for i := 0 to length(SVGSVG) - 1 do
-    TOlfSVGBitmapList.AddItemAt(i, SVGSVG[i]);
 end;
 
 procedure TfrmMain.OlfAboutDialog1URLClick(const AURL: string);

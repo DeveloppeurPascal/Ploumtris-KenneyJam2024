@@ -3,7 +3,7 @@ object frmMain: TfrmMain
   Top = 0
   Caption = 'Form1'
   ClientHeight = 480
-  ClientWidth = 640
+  ClientWidth = 881
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -13,8 +13,8 @@ object frmMain: TfrmMain
   DesignerMasterStyle = 0
   object OlfAboutDialog1: TOlfAboutDialog
     Titre = 'Ploumtris'
-    VersionNumero = '1.0'
-    VersionDate = '20240720'
+    VersionNumero = 'KJ2024'
+    VersionDate = '20240721'
     MultiResBitmap = <
       item
       end>
@@ -28,7 +28,7 @@ object frmMain: TfrmMain
   end
   object lBackground: TLayout
     Align = Contents
-    Size.Width = 640.000000000000000000
+    Size.Width = 881.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
@@ -44,15 +44,37 @@ object frmMain: TfrmMain
           Color = xFF167C91
           Offset = 1.000000000000000000
         end>
-      Size.Width = 640.000000000000000000
+      Size.Width = 881.000000000000000000
       Size.Height = 480.000000000000000000
       Size.PlatformDefault = False
       Stroke.Kind = None
+      inline GameTitle: TcadPloumtrisTitle
+        Align = Top
+        HitTest = False
+        Size.Width = 881.000000000000000000
+        Size.Height = 200.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object lblVersion: TLabel
+        Align = Bottom
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 458.000000000000000000
+        Size.Width = 871.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'lblVersion'
+        TabOrder = 0
+      end
     end
   end
   object lHomeScreen: TLayout
     Align = Contents
-    Size.Width = 640.000000000000000000
+    Size.Width = 881.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
@@ -63,7 +85,7 @@ object frmMain: TfrmMain
   end
   object lGameScreen: TLayout
     Align = Contents
-    Size.Width = 640.000000000000000000
+    Size.Width = 881.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
@@ -129,21 +151,21 @@ object frmMain: TfrmMain
   end
   object lOptionsScreen: TLayout
     Align = Contents
-    Size.Width = 640.000000000000000000
+    Size.Width = 881.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
   end
   object lCreditsScreen: TLayout
     Align = Contents
-    Size.Width = 640.000000000000000000
+    Size.Width = 881.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
   end
   object lHallOfFamesScreen: TLayout
     Align = Contents
-    Size.Width = 640.000000000000000000
+    Size.Width = 881.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 6
