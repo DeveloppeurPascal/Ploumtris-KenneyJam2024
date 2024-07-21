@@ -38,7 +38,9 @@ type
 implementation
 
 uses
-  System.IOUtils,
+  System.Classes,
+  System.Types,
+  system.IOUtils,
   FMX.Platform,
   Olf.RTL.CryptDecrypt;
 
