@@ -24,7 +24,10 @@ uses
   cTextButton in '..\src\cTextButton.pas' {cadTextButton: TFrame},
   PuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas',
   Olf.Skia.SVGToBitmap in '..\lib-externes\librairies\src\Olf.Skia.SVGToBitmap.pas',
-  cDialogBox in '..\src\cDialogBox.pas' {cadDialogBox: TFrame};
+  cDialogBox in '..\src\cDialogBox.pas' {cadDialogBox: TFrame},
+  fPloumtrisTitle in 'fPloumtrisTitle.pas' {frmPloumtrisTitle},
+  uConsts in '..\src\uConsts.pas',
+  cPloumtrisTitle in '..\src\cPloumtrisTitle.pas' {cadPloumtrisTitle: TFrame};
 
 {$R *.res}
 

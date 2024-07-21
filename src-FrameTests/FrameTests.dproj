@@ -370,6 +370,16 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="fPloumtrisTitle.pas">
+            <Form>frmPloumtrisTitle</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\src\uConsts.pas"/>
+        <DCCReference Include="..\src\cPloumtrisTitle.pas">
+            <Form>cadPloumtrisTitle</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
