@@ -18,20 +18,21 @@ uses
   FMX.Layouts,
   Gamolf.RTL.Joystick,
   uJoystickManager,
-  FMX.Objects;
+  FMX.Objects,
+  cDialogBox, FMX.Controls.Presentation, FMX.StdCtrls;
 
 type
 {$SCOPEDENUMS ON}
-  TGameScreens = (None, Home, Game, HallOfFames, Options, Credits);
+  TGameScreens = (None, Home, Game, GameOver, HallOfFames, Options, Credits);
 
   TfrmMain = class(TForm)
     OlfAboutDialog1: TOlfAboutDialog;
     lBackground: TLayout;
-    lHome: TLayout;
-    lGame: TLayout;
-    lOptions: TLayout;
-    lCredits: TLayout;
-    lHallOfFames: TLayout;
+    lHomeScreen: TLayout;
+    lGameScreen: TLayout;
+    lOptionsScreen: TLayout;
+    lCreditsScreen: TLayout;
+    lHallOfFamesScreen: TLayout;
     GamepadManager1: TGamepadManager;
     lHomeButtons: TLayout;
     rBackground: TRectangle;
@@ -41,6 +42,10 @@ type
     lGameZoneBottom: TLayout;
     lGameZoneLeft: TLayout;
     GameLoop: TTimer;
+    lGameOverScreen: TLayout;
+    lGameTexts: TLayout;
+    rGameTextsBackground: TRectangle;
+    lblScore: TLabel;
     procedure OlfAboutDialog1URLClick(const AURL: string);
     procedure FormCreate(Sender: TObject);
     procedure GamepadManager1ButtonDown(const GamepadID: Integer;
@@ -53,6 +58,7 @@ type
   private
     FCurrentScreen: TGameScreens;
     FCurrentLayout: TLayout;
+    FDialogBox: TcadDialogBox;
     procedure SetCurrentScreen(const Value: TGameScreens);
   protected
     procedure InitAboutDialogBox;
@@ -62,6 +68,8 @@ type
     procedure CloseHomeScreen;
     procedure InitGameScreen;
     procedure CloseGameScreen;
+    procedure InitGameOverScreen;
+    procedure CloseGameOverScreen;
     procedure InitHallOfFamesScreen;
     procedure CloseHallOfFamesScreen;
     procedure InitOptionsScreen;
@@ -73,6 +81,7 @@ type
     procedure ButtonCreditsClick(Sender: TObject);
     procedure ButtonOptionsClick(Sender: TObject);
     procedure ButtonQuitClick(Sender: TObject);
+    procedure ButtonGameOverBackClick(Sender: TObject);
     procedure SendNewPipe;
   public
     property CurrentScreen: TGameScreens read FCurrentScreen
@@ -96,11 +105,19 @@ uses
   uConsts,
   uSVGToImages,
   uPipeParts,
-  uCurrentGame;
+  uCurrentGame,
+  uBackgroundMusic,
+  Gamolf.FMX.Joystick,
+  uConfig;
 
 procedure TfrmMain.ButtonCreditsClick(Sender: TObject);
 begin
   CurrentScreen := TGameScreens.Credits;
+end;
+
+procedure TfrmMain.ButtonGameOverBackClick(Sender: TObject);
+begin
+  CurrentScreen := TGameScreens.Home;
 end;
 
 procedure TfrmMain.ButtonHallOfFameClick(Sender: TObject);
@@ -128,12 +145,18 @@ begin
   // TODO : à compléter
 end;
 
+procedure TfrmMain.CloseGameOverScreen;
+begin
+  freeandnil(FDialogBox);
+end;
+
 procedure TfrmMain.CloseGameScreen;
 begin
-  // TODO : à compléter
   CurrentGame.IsRunning := false;
 
   // TODO : faire enregistrement de la partie en cours (si pause)
+
+  // TODO : faire une capture de l'écran pour l'afficher derrière l'écran GAME OVER si on a perdu
 
   CurrentGame.CurPipe := nil;
   while (lGameZonePlay.ChildrenCount > 0) do
@@ -157,23 +180,27 @@ begin
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
+var
+  i: Integer;
 begin
   InitSVGToBitmap;
 
   InitAboutDialogBox;
   InitMainFormCaption;
 
+  FDialogBox := nil;
+
   FCurrentLayout := nil;
   FCurrentScreen := TGameScreens.None;
-  lHome.Visible := false;
-  lGame.Visible := false;
-  lHallOfFames.Visible := false;
-  lOptions.Visible := false;
-  lCredits.Visible := false;
+  for i := 0 to ChildrenCount - 1 do
+    if (Children[i] is TLayout) and string(Children[i].Name)
+      .tolower.EndsWith('screen') then
+      (Children[i] as TLayout).Visible := false;
 
   tthread.ForceQueue(nil,
     procedure
     begin
+      TBackgroundMusic.current.OnOff(tconfig.current.BackgroundMusic);
       CurrentScreen := TGameScreens.Home;
     end);
 end;
@@ -247,11 +274,26 @@ begin
       else
       begin
         CurrentGame.CurPipe.StopFalling;
-        SendNewPipe;
+        if CurrentGame.CurPipe.GrilleY = 0 then
+          CurrentScreen := TGameScreens.GameOver
+        else
+          SendNewPipe;
       end;
     end
     else
       SendNewPipe;
+
+    // TODO : à transformer en proprieté et relooker l'affichage du score
+    if CurrentGame.Score > lblScore.Tag then
+    begin
+      lblScore.Tag := lblScore.Tag + 1;
+      lblScore.Text := 'Score : ' + lblScore.Tag.tostring;
+    end
+    else if CurrentGame.Score < lblScore.Tag then
+    begin
+      lblScore.Tag := lblScore.Tag - 1;
+      lblScore.Text := 'Score : ' + lblScore.Tag.tostring;
+    end;
   end
   else
     GameLoop.Enabled := false;
@@ -354,6 +396,18 @@ begin
   item.GamePadButtons := [TJoystickButtons.b];
 
   // TODO : à compléter
+end;
+
+procedure TfrmMain.InitGameOverScreen;
+begin
+  // TODO : faire un backup du score pour limenter le hall of fames
+
+  // TODO : afficher la capture de l'écran de jeu en background
+  FDialogBox := TcadDialogBox.GetNewInstance(self, TDialogBoxType.Information,
+    TDialogBoxBackgroundColor.Orange, 'GAME OVER' + slinebreak + slinebreak +
+    'Your final score is ' + CurrentGame.Score.tostring);
+  FDialogBox.OnClick := ButtonGameOverBackClick;
+  // TODO : rendre la fenêtre un peu plus "sexy"
 end;
 
 procedure TfrmMain.InitGameScreen;
@@ -502,6 +556,8 @@ begin
 
   // TODO : à compléter
   CurrentGame.init;
+  lblScore.Text := '';
+  lblScore.Tag := 0;
   CurrentGame.IsRunning := true;
   GameLoop.Enabled := true;
 end;
@@ -634,11 +690,13 @@ begin
   if assigned(FCurrentLayout) then
   begin
     FCurrentLayout.Visible := false;
-    case Value of
+    case FCurrentScreen of
       TGameScreens.Home:
         CloseHomeScreen;
       TGameScreens.Game:
         CloseGameScreen;
+      TGameScreens.GameOver:
+        CloseGameOverScreen;
       TGameScreens.HallOfFames:
         CloseHallOfFamesScreen;
       TGameScreens.Options:
@@ -654,27 +712,32 @@ begin
   case Value of
     TGameScreens.Home:
       begin
-        FCurrentLayout := lHome;
+        FCurrentLayout := lHomeScreen;
         InitProc := InitHomeScreen;
       end;
     TGameScreens.Game:
       begin
-        FCurrentLayout := lGame;
+        FCurrentLayout := lGameScreen;
         InitProc := InitGameScreen;
+      end;
+    TGameScreens.GameOver:
+      begin
+        FCurrentLayout := lGameOverScreen;
+        InitProc := InitGameOverScreen;
       end;
     TGameScreens.HallOfFames:
       begin
-        FCurrentLayout := lHallOfFames;
+        FCurrentLayout := lHallOfFamesScreen;
         InitProc := InitHallOfFamesScreen;
       end;
     TGameScreens.Options:
       begin
-        FCurrentLayout := lOptions;
+        FCurrentLayout := lOptionsScreen;
         InitProc := InitOptionsScreen;
       end;
     TGameScreens.Credits:
       begin
-        FCurrentLayout := lCredits;
+        FCurrentLayout := lCreditsScreen;
         InitProc := InitCreditsScreen;
       end
   else

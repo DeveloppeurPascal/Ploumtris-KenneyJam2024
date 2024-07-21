@@ -50,7 +50,7 @@ object frmMain: TfrmMain
       Stroke.Kind = None
     end
   end
-  object lHome: TLayout
+  object lHomeScreen: TLayout
     Align = Contents
     Size.Width = 640.000000000000000000
     Size.Height = 480.000000000000000000
@@ -61,7 +61,7 @@ object frmMain: TfrmMain
       TabOrder = 0
     end
   end
-  object lGame: TLayout
+  object lGameScreen: TLayout
     Align = Contents
     Size.Width = 640.000000000000000000
     Size.Height = 480.000000000000000000
@@ -100,27 +100,68 @@ object frmMain: TfrmMain
         TabOrder = 3
       end
     end
+    object lGameTexts: TLayout
+      Align = Bottom
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 450.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object rGameTextsBackground: TRectangle
+        Align = Contents
+        Fill.Color = claWhite
+        Opacity = 0.600000023841857900
+        Size.Width = 630.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object lblScore: TLabel
+        Align = Contents
+        Size.Width = 630.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'lblScore'
+        TabOrder = 1
+      end
+    end
   end
-  object lOptions: TLayout
+  object lOptionsScreen: TLayout
     Align = Contents
     Size.Width = 640.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
   end
-  object lCredits: TLayout
+  object lCreditsScreen: TLayout
     Align = Contents
     Size.Width = 640.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
   end
-  object lHallOfFames: TLayout
+  object lHallOfFamesScreen: TLayout
     Align = Contents
     Size.Width = 640.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 6
+  end
+  object GameLoop: TTimer
+    Interval = 16
+    OnTimer = GameLoopTimer
+    Left = 440
+    Top = 232
+  end
+  object lGameOverScreen: TLayout
+    Position.X = 296.000000000000000000
+    Position.Y = 216.000000000000000000
+    TabOrder = 11
   end
   object GamepadManager1: TGamepadManager
     SynchronizedEvents = True
@@ -128,11 +169,5 @@ object frmMain: TfrmMain
     OnDirectionPadChange = GamepadManager1DirectionPadChange
     Left = 288
     Top = 120
-  end
-  object GameLoop: TTimer
-    Interval = 16
-    OnTimer = GameLoopTimer
-    Left = 440
-    Top = 232
   end
 end
