@@ -3,6 +3,7 @@ unit uPipeParts;
 interface
 
 uses
+  System.Generics.Collections,
   System.Classes,
   FMX.Objects,
   PuzzleAssets2;
@@ -29,9 +30,9 @@ type
     function GetHasWater: boolean;
     procedure SetVy(const Value: single);
   protected
+    FChecked: boolean;
     procedure RefreshBackgroundImage;
     procedure DoResized; override;
-    function ParentWidth: single;
   public
     property SVGIndex: tsvgsvgindex read FSVGIndex write SetSVGIndex;
     property HasLeftConnection: boolean read GetHasLeftConnection;
@@ -45,18 +46,30 @@ type
     property ScreenY: single read GetScreenY write SetScreenY;
     property Vy: single read FVy write SetVy;
     constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
     procedure AfterConstruction; override;
     procedure GoToLeft;
     procedure GoToRight;
     procedure StopFalling;
     procedure RotateRight;
+    /// <summary>
+    /// chech the left/right connection and eliminate the connected pipe's parts
+    /// </summary>
+    procedure TestConnections(var ConnectedLeft, ConnectedRight: boolean;
+      const First: boolean = false);
+    /// <summary>
+    /// remove all connected pipes and calculate the points to add to the score
+    /// </summary>
+    procedure RemoveConnectedPipes(var NbPipe: int64;
+      const First: boolean = false);
   end;
+
+  TPipePartsList = tlist<TPipePart>;
 
 implementation
 
 uses
   FMX.Graphics,
-  FMX.Controls,
   System.SysUtils,
   uConsts,
   uSVGToImages,
@@ -82,6 +95,14 @@ begin
   FGrilleY := 0;
   FSVGIndex := tsvgsvgindex.PipeHdbg;
   FVy := 0;
+  FChecked := false;
+end;
+
+destructor TPipePart.Destroy;
+begin
+  CurrentGame.SetGrid(FGrilleX, FGrilleY, nil);
+  CurrentGame.WaterPipes.Remove(self);
+  inherited;
 end;
 
 procedure TPipePart.DoResized;
@@ -150,24 +171,14 @@ procedure TPipePart.GoToLeft;
 begin
   if (GrilleX > 0) and not assigned(CurrentGame.GetGrid(GrilleX - 1, GrilleY))
   then
-    CurrentGame.CurPipe.ScreenX := CurrentGame.CurPipe.ScreenX -
-      CurrentGame.CurPipe.width;
+    ScreenX := ScreenX - width;
 end;
 
 procedure TPipePart.GoToRight;
 begin
   if (GrilleX + 1 < CNbCol) and not assigned(CurrentGame.GetGrid(GrilleX + 1,
     GrilleY)) then
-    CurrentGame.CurPipe.ScreenX := CurrentGame.CurPipe.ScreenX +
-      CurrentGame.CurPipe.width;
-end;
-
-function TPipePart.ParentWidth: single;
-begin
-  if parent is tcontrol then
-    result := (parent as tcontrol).width
-  else
-    result := 0;
+    ScreenX := ScreenX + width;
 end;
 
 procedure TPipePart.RefreshBackgroundImage;
@@ -183,13 +194,67 @@ begin
   end;
 end;
 
+procedure TPipePart.RemoveConnectedPipes(var NbPipe: int64;
+  const First: boolean);
+var
+  Pipe: TPipePart;
+begin
+  if First then
+    for Pipe in CurrentGame.WaterPipes do
+      Pipe.FChecked := false;
+
+  if FChecked then
+    exit;
+
+  FChecked := true;
+  NbPipe := NbPipe + 1;
+  CurrentGame.Score := CurrentGame.Score + NbPipe;
+  // TODO : à changer selon le niveau de jeu (si on en gère un un jour)
+
+  if HasLeftConnection then
+  begin
+    if (GrilleX > 0) and assigned(CurrentGame.GetGrid(GrilleX - 1, GrilleY)) and
+      CurrentGame.GetGrid(GrilleX - 1, GrilleY).HasRightConnection then
+      CurrentGame.GetGrid(GrilleX - 1, GrilleY).RemoveConnectedPipes(NbPipe);
+  end;
+
+  if HasRightConnection then
+  begin
+    if (GrilleX < CNbCol - 1) and
+      assigned(CurrentGame.GetGrid(GrilleX + 1, GrilleY)) and
+      CurrentGame.GetGrid(GrilleX + 1, GrilleY).HasLeftConnection then
+      CurrentGame.GetGrid(GrilleX + 1, GrilleY).RemoveConnectedPipes(NbPipe);
+  end;
+
+  if HasUpConnection then
+  begin
+    if (GrilleY > 0) and assigned(CurrentGame.GetGrid(GrilleX, GrilleY - 1)) and
+      CurrentGame.GetGrid(GrilleX, GrilleY - 1).HasDownConnection then
+      CurrentGame.GetGrid(GrilleX, GrilleY - 1).RemoveConnectedPipes(NbPipe);
+  end;
+
+  if HasDownConnection then
+  begin
+    if (GrilleY < CNbrow - 1) and
+      assigned(CurrentGame.GetGrid(GrilleX, GrilleY + 1)) and
+      CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasUpConnection then
+      CurrentGame.GetGrid(GrilleX, GrilleY + 1).RemoveConnectedPipes(NbPipe);
+  end;
+
+  tthread.forcequeue(nil,
+    procedure
+    begin
+      self.Free;
+    end);
+end;
+
 procedure TPipePart.RotateRight;
 begin
   case FSVGIndex of
     tsvgsvgindex.pipeDb:
       SVGIndex := tsvgsvgindex.pipeGb;
     tsvgsvgindex.pipeGb:
-      SVGIndex := tsvgsvgindex.pipeHd;
+      SVGIndex := tsvgsvgindex.pipeHg;
     tsvgsvgindex.pipeGd:
       SVGIndex := tsvgsvgindex.pipeHb;
     tsvgsvgindex.pipeGdb:
@@ -211,7 +276,7 @@ begin
     tsvgsvgindex.EauDb:
       SVGIndex := tsvgsvgindex.EauGb;
     tsvgsvgindex.EauGb:
-      SVGIndex := tsvgsvgindex.EauHd;
+      SVGIndex := tsvgsvgindex.EauHg;
     tsvgsvgindex.EauGd:
       SVGIndex := tsvgsvgindex.EauHb;
     tsvgsvgindex.EauGdb:
@@ -255,9 +320,9 @@ end;
 
 procedure TPipePart.SetHasWater(const Value: boolean);
 var
-  recursif: boolean;
+  BecameWater: boolean;
 begin
-  recursif := (not HasWater) and Value;
+  BecameWater := (not HasWater) and Value;
 
   if Value then
     case FSVGIndex of
@@ -310,8 +375,12 @@ begin
         SVGIndex := tsvgsvgindex.pipeHgb;
     end;
 
-  if recursif then
-  begin // passage de "pipe" à "eau", on répercute sur les voisins
+  if BecameWater then
+  begin
+    if not CurrentGame.WaterPipes.contains(self) then
+      CurrentGame.WaterPipes.Add(self);
+
+    // passage de "pipe" à "eau", on répercute sur les voisins
     if HasLeftConnection and (GrilleX > 0) and
       assigned(CurrentGame.GetGrid(GrilleX - 1, GrilleY)) and
       CurrentGame.GetGrid(GrilleX - 1, GrilleY).HasRightConnection then
@@ -331,7 +400,9 @@ begin
       assigned(CurrentGame.GetGrid(GrilleX, GrilleY + 1)) and
       CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasUpConnection then
       CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasWater := true;
-  end;
+  end
+  else if not Value then
+    CurrentGame.WaterPipes.Remove(self);
 end;
 
 procedure TPipePart.SetScreenX(const Value: single);
@@ -363,6 +434,9 @@ begin
 end;
 
 procedure TPipePart.StopFalling;
+var
+  ConnectedLeft, ConnectedRight: boolean;
+  NbPipe: int64;
 begin
   Vy := 0;
   ScreenY := GrilleY * height;
@@ -398,6 +472,75 @@ begin
       assigned(CurrentGame.GetGrid(GrilleX, GrilleY + 1)) and
       CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasUpConnection then
       HasWater := CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasWater;
+  end;
+
+  if HasWater then
+  begin
+    ConnectedLeft := false;
+    ConnectedRight := false;
+    TestConnections(ConnectedLeft, ConnectedRight, true);
+    if ConnectedLeft and ConnectedRight then
+    begin
+      NbPipe := 0;
+      RemoveConnectedPipes(NbPipe, true);
+      tthread.forcequeue(nil,
+        procedure
+        begin
+          CurrentGame.AfterRemovingConnectedPieces;
+        end);
+    end;
+  end;
+end;
+
+procedure TPipePart.TestConnections(var ConnectedLeft, ConnectedRight: boolean;
+const First: boolean);
+var
+  Pipe: TPipePart;
+begin
+  if First then
+    for Pipe in CurrentGame.WaterPipes do
+      Pipe.FChecked := false;
+
+  if FChecked or (ConnectedLeft and ConnectedRight) then
+    exit;
+
+  FChecked := true;
+
+  if HasLeftConnection then
+  begin
+    if (GrilleX = 0) then
+      ConnectedLeft := true
+    else if assigned(CurrentGame.GetGrid(GrilleX - 1, GrilleY)) and
+      CurrentGame.GetGrid(GrilleX - 1, GrilleY).HasRightConnection then
+      CurrentGame.GetGrid(GrilleX - 1, GrilleY).TestConnections(ConnectedLeft,
+        ConnectedRight);
+  end;
+
+  if HasRightConnection then
+  begin
+    if (GrilleX = CNbCol - 1) then
+      ConnectedRight := true
+    else if assigned(CurrentGame.GetGrid(GrilleX + 1, GrilleY)) and
+      CurrentGame.GetGrid(GrilleX + 1, GrilleY).HasLeftConnection then
+      CurrentGame.GetGrid(GrilleX + 1, GrilleY).TestConnections(ConnectedLeft,
+        ConnectedRight);
+  end;
+
+  if HasUpConnection then
+  begin
+    if (GrilleY > 0) and assigned(CurrentGame.GetGrid(GrilleX, GrilleY - 1)) and
+      CurrentGame.GetGrid(GrilleX, GrilleY - 1).HasDownConnection then
+      CurrentGame.GetGrid(GrilleX, GrilleY - 1).TestConnections(ConnectedLeft,
+        ConnectedRight);
+  end;
+
+  if HasDownConnection then
+  begin
+    if (GrilleY < CNbrow - 1) and
+      assigned(CurrentGame.GetGrid(GrilleX, GrilleY + 1)) and
+      CurrentGame.GetGrid(GrilleX, GrilleY + 1).HasUpConnection then
+      CurrentGame.GetGrid(GrilleX, GrilleY + 1).TestConnections(ConnectedLeft,
+        ConnectedRight);
   end;
 end;
 
