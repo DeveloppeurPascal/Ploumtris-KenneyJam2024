@@ -135,4 +135,16 @@ begin
   end;
 end;
 
+procedure RegisterSVGImages;
+var
+  i: Integer;
+begin
+  for i := 0 to length(SVGSVG) - 1 do
+    TOlfSVGBitmapList.AddItemAt(i, SVGSVG[i]);
+end;
+
+initialization
+
+RegisterSVGImages;
+
 end.
