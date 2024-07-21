@@ -82,6 +82,7 @@ type
     procedure ButtonOptionsClick(Sender: TObject);
     procedure ButtonQuitClick(Sender: TObject);
     procedure ButtonGameOverBackClick(Sender: TObject);
+    procedure ButtonCreditsBackClick(Sender: TObject);
     procedure SendNewPipe;
   public
     property CurrentScreen: TGameScreens read FCurrentScreen
@@ -109,6 +110,11 @@ uses
   uBackgroundMusic,
   Gamolf.FMX.Joystick,
   uConfig;
+
+procedure TfrmMain.ButtonCreditsBackClick(Sender: TObject);
+begin
+  CurrentScreen := TGameScreens.Home;
+end;
 
 procedure TfrmMain.ButtonCreditsClick(Sender: TObject);
 begin
@@ -142,7 +148,7 @@ end;
 
 procedure TfrmMain.CloseCreditsScreen;
 begin
-  // TODO : à compléter
+  freeandnil(FDialogBox);
 end;
 
 procedure TfrmMain.CloseGameOverScreen;
@@ -361,10 +367,14 @@ begin
     + 'as to its operation or the data processed. Make backups!';
   OlfAboutDialog1.Description.Text :=
     'A Tetris for plumbers who love video games without water leaks.' +
-    slinebreak + slinebreak + '*****************' + slinebreak +
+    slinebreak + slinebreak +
+    'This game has been created for the gamejam Kenney Jam 2024 in July 2024. The theme was "connections".'
+    + slinebreak + slinebreak +
+    'The development has been made by Patrick Prémartin in Delphi live on Twitch (https://www.twitch.tv/patrickpremartin).'
+    + slinebreak + slinebreak +
+    'The game music has been created by Loinduciel live on Twitch (https://www.twitch.tv/loinduciel).'
+    + slinebreak + slinebreak + '*****************' + slinebreak +
     '* Publisher info' + slinebreak + slinebreak +
-    'This application was developed by Patrick Prémartin.' + slinebreak +
-    slinebreak +
     'It is published by OLF SOFTWARE, a company registered in Paris (France) under the reference 439521725.'
     + slinebreak + slinebreak + '****************' + slinebreak +
     '* Personal data' + slinebreak + slinebreak +
@@ -385,17 +395,15 @@ procedure TfrmMain.InitCreditsScreen;
 var
   item: tuiitem;
 begin
-  // Gestion du bouton "B" et ESCape
-  item := UIItems.AddUIItem(
-    procedure(const Sender: TObject)
-    begin
-      CurrentScreen := TGameScreens.Home;
-    end);
-  item.KeyShortcuts.Add(vkescape, #0, []);
-  item.KeyShortcuts.Add(vkHardwareBack, #0, []);
-  item.GamePadButtons := [TJoystickButtons.b];
-
-  // TODO : à compléter
+  FDialogBox := TcadDialogBox.GetNewInstance(self, TDialogBoxType.Information,
+    TDialogBoxBackgroundColor.Vert, OlfAboutDialog1.Description.Text.trim +
+    slinebreak + slinebreak + '**********' + slinebreak + '* License' +
+    slinebreak + slinebreak + OlfAboutDialog1.Licence.Text.trim + slinebreak +
+    slinebreak + 'v' + OlfAboutDialog1.VersionNumero + '-' +
+    OlfAboutDialog1.VersionDate);
+  FDialogBox.OnClick := ButtonCreditsBackClick;
+  FDialogBox.Width := 600;
+  FDialogBox.height := 600;
 end;
 
 procedure TfrmMain.InitGameOverScreen;
