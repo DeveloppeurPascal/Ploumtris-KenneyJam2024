@@ -149,10 +149,10 @@ begin
     bmp.free;
   end;
 
-  rBackground.padding.left := width * 30 / 276;
-  rBackground.padding.top := height * 38 / 276;
+  rBackground.padding.left := 5 + width * 30 / 276;
+  rBackground.padding.top := 5 + height * 38 / 276;
   rBackground.padding.right := rBackground.padding.left;
-  rBackground.padding.bottom := height * 30 / 276;
+  rBackground.padding.bottom := 5 + height * 30 / 276;
 end;
 
 procedure TcadDialogBox.RefreshButtons;
