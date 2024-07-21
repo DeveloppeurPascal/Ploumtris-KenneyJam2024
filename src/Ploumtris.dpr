@@ -14,7 +14,6 @@ uses
   Macapi.GameController in '..\lib-externes\Delphi-Game-Engine\src\Macapi.GameController.pas',
   Gamolf.FMX.MusicLoop in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.FMX.MusicLoop.pas',
   uUIElements in '..\src-temp\uUIElements.pas',
-  Olf.RTL.CryptDecrypt in '..\lib-externes\librairies\src\Olf.RTL.CryptDecrypt.pas',
   Olf.RTL.Params in '..\lib-externes\librairies\src\Olf.RTL.Params.pas',
   Gamolf.RTL.Scores in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Scores.pas',
   Olf.FMX.AboutDialog in '..\lib-externes\AboutDialog-Delphi-Component\src\Olf.FMX.AboutDialog.pas',
@@ -31,7 +30,9 @@ uses
   uPipeParts in 'uPipeParts.pas',
   uCurrentGame in 'uCurrentGame.pas',
   uBackgroundMusic in 'uBackgroundMusic.pas',
-  cDialogBox in 'cDialogBox.pas' {cadDialogBox: TFrame};
+  cDialogBox in 'cDialogBox.pas' {cadDialogBox: TFrame},
+  cPloumtrisTitle in 'cPloumtrisTitle.pas' {cadPloumtrisTitle: TFrame},
+  Olf.RTL.CryptDecrypt in '..\lib-externes\librairies\src\Olf.RTL.CryptDecrypt.pas';
 
 {$R *.res}
 
