@@ -33,10 +33,7 @@ type
     procedure Switch1Switch(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    { Déclarations privées }
   public
-    { Déclarations publiques }
-    procedure InitSVGToBitmap;
     procedure ShowGridFromSwitch;
     procedure AddImage(const Id: TSVGSVGIndex; const GL: TGridLayout);
   end;
@@ -82,7 +79,6 @@ end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 begin
-  InitSVGToBitmap;
   ShowGridFromSwitch;
   GridLayout1.ItemWidth := CTileSize;
   GridLayout1.Itemheight := CTileSize;
@@ -167,14 +163,6 @@ begin
   AddImage(TSVGSVGIndex.EauHd, GridLayout4);
   AddImage(TSVGSVGIndex.EauHb, GridLayout4);
   AddImage(TSVGSVGIndex.EauHg, GridLayout4);
-end;
-
-procedure TForm2.InitSVGToBitmap;
-var
-  i: integer;
-begin
-  for i := 0 to length(SVGSVG) - 1 do
-    TOlfSVGBitmapList.AddItemAt(i, SVGSVG[i]);
 end;
 
 procedure TForm2.ShowGridFromSwitch;
