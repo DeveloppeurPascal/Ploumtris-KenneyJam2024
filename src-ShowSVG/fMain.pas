@@ -26,7 +26,6 @@ type
     { Déclarations privées }
   public
     { Déclarations publiques }
-    procedure InitSVGToBitmap;
     procedure ShowAll;
   end;
 
@@ -45,16 +44,7 @@ uses
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  InitSVGToBitmap;
   ShowAll;
-end;
-
-procedure TForm1.InitSVGToBitmap;
-var
-  i: integer;
-begin
-  for i := 0 to length(SVGSVG) - 1 do
-    TOlfSVGBitmapList.AddItemAt(i, SVGSVG[i]);
 end;
 
 procedure TForm1.ShowAll;
