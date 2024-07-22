@@ -200,6 +200,8 @@ begin
   item.BottomItem := AddItem(btnCheckbox);
   item := item.BottomItem;
   item.BottomItem := AddItem(btnTrackbar);
+  item := item.BottomItem;
+  item.BottomItem := AddItem(btnPloumtrisTitle);
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
