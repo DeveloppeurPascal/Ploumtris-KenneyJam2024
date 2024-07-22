@@ -43,7 +43,11 @@ begin
   item := UIItems.AddUIItem(
     procedure(const Sender: TObject)
     begin
-      Close;
+      tthread.forcequeue(nil,
+        procedure
+        begin
+          Close;
+        end);
     end);
   item.KeyShortcuts.Add(vkescape, #0, []);
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
