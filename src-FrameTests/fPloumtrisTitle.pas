@@ -25,11 +25,14 @@ type
     GridLayout1: TGridLayout;
     HorzScrollBox1: THorzScrollBox;
     Image1: TImage;
-    Button1: TButton;
+    btnSaveTitleImageToDownloadsPath: TButton;
     cadPloumtrisTitle1: TcadPloumtrisTitle;
     cadPloumtrisTitle2: TcadPloumtrisTitle;
     procedure FormCreate(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnSaveTitleImageToDownloadsPathClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: WideChar;
+      Shift: TShiftState);
   private
     { Déclarations privées }
   public
@@ -45,7 +48,10 @@ implementation
 uses
   System.IOUtils,
   uConsts,
-  uSVGToImages;
+  uSVGToImages,
+  uUIElements,
+  uUIItemsList,
+  Gamolf.RTL.Joystick;
 
 procedure TfrmPloumtrisTitle.AddBitmap(const ID: tsvgsvgindex);
 var
@@ -71,7 +77,8 @@ begin
   l.parent := GridLayout1;
 end;
 
-procedure TfrmPloumtrisTitle.Button1Click(Sender: TObject);
+procedure TfrmPloumtrisTitle.btnSaveTitleImageToDownloadsPathClick
+  (Sender: TObject);
 var
   bmp: tbitmap;
 begin
@@ -83,10 +90,65 @@ begin
   finally
     bmp.free;
   end;
+  ShowMessage('Title image exported.');
 end;
 
 procedure TfrmPloumtrisTitle.FormCreate(Sender: TObject);
+  function AddItem(const btn: TButton): tuiitem;
+  begin
+    result := UIItems.AddUIItem(btn.BoundsRect,
+      procedure(const Sender: TObject)
+      begin
+        if not assigned(Sender) then
+          exit;
+        if not(Sender is tuiitem) then
+          exit;
+        if not assigned((Sender as tuiitem).tagobject) then
+          exit;
+        if not((Sender as tuiitem).tagobject is tcontrol) then
+          exit;
+
+        if assigned(((Sender as tuiitem).tagobject as tcontrol).OnClick) then
+          ((Sender as tuiitem).tagobject as tcontrol)
+            .OnClick(((Sender as tuiitem).tagobject as tcontrol));
+      end);
+    result.tagobject := btn;
+    result.OnPaintProc := procedure(const Sender: TObject)
+      begin
+        if not assigned(Sender) then
+          exit;
+        if not(Sender is tuiitem) then
+          exit;
+        if not assigned((Sender as tuiitem).tagobject) then
+          exit;
+        if not((Sender as tuiitem).tagobject is tcontrol) then
+          exit;
+
+        if (Sender as tuiitem).IsFocused then
+          ((Sender as tuiitem).tagobject as tcontrol).SetFocus
+        else
+          ((Sender as tuiitem).tagobject as tcontrol).resetFocus;
+      end;
+  end;
+
+var
+  item: tuiitem;
 begin
+  UIItems.NewLayout;
+  item := UIItems.AddUIItem(
+    procedure(const Sender: TObject)
+    begin
+      Close;
+    end);
+  item.KeyShortcuts.Add(vkescape, #0, []);
+  item.KeyShortcuts.Add(vkHardwareBack, #0, []);
+  item.GamePadButtons := [TJoystickButtons.b];
+
+  item := AddItem(btnSaveTitleImageToDownloadsPath);
+  item.SetFocus;
+
+  //
+
   GridLayout1.Position.x := 0;
   GridLayout1.Position.y := 0;
 
@@ -177,6 +239,17 @@ begin
   // s
   AddBitmap(tsvgsvgindex.eauhd);
   AddBitmap(tsvgsvgindex.Pipehg);
+end;
+
+procedure TfrmPloumtrisTitle.FormDestroy(Sender: TObject);
+begin
+  UIItems.RemoveLayout;
+end;
+
+procedure TfrmPloumtrisTitle.FormKeyDown(Sender: TObject; var Key: Word;
+var KeyChar: WideChar; Shift: TShiftState);
+begin
+  UIItems.KeyDown(Key, KeyChar, Shift);
 end;
 
 end.

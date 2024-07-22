@@ -8,15 +8,17 @@ object frmPloumtrisTitle: TfrmPloumtrisTitle
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
   DesignerMasterStyle = 0
   object HorzScrollBox1: THorzScrollBox
     Align = Client
     Size.Width = 640.000000000000000000
-    Size.Height = 567.000000000000000000
+    Size.Height = 557.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     Viewport.Width = 640.000000000000000000
-    Viewport.Height = 551.000000000000000000
+    Viewport.Height = 541.000000000000000000
     object GridLayout1: TGridLayout
       ItemHeight = 64.000000000000000000
       ItemWidth = 64.000000000000000000
@@ -51,15 +53,20 @@ object frmPloumtrisTitle: TfrmPloumtrisTitle
     Size.PlatformDefault = False
     Visible = False
   end
-  object Button1: TButton
+  object btnSaveTitleImageToDownloadsPath: TButton
     Align = Bottom
-    Position.Y = 567.000000000000000000
-    Size.Width = 640.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 562.000000000000000000
+    Size.Width = 630.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
-    Text = 'Button1'
+    Text = 'btnSaveTitleImageToDownloadsPath'
     TextSettings.Trimming = None
-    OnClick = Button1Click
+    OnClick = btnSaveTitleImageToDownloadsPathClick
   end
 end
