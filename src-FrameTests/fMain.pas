@@ -40,7 +40,6 @@ type
     procedure btnPloumtrisTitleClick(Sender: TObject);
   private
   protected
-    procedure InitSVGToBitmap;
   public
   end;
 
@@ -62,7 +61,8 @@ uses
   fImageButtons,
   fTrackBar,
   PuzzleAssets2,
-  Olf.Skia.SVGToBitmap, fPloumtrisTitle;
+  Olf.Skia.SVGToBitmap,
+  fPloumtrisTitle;
 
 procedure TfrmMain.btnCheckboxClick(Sender: TObject);
 var
@@ -177,15 +177,17 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   item: tuiitem;
 begin
-  InitSVGToBitmap;
-
   lblGamepadOnOff.Visible := false;
 
   UIItems.NewLayout;
   item := UIItems.AddUIItem(
     procedure(const Sender: TObject)
     begin
-      Close;
+      tthread.forcequeue(nil,
+        procedure
+        begin
+          Close;
+        end);
     end);
   item.KeyShortcuts.Add(vkescape, #0, []);
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
@@ -213,14 +215,6 @@ procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
 var KeyChar: WideChar; Shift: TShiftState);
 begin
   UIItems.KeyDown(Key, KeyChar, Shift);
-end;
-
-procedure TfrmMain.InitSVGToBitmap;
-var
-  i: integer;
-begin
-  for i := 0 to length(SVGSVG) - 1 do
-    TOlfSVGBitmapList.AddItemAt(i, SVGSVG[i]);
 end;
 
 procedure TfrmMain.Timer1Timer(Sender: TObject);
