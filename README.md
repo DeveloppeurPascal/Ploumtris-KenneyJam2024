@@ -2,7 +2,7 @@
 
 [Cette page en français.](LISEZMOI.md)
 
-A Tetris for plumbers who love video games without water leaks.
+A Tetris like game for plumbers who love video games without water leaks.
 
 This game was made during the [Kenney Jam 2024](https://itch.io/jam/kenney-jam-2024).
 

@@ -2,7 +2,7 @@
 
 [This page in english.](README.md)
 
-Un Tetris pour les plombiers qui aiment les jeux vidéo sans fuites d'eau.
+Un jeu de type Tetris pour les plombiers qui aiment les jeux vidéo sans fuites d'eau.
 
 Ce jeu a été réalisé lors du [Kenney Jam 2024](https://itch.io/jam/kenney-jam-2024).
 
