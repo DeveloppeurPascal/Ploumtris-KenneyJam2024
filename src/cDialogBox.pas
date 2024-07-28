@@ -124,29 +124,26 @@ begin
 end;
 
 procedure TcadDialogBox.RefreshBackground;
-var
-  bmp: tbitmap;
 begin
   case FBackgroundColor of
     TDialogBoxBackgroundColor.Bleu:
-      bmp := getBitmapFromSVG(TSVGSVGIndex.CadreBleu, rBackground.width,
-        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale, 0);
+      rBackground.fill.Bitmap.Bitmap.Assign
+        (getBitmapFromSVG(TSVGSVGIndex.CadreBleu, rBackground.width,
+        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale));
     TDialogBoxBackgroundColor.Gris:
-      bmp := getBitmapFromSVG(TSVGSVGIndex.CadreGris, rBackground.width,
-        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale, 0);
+      rBackground.fill.Bitmap.Bitmap.Assign
+        (getBitmapFromSVG(TSVGSVGIndex.CadreGris, rBackground.width,
+        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale));
     TDialogBoxBackgroundColor.Orange:
-      bmp := getBitmapFromSVG(TSVGSVGIndex.CadreOrange, rBackground.width,
-        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale, 0);
+      rBackground.fill.Bitmap.Bitmap.Assign
+        (getBitmapFromSVG(TSVGSVGIndex.CadreOrange, rBackground.width,
+        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale));
     TDialogBoxBackgroundColor.Vert:
-      bmp := getBitmapFromSVG(TSVGSVGIndex.CadreVert, rBackground.width,
-        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale, 0);
+      rBackground.fill.Bitmap.Bitmap.Assign
+        (getBitmapFromSVG(TSVGSVGIndex.CadreVert, rBackground.width,
+        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale));
   else
     raise exception.Create('Unknow background for this dialog box.');
-  end;
-  try
-    rBackground.fill.Bitmap.Bitmap.Assign(bmp);
-  finally
-    bmp.free;
   end;
 
   rBackground.padding.left := 5 + width * 30 / 276;
