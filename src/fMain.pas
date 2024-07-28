@@ -17,7 +17,6 @@ uses
   uDMLogo,
   FMX.Layouts,
   Gamolf.RTL.Joystick,
-  uJoystickManager,
   FMX.Objects,
   cDialogBox,
   FMX.Controls.Presentation,
@@ -103,7 +102,6 @@ implementation
 uses
   u_urlOpen,
   uUIItemsList,
-  uUIElements,
   cTextButton,
   Olf.Skia.SVGToBitmap,
   PuzzleAssets2,
@@ -113,7 +111,8 @@ uses
   uCurrentGame,
   uBackgroundMusic,
   Gamolf.FMX.Joystick,
-  uConfig;
+  uConfig,
+  Gamolf.RTL.UIElements;
 
 procedure TfrmMain.ButtonCreditsBackClick(Sender: TObject);
 begin
@@ -230,7 +229,7 @@ end;
 procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
 var KeyChar: WideChar; Shift: TShiftState);
 var
-  item: tuiitem;
+  item: TUIElement;
 begin
   if CurrentGame.IsRunning then
   begin
@@ -325,7 +324,7 @@ procedure TfrmMain.GamepadManager1ButtonDown(const GamepadID: Integer;
 const Button: TJoystickButtons);
 var
   handled: boolean;
-  item: tuiitem;
+  item: TUIElement;
 begin
   handled := false;
   if CurrentGame.IsRunning and (Button = TJoystickButtons.a) and
@@ -435,7 +434,7 @@ end;
 
 procedure TfrmMain.InitGameScreen;
 var
-  item: tuiitem;
+  item: TUIElement;
   i: Integer;
   r: TRectangle;
   bmp1, bmp2: tbitmap;
@@ -589,7 +588,7 @@ end;
 
 procedure TfrmMain.InitHallOfFamesScreen;
 var
-  item: tuiitem;
+  item: TUIElement;
 begin
   // Gestion du bouton "B" et ESCape
   item := UIItems.AddUIItem(
@@ -627,7 +626,7 @@ procedure TfrmMain.InitHomeScreen;
   end;
 
 var
-  item: tuiitem;
+  item: TUIElement;
   btn: TcadTextButton;
 begin
   // Gestion du bouton "B" et ESCape
@@ -667,7 +666,7 @@ end;
 
 procedure TfrmMain.InitOptionsScreen;
 var
-  item: tuiitem;
+  item: TUIElement;
 begin
   // Gestion du bouton "B" et ESCape
   item := UIItems.AddUIItem(
