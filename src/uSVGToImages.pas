@@ -6,17 +6,28 @@ uses
   System.Types,
   System.UITypes,
   FMX.Graphics,
-  PuzzleAssets2;
+  USVGInputPrompts,
+  USVGPuzzleAssets2;
 
-function getBitmapFromSVG(const Index: TSVGSVGIndex;
-  const width, height: single; const BitmapScale: single): tbitmap;
+function getBitmapFromSVG(const Index: TSVGPuzzleAssets2Index;
+  const width, height: single; const BitmapScale: single): tbitmap; overload;
+
+function getBitmapFromSVG(const Index: TSVGInputPromptsIndex;
+  const width, height: single; const BitmapScale: single): tbitmap; overload;
 
 implementation
 
 uses
   Olf.Skia.SVGToBitmap;
 
-function getBitmapFromSVG(const Index: TSVGSVGIndex;
+function getBitmapFromSVG(const Index: TSVGInputPromptsIndex;
+  const width, height: single; const BitmapScale: single): tbitmap;
+begin
+  result := TOlfSVGBitmapList.Bitmap(ord(Index) + TSVGInputPrompts.Tag,
+    round(width), round(height), BitmapScale);
+end;
+
+function getBitmapFromSVG(const Index: TSVGPuzzleAssets2Index;
   const width, height: single; const BitmapScale: single): tbitmap;
 var
   MargeHaut, MargeBas, MargeGauche, MargeDroite: single;
@@ -26,85 +37,85 @@ begin
   MargeBas := 0;
   MargeGauche := 0;
   case Index of
-    TSVGSVGIndex.EauDb:
+    TSVGPuzzleAssets2Index.EauDb:
       begin
         MargeHaut := 100 * ((117.55 - 87.9) / 117.55);
         MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
       end;
-    TSVGSVGIndex.EauGb:
+    TSVGPuzzleAssets2Index.EauGb:
       begin
         MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
         MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
       end;
-    TSVGSVGIndex.EauGd:
+    TSVGPuzzleAssets2Index.EauGd:
       begin
         MargeHaut := 100 * ((117.55 - 58.6) / 117.55) / 2;
         MargeDroite := 0;
         MargeBas := 100 * ((117.55 - 58.6) / 117.55) / 2;
         MargeGauche := 0;
       end;
-    TSVGSVGIndex.EauGdb:
+    TSVGPuzzleAssets2Index.EauGdb:
       MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
-    TSVGSVGIndex.EauGdh:
+    TSVGPuzzleAssets2Index.EauGdh:
       MargeBas := 100 * ((117.55 - 87.9) / 117.55);
-    TSVGSVGIndex.EauHb:
+    TSVGPuzzleAssets2Index.EauHb:
       begin
         MargeDroite := 100 * ((117.55 - 58.6) / 117.55) / 2;
         MargeGauche := 100 * ((117.55 - 58.6) / 117.55) / 2;
       end;
-    TSVGSVGIndex.EauHd:
+    TSVGPuzzleAssets2Index.EauHd:
       begin
         MargeBas := 100 * ((117.55 - 87.9) / 117.55);
         MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
       end;
-    TSVGSVGIndex.EauHdb:
+    TSVGPuzzleAssets2Index.EauHdb:
       MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
-    TSVGSVGIndex.EauHg:
+    TSVGPuzzleAssets2Index.EauHg:
       begin
         MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
         MargeBas := 100 * ((117.55 - 88.05) / 117.55);
       end;
-    TSVGSVGIndex.EauHgb:
+    TSVGPuzzleAssets2Index.EauHgb:
       MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
-    TSVGSVGIndex.PipeDb:
+    TSVGPuzzleAssets2Index.PipeDb:
       begin
         MargeHaut := 100 * ((117.55 - 87.9) / 117.55);
         MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
       end;
-    TSVGSVGIndex.PipeGb:
+    TSVGPuzzleAssets2Index.PipeGb:
       begin
         MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
         MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
       end;
-    TSVGSVGIndex.PipeGd:
+    TSVGPuzzleAssets2Index.PipeGd:
       begin
         MargeHaut := 100 * ((117.55 - 58.6) / 117.55) / 2;
         MargeBas := 100 * ((117.55 - 58.6) / 117.55) / 2;
       end;
-    TSVGSVGIndex.PipeGdb:
+    TSVGPuzzleAssets2Index.PipeGdb:
       MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
-    TSVGSVGIndex.PipeHb:
+    TSVGPuzzleAssets2Index.PipeHb:
       begin
         MargeDroite := 100 * ((117.55 - 58.6) / 117.55) / 2;
         MargeGauche := 100 * ((117.55 - 58.6) / 117.55) / 2;
       end;
-    TSVGSVGIndex.PipeHd:
+    TSVGPuzzleAssets2Index.PipeHd:
       begin
         MargeBas := 100 * ((117.55 - 87.9) / 117.55);
         MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
       end;
-    TSVGSVGIndex.PipeHdb:
+    TSVGPuzzleAssets2Index.PipeHdb:
       MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
-    TSVGSVGIndex.PipeHg:
+    TSVGPuzzleAssets2Index.PipeHg:
       begin
         MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
         MargeBas := 100 * ((117.55 - 88.05) / 117.55);
       end;
-    TSVGSVGIndex.PipeHgb:
+    TSVGPuzzleAssets2Index.PipeHgb:
       MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
-    TSVGSVGIndex.PipeHgd:
+    TSVGPuzzleAssets2Index.PipeHgd:
       MargeBas := 100 * ((117.55 - 87.9) / 117.55);
-    TSVGSVGIndex.BtnOn:
+    TSVGPuzzleAssets2Index.BtnOn:
       begin
         MargeHaut := 100 * ((54 - 44) / 54) / 2;
         MargeBas := 100 * ((54 - 44) / 54) / 2;
@@ -112,13 +123,15 @@ begin
         MargeDroite := 100 * ((104 - 94) / 104) / 2;
       end;
   end;
-  result := TOlfSVGBitmapList.Bitmap(ord(Index) + tsvgsvg.Tag, round(width),
-    round(height), MargeHaut, MargeDroite, MargeBas, MargeGauche, BitmapScale);
+  result := TOlfSVGBitmapList.Bitmap(ord(Index) + TSVGPuzzleAssets2.Tag,
+    round(width), round(height), MargeHaut, MargeDroite, MargeBas, MargeGauche,
+    BitmapScale);
 end;
 
 procedure RegisterSVGImages;
 begin
-  tsvgsvg.Tag := TOlfSVGBitmapList.AddItem(SVGSVG);
+  TSVGPuzzleAssets2.Tag := TOlfSVGBitmapList.AddItem(SVGPuzzleAssets2);
+  TSVGInputPrompts.Tag := TOlfSVGBitmapList.AddItem(SVGInputPrompts);
 end;
 
 initialization
