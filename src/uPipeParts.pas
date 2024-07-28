@@ -182,16 +182,9 @@ begin
 end;
 
 procedure TPipePart.RefreshBackgroundImage;
-var
-  bmp: TBitmap;
 begin
-  bmp := getBitmapFromSVG(FSVGIndex, width, height,
-    fill.Bitmap.Bitmap.BitmapScale, 0);
-  try
-    fill.Bitmap.Bitmap.assign(bmp);
-  finally
-    bmp.Free;
-  end;
+  fill.Bitmap.Bitmap.assign(getBitmapFromSVG(FSVGIndex, width, height,
+    fill.Bitmap.Bitmap.BitmapScale));
 end;
 
 procedure TPipePart.RemoveConnectedPipes(var NbPipe: int64;
