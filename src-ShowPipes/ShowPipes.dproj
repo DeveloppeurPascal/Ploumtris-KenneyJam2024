@@ -311,9 +311,10 @@
             <Form>Form2</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas"/>
         <DCCReference Include="..\lib-externes\librairies\src\Olf.Skia.SVGToBitmap.pas"/>
         <DCCReference Include="..\src\uSVGToImages.pas"/>
+        <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas"/>
+        <DCCReference Include="..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

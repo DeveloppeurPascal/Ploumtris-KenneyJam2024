@@ -16,8 +16,8 @@ uses
   FMX.Controls.Presentation,
   FMX.StdCtrls,
   FMX.Layouts,
-  PuzzleAssets2,
-  FMX.Objects;
+  FMX.Objects,
+  USVGPuzzleAssets2;
 
 const
   CTileSize = 128;
@@ -35,7 +35,7 @@ type
   private
   public
     procedure ShowGridFromSwitch;
-    procedure AddImage(const Id: TSVGSVGIndex; const GL: TGridLayout);
+    procedure AddImage(const Id: TSVGPuzzleAssets2Index; const GL: TGridLayout);
   end;
 
 var
@@ -47,12 +47,12 @@ implementation
 
 uses
   System.TypInfo,
-  Olf.Skia.SVGToBitmap,
   uSVGToImages;
 
 { TForm2 }
 
-procedure TForm2.AddImage(const Id: TSVGSVGIndex; const GL: TGridLayout);
+procedure TForm2.AddImage(const Id: TSVGPuzzleAssets2Index;
+  const GL: TGridLayout);
 var
   img: timage;
   lbl: TLabel;
@@ -67,7 +67,7 @@ begin
   lbl := TLabel.Create(self);
   lbl.Parent := img;
   lbl.Align := talignlayout.client;
-  lbl.Text := GetEnumName(TypeInfo(TSVGSVGIndex), ord(Id));
+  lbl.Text := GetEnumName(TypeInfo(TSVGPuzzleAssets2Index), ord(Id));
   lbl.TextSettings.HorzAlign := TTextAlign.Center;
 end;
 
@@ -94,69 +94,69 @@ begin
   GridLayout4.width := GridLayout3.width;
   GridLayout4.height := GridLayout3.height;
 
-  AddImage(TSVGSVGIndex.PipeDb, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeGd, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeGdb, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeGb, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeDb, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeGd, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeGdb, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeGb, GridLayout1);
 
-  AddImage(TSVGSVGIndex.PipeHb, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeDb, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeHdbg, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeHgb, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHb, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeDb, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHdbg, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHgb, GridLayout1);
 
-  AddImage(TSVGSVGIndex.PipeHdb, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeHdbg, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeHg, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeHb, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHdb, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHdbg, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHg, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHb, GridLayout1);
 
-  AddImage(TSVGSVGIndex.PipeHd, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeHgd, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeGd, GridLayout1);
-  AddImage(TSVGSVGIndex.PipeHg, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHd, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHgd, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeGd, GridLayout1);
+  AddImage(TSVGPuzzleAssets2Index.PipeHg, GridLayout1);
 
-  AddImage(TSVGSVGIndex.EauDb, GridLayout2);
-  AddImage(TSVGSVGIndex.EauGd, GridLayout2);
-  AddImage(TSVGSVGIndex.EauGdb, GridLayout2);
-  AddImage(TSVGSVGIndex.EauGb, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauDb, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauGd, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauGdb, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauGb, GridLayout2);
 
-  AddImage(TSVGSVGIndex.EauHb, GridLayout2);
-  AddImage(TSVGSVGIndex.EauDb, GridLayout2);
-  AddImage(TSVGSVGIndex.EauHdbg, GridLayout2);
-  AddImage(TSVGSVGIndex.EauHgb, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHb, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauDb, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHdbg, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHgb, GridLayout2);
 
-  AddImage(TSVGSVGIndex.EauHdb, GridLayout2);
-  AddImage(TSVGSVGIndex.EauHdbg, GridLayout2);
-  AddImage(TSVGSVGIndex.EauHg, GridLayout2);
-  AddImage(TSVGSVGIndex.EauHb, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHdb, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHdbg, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHg, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHb, GridLayout2);
 
-  AddImage(TSVGSVGIndex.EauHd, GridLayout2);
-  AddImage(TSVGSVGIndex.EauGdh, GridLayout2);
-  AddImage(TSVGSVGIndex.EauGd, GridLayout2);
-  AddImage(TSVGSVGIndex.EauHg, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHd, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauGdh, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauGd, GridLayout2);
+  AddImage(TSVGPuzzleAssets2Index.EauHg, GridLayout2);
 
-  AddImage(TSVGSVGIndex.PipeDb, GridLayout3);
-  AddImage(TSVGSVGIndex.PipeHb, GridLayout3);
-  AddImage(TSVGSVGIndex.PipeGb, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeDb, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeHb, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeGb, GridLayout3);
 
-  AddImage(TSVGSVGIndex.PipeGd, GridLayout3);
-  AddImage(TSVGSVGIndex.PipeHdbg, GridLayout3);
-  AddImage(TSVGSVGIndex.PipeGd, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeGd, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeHdbg, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeGd, GridLayout3);
 
-  AddImage(TSVGSVGIndex.PipeHd, GridLayout3);
-  AddImage(TSVGSVGIndex.PipeHb, GridLayout3);
-  AddImage(TSVGSVGIndex.PipeHg, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeHd, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeHb, GridLayout3);
+  AddImage(TSVGPuzzleAssets2Index.PipeHg, GridLayout3);
 
-  AddImage(TSVGSVGIndex.EauDb, GridLayout4);
-  AddImage(TSVGSVGIndex.EauHb, GridLayout4);
-  AddImage(TSVGSVGIndex.EauGb, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauDb, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauHb, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauGb, GridLayout4);
 
-  AddImage(TSVGSVGIndex.EauGd, GridLayout4);
-  AddImage(TSVGSVGIndex.EauHdbg, GridLayout4);
-  AddImage(TSVGSVGIndex.EauGd, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauGd, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauHdbg, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauGd, GridLayout4);
 
-  AddImage(TSVGSVGIndex.EauHd, GridLayout4);
-  AddImage(TSVGSVGIndex.EauHb, GridLayout4);
-  AddImage(TSVGSVGIndex.EauHg, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauHd, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauHb, GridLayout4);
+  AddImage(TSVGPuzzleAssets2Index.EauHg, GridLayout4);
 end;
 
 procedure TForm2.ShowGridFromSwitch;
