@@ -203,7 +203,7 @@ begin
         btn.GetUIItem.KeyShortcuts.Add(vkReturn, #0, []);
         btn.GetUIItem.KeyShortcuts.Add(0, ' ', []);
         btn.GetUIItem.GamePadButtons :=
-          [TJoystickButtons.a, TJoystickButtons.b];
+          [TJoystickButtons.A, TJoystickButtons.x];
         btn.onclick := ButtonBackClick;
         btn.GetUIItem.SetFocus;
 
