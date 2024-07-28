@@ -57,8 +57,8 @@ implementation
 
 uses
   uSVGToImages,
-  PuzzleAssets2,
-  uUIItemsList;
+  uUIItemsList,
+  USVGPuzzleAssets2;
 
 { TcadTextButton }
 
@@ -123,14 +123,14 @@ end;
 
 procedure TcadTextButton.RefreshBackground;
 var
-  SVGIdx: TSVGSVGIndex;
+  SVGIdx: TSVGPuzzleAssets2Index;
 begin
   if FisDown then
-    SVGIdx := TSVGSVGIndex.BtnOn
+    SVGIdx := TSVGPuzzleAssets2Index.BtnOn
   else if FisSelected then
-    SVGIdx := TSVGSVGIndex.BtnFocus
+    SVGIdx := TSVGPuzzleAssets2Index.BtnFocus
   else
-    SVGIdx := TSVGSVGIndex.BtnOff;
+    SVGIdx := TSVGPuzzleAssets2Index.BtnOff;
   rBackground.Fill.Bitmap.Bitmap.assign(getBitmapFromSVG(SVGIdx,
     rBackground.width, rBackground.height,
     rBackground.Fill.Bitmap.Bitmap.BitmapScale));
