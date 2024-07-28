@@ -328,8 +328,6 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="..\src\uUIItemsList.pas"/>
-        <DCCReference Include="..\src-temp\uUIElements.pas"/>
-        <DCCReference Include="..\src-temp\uJoystickManager.pas"/>
         <DCCReference Include="..\lib-externes\Delphi-Game-Engine\src\Gamolf.FMX.Joystick.pas"/>
         <DCCReference Include="..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Joystick.DirectInput.Win.pas"/>
         <DCCReference Include="..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Joystick.Mac.pas"/>
@@ -380,6 +378,7 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.UIElements.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
