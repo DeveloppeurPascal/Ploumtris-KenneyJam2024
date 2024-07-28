@@ -48,8 +48,8 @@ implementation
 
 uses
   Gamolf.RTL.Joystick,
-  uUIElements,
-  uUIItemsList;
+  uUIItemsList,
+  Gamolf.RTL.UIElements;
 
 procedure TfrmDialogBox.btnInfoDialogBleuClick(Sender: TObject);
 begin
@@ -92,7 +92,7 @@ end;
 
 procedure TfrmDialogBox.FormCreate(Sender: TObject);
 var
-  item: tuiitem;
+  item: TUIElement;
 begin
   UIItems.NewLayout;
   item := UIItems.AddUIItem(
@@ -117,8 +117,8 @@ begin
     end);
   item.OnPaintProc := procedure(const Sender: TObject)
     begin
-      if (Sender is tuiitem) then
-        if (Sender as tuiitem).IsFocused then
+      if (Sender is TUIElement) then
+        if (Sender as TUIElement).IsFocused then
           btnInfoDialogBleu.SetFocus
         else
           btnInfoDialogBleu.ResetFocus;
@@ -135,8 +135,8 @@ begin
     end);
   item.OnPaintProc := procedure(const Sender: TObject)
     begin
-      if (Sender is tuiitem) then
-        if (Sender as tuiitem).IsFocused then
+      if (Sender is TUIElement) then
+        if (Sender as TUIElement).IsFocused then
           btnInfoDialogGris.SetFocus
         else
           btnInfoDialogGris.ResetFocus;
@@ -152,8 +152,8 @@ begin
     end);
   item.OnPaintProc := procedure(const Sender: TObject)
     begin
-      if (Sender is tuiitem) then
-        if (Sender as tuiitem).IsFocused then
+      if (Sender is TUIElement) then
+        if (Sender as TUIElement).IsFocused then
           btnInfoDialogOrange.SetFocus
         else
           btnInfoDialogOrange.ResetFocus;
@@ -169,8 +169,8 @@ begin
     end);
   item.OnPaintProc := procedure(const Sender: TObject)
     begin
-      if (Sender is tuiitem) then
-        if (Sender as tuiitem).IsFocused then
+      if (Sender is TUIElement) then
+        if (Sender as TUIElement).IsFocused then
           btnInfoDialogVert.SetFocus
         else
           btnInfoDialogVert.ResetFocus;
