@@ -123,7 +123,6 @@ end;
 
 procedure TcadTextButton.RefreshBackground;
 var
-  bmp: TBitmap;
   SVGIdx: TSVGSVGIndex;
 begin
   if FisDown then
@@ -132,13 +131,9 @@ begin
     SVGIdx := TSVGSVGIndex.BtnFocus
   else
     SVGIdx := TSVGSVGIndex.BtnOff;
-  bmp := getBitmapFromSVG(SVGIdx, rBackground.width, rBackground.height,
-    rBackground.Fill.Bitmap.Bitmap.BitmapScale, FBackgroundColor);
-  try
-    rBackground.Fill.Bitmap.Bitmap.assign(bmp);
-  finally
-    bmp.free;
-  end;
+  rBackground.Fill.Bitmap.Bitmap.assign(getBitmapFromSVG(SVGIdx,
+    rBackground.width, rBackground.height,
+    rBackground.Fill.Bitmap.Bitmap.BitmapScale));
 end;
 
 procedure TcadTextButton.SetBackgroundColor(const Value: TAlphacolor);
