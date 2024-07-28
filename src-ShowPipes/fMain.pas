@@ -54,21 +54,15 @@ uses
 
 procedure TForm2.AddImage(const Id: TSVGSVGIndex; const GL: TGridLayout);
 var
-  bmp: tbitmap;
   img: timage;
   lbl: TLabel;
 begin
   img := timage.Create(self);
-  img.Parent := gl;
+  img.Parent := GL;
   img.WrapMode := TImageWrapMode.Original;
 
-  bmp := getBitmapFromSVG(Id, img.width, img.height, img.bitmap.BitmapScale,
-    talphacolors.Yellow);
-  try
-    img.bitmap.Assign(bmp);
-  finally
-    bmp.free;
-  end;
+  img.bitmap.Assign(getBitmapFromSVG(Id, img.width, img.height,
+    img.bitmap.BitmapScale));
 
   lbl := TLabel.Create(self);
   lbl.Parent := img;
