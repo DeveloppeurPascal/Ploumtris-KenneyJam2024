@@ -34,7 +34,8 @@ uses
   USVGInputPrompts in '..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas',
   USVGPuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas',
   cGameControllerStatus in 'cGameControllerStatus.pas' {cadGameControllerStatus: TFrame},
-  uScores in 'uScores.pas';
+  uScores in 'uScores.pas',
+  cHelpBar in 'cHelpBar.pas' {cadHelpBar: TFrame};
 
 {$R *.res}
 
