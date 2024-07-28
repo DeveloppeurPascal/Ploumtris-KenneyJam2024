@@ -446,7 +446,7 @@ var
 begin
   GameTitle.Visible := false;
 
-  // Gestion du bouton "B" et ESCape
+  // Gestion du bouton "X" et ESCape
   item := UIItems.AddUIItem(
     procedure(const Sender: TObject)
     begin
@@ -454,7 +454,7 @@ begin
     end);
   item.KeyShortcuts.Add(vkescape, #0, []);
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
-  item.GamePadButtons := [TJoystickButtons.b];
+  item.GamePadButtons := [TJoystickButtons.X];
 
   if (lGameZoneLeft.ChildrenCount = 0) then
   begin
@@ -478,7 +478,7 @@ begin
       r.parent := lGameZoneLeft;
       r.Width := cpipesize;
       r.height := cpipesize;
-      r.Position.x := 0;
+      r.Position.X := 0;
       r.Position.y := r.height * i;
       r.Stroke.Kind := TBrushKind.None;
       r.fill.Kind := TBrushKind.bitmap;
@@ -490,7 +490,7 @@ begin
       r.parent := lGameZoneRight;
       r.Width := cpipesize;
       r.height := cpipesize;
-      r.Position.x := 0;
+      r.Position.X := 0;
       r.Position.y := r.height * i;
       r.Stroke.Kind := TBrushKind.None;
       r.fill.Kind := TBrushKind.bitmap;
@@ -504,7 +504,7 @@ begin
     r.parent := lGameZoneLeft;
     r.Width := cpipesize;
     r.height := cpipesize;
-    r.Position.x := 0;
+    r.Position.X := 0;
     r.Position.y := r.height * CNBRow;
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
@@ -518,7 +518,7 @@ begin
     r.parent := lGameZoneRight;
     r.Width := cpipesize;
     r.height := cpipesize;
-    r.Position.x := 0;
+    r.Position.X := 0;
     r.Position.y := r.height * CNBRow;
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
@@ -537,7 +537,7 @@ begin
       r.parent := lGameZoneBottom;
       r.Width := cpipesize;
       r.height := cpipesize;
-      r.Position.x := r.Width * i;
+      r.Position.X := r.Width * i;
       r.Position.y := 0;
       r.Stroke.Kind := TBrushKind.None;
       r.fill.Kind := TBrushKind.bitmap;
@@ -575,7 +575,7 @@ begin
     end);
   item.KeyShortcuts.Add(vkescape, #0, []);
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
-  item.GamePadButtons := [TJoystickButtons.b];
+  item.GamePadButtons := [TJoystickButtons.X];
 
   // TODO : à compléter
 end;
@@ -590,7 +590,7 @@ procedure TfrmMain.InitHomeScreen;
     result := TcadTextButton.Create(self);
     result.GetUIItem.TagObject := result;
     result.parent := AParent;
-    result.Position.x := 0;
+    result.Position.X := 0;
     result.Width := AParent.Width;
     result.height := 54;
     result.Position.y := AParent.height;
@@ -614,7 +614,7 @@ begin
     end);
   item.KeyShortcuts.Add(vkescape, #0, []);
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
-  item.GamePadButtons := [TJoystickButtons.b];
+  item.GamePadButtons := [TJoystickButtons.X];
 
   lHomeButtons.Width := 104;
   lHomeButtons.height := 0;
@@ -653,7 +653,7 @@ begin
     end);
   item.KeyShortcuts.Add(vkescape, #0, []);
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
-  item.GamePadButtons := [TJoystickButtons.b];
+  item.GamePadButtons := [TJoystickButtons.X];
 
   // TODO : à compléter
 end;
