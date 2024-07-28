@@ -63,7 +63,9 @@ type
     FCurrentScreen: TGameScreens;
     FCurrentLayout: TLayout;
     FDialogBox: TcadDialogBox;
+    FScoreOnScreen: Integer;
     procedure SetCurrentScreen(const Value: TGameScreens);
+    procedure SetScoreOnScreen(const Value: Integer);
   protected
     procedure InitAboutDialogBox;
     procedure InitMainFormCaption;
@@ -90,6 +92,7 @@ type
   public
     property CurrentScreen: TGameScreens read FCurrentScreen
       write SetCurrentScreen;
+    property ScoreOnScreen: Integer read FScoreOnScreen write SetScoreOnScreen;
   end;
 
 var
@@ -304,17 +307,10 @@ begin
     else
       SendNewPipe;
 
-    // TODO : à transformer en proprieté et relooker l'affichage du score
-    if CurrentGame.Score > lblScore.Tag then
-    begin
-      lblScore.Tag := lblScore.Tag + 1;
-      lblScore.Text := 'Score : ' + lblScore.Tag.tostring;
-    end
-    else if CurrentGame.Score < lblScore.Tag then
-    begin
-      lblScore.Tag := lblScore.Tag - 1;
-      lblScore.Text := 'Score : ' + lblScore.Tag.tostring;
-    end;
+    if CurrentGame.Score > ScoreOnScreen then
+      ScoreOnScreen := ScoreOnScreen + 1
+    else if CurrentGame.Score < ScoreOnScreen then
+      ScoreOnScreen := ScoreOnScreen - 1
   end
   else
     GameLoop.Enabled := false;
@@ -421,7 +417,7 @@ end;
 
 procedure TfrmMain.InitGameOverScreen;
 begin
-  // TODO : faire un backup du score pour limenter le hall of fames
+  // TODO : faire un backup du score pour alimenter le hall of fames
 
   // TODO : afficher la capture de l'écran de jeu en background
   FDialogBox := TcadDialogBox.GetNewInstance(self, TDialogBoxType.Information,
@@ -546,8 +542,7 @@ begin
   end;
 
   CurrentGame.init;
-  lblScore.Text := '';
-  lblScore.Tag := 0;
+  ScoreOnScreen := 0;
   CurrentGame.IsRunning := true;
   GameLoop.Enabled := true;
 end;
@@ -736,6 +731,13 @@ begin
     FCurrentLayout.Visible := true;
     FCurrentLayout.BringToFront;
   end;
+end;
+
+procedure TfrmMain.SetScoreOnScreen(const Value: Integer);
+begin
+  FScoreOnScreen := Value;
+  lblScore.Text := 'Score : ' + FScoreOnScreen.tostring;
+  // TODO : remplacer par un affichage plus graphique
 end;
 
 initialization
