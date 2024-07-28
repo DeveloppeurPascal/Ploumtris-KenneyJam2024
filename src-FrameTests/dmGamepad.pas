@@ -5,7 +5,6 @@ interface
 uses
   System.SysUtils,
   System.Classes,
-  uJoystickManager,
   Gamolf.RTL.Joystick;
 
 type
@@ -30,8 +29,8 @@ implementation
 
 uses
   FMX.Controls,
-  uUIElements,
-  uUIItemsList;
+  uUIItemsList,
+  Gamolf.RTL.UIElements;
 
 {$R *.dfm}
 
@@ -39,7 +38,7 @@ procedure TDataModule1.GamepadManager1ButtonDown(const GamepadID: Integer;
   const Button: TJoystickButtons);
 var
   handled: boolean;
-  item: tuiitem;
+  item: TUIElement;
 begin
   UIItems.GamepadButtonDown(Button, handled);
   if not handled then
