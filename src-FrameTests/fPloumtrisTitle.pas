@@ -15,10 +15,10 @@ uses
   FMX.Dialogs,
   FMX.Layouts,
   FMX.Objects,
-  PuzzleAssets2,
   FMX.Controls.Presentation,
   FMX.StdCtrls,
-  cPloumtrisTitle;
+  cPloumtrisTitle,
+  USVGPuzzleAssets2;
 
 type
   TfrmPloumtrisTitle = class(TForm)
@@ -37,7 +37,7 @@ type
     { Déclarations privées }
   public
     { Déclarations publiques }
-    procedure AddBitmap(const ID: tsvgsvgindex);
+    procedure AddBitmap(const ID: TSVGPuzzleAssets2Index);
     procedure AddEmptyCell;
   end;
 
@@ -53,7 +53,7 @@ uses
   Gamolf.RTL.Joystick,
   Gamolf.RTL.UIElements;
 
-procedure TfrmPloumtrisTitle.AddBitmap(const ID: tsvgsvgindex);
+procedure TfrmPloumtrisTitle.AddBitmap(const ID: TSVGPuzzleAssets2Index);
 var
   img: TImage;
 begin
@@ -159,10 +159,10 @@ begin
   width := round(GridLayout1.width + 50);
 
   // P
-  AddBitmap(tsvgsvgindex.eauDb);
-  AddBitmap(tsvgsvgindex.eaugb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauDb);
+  AddBitmap(TSVGPuzzleAssets2Index.eaugb);
   // l
-  AddBitmap(tsvgsvgindex.Pipehb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehb);
   // o
   AddEmptyCell;
   AddEmptyCell;
@@ -174,69 +174,69 @@ begin
   AddEmptyCell;
   // AddEmptyCell;
   // t
-  AddBitmap(tsvgsvgindex.Pipegd);
-  AddBitmap(tsvgsvgindex.eaugdb);
-  AddBitmap(tsvgsvgindex.Pipegd);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipegd);
+  AddBitmap(TSVGPuzzleAssets2Index.eaugdb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipegd);
   // r
   // AddEmptyCell;
   AddEmptyCell;
   // i
   AddEmptyCell;
   // s
-  AddBitmap(tsvgsvgindex.PipeDb);
-  AddBitmap(tsvgsvgindex.eaugb);
+  AddBitmap(TSVGPuzzleAssets2Index.PipeDb);
+  AddBitmap(TSVGPuzzleAssets2Index.eaugb);
 
   // P
-  AddBitmap(tsvgsvgindex.eauhdb);
-  AddBitmap(tsvgsvgindex.Pipehg);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhdb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehg);
   // l
-  AddBitmap(tsvgsvgindex.Pipehb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehb);
   // o
-  AddBitmap(tsvgsvgindex.eauDb);
-  AddBitmap(tsvgsvgindex.Pipegb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauDb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipegb);
   // u
-  AddBitmap(tsvgsvgindex.Pipehb);
-  AddBitmap(tsvgsvgindex.eauhb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhb);
   // m
-  AddBitmap(tsvgsvgindex.PipeDb);
-  AddBitmap(tsvgsvgindex.eaugdb);
-  AddBitmap(tsvgsvgindex.eaugb);
+  AddBitmap(TSVGPuzzleAssets2Index.PipeDb);
+  AddBitmap(TSVGPuzzleAssets2Index.eaugdb);
+  AddBitmap(TSVGPuzzleAssets2Index.eaugb);
   // t
-  AddBitmap(tsvgsvgindex.eauhb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhb);
   // r
-  AddBitmap(tsvgsvgindex.eauhdb);
-  AddBitmap(tsvgsvgindex.Pipegb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhdb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipegb);
   // i
-  AddBitmap(tsvgsvgindex.Pipehb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehb);
   // s
-  AddBitmap(tsvgsvgindex.eauhd);
-  AddBitmap(tsvgsvgindex.eaugb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhd);
+  AddBitmap(TSVGPuzzleAssets2Index.eaugb);
 
   // P
-  AddBitmap(tsvgsvgindex.Pipehb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehb);
   AddEmptyCell;
   // l
-  AddBitmap(tsvgsvgindex.eauhb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhb);
   // o
-  AddBitmap(tsvgsvgindex.Pipehd);
-  AddBitmap(tsvgsvgindex.eauhg);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehd);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhg);
   // u
-  AddBitmap(tsvgsvgindex.Pipehd);
-  AddBitmap(tsvgsvgindex.Pipehg);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehd);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehg);
   // m
-  AddBitmap(tsvgsvgindex.eauhb);
-  AddBitmap(tsvgsvgindex.Pipehb);
-  AddBitmap(tsvgsvgindex.eauhb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhb);
   // t
-  AddBitmap(tsvgsvgindex.eauhb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhb);
   // r
-  AddBitmap(tsvgsvgindex.eauhb);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhb);
   AddEmptyCell;
   // i
-  AddBitmap(tsvgsvgindex.Pipehb);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehb);
   // s
-  AddBitmap(tsvgsvgindex.eauhd);
-  AddBitmap(tsvgsvgindex.Pipehg);
+  AddBitmap(TSVGPuzzleAssets2Index.eauhd);
+  AddBitmap(TSVGPuzzleAssets2Index.Pipehg);
 end;
 
 procedure TfrmPloumtrisTitle.FormDestroy(Sender: TObject);

@@ -361,7 +361,6 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas"/>
         <DCCReference Include="..\lib-externes\librairies\src\Olf.Skia.SVGToBitmap.pas"/>
         <DCCReference Include="..\src\cDialogBox.pas">
             <Form>cadDialogBox</Form>
@@ -379,6 +378,8 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.UIElements.pas"/>
+        <DCCReference Include="..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas"/>
+        <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

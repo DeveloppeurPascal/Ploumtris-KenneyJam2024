@@ -58,8 +58,6 @@ uses
   fDialogBox,
   fImageButtons,
   fTrackBar,
-  PuzzleAssets2,
-  Olf.Skia.SVGToBitmap,
   fPloumtrisTitle,
   Gamolf.RTL.UIElements;
 
