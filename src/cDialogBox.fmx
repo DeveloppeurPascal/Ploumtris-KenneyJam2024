@@ -4,44 +4,72 @@ object cadDialogBox: TcadDialogBox
   Size.Height = 240.000000000000000000
   Size.PlatformDefault = False
   object rBackground: TRectangle
-    Align = Contents
-    Fill.Bitmap.WrapMode = TileStretch
-    Fill.Kind = Bitmap
-    HitTest = False
-    Padding.Left = 10.000000000000000000
-    Padding.Top = 10.000000000000000000
-    Padding.Right = 10.000000000000000000
-    Padding.Bottom = 10.000000000000000000
+    Align = Client
+    Fill.Color = claChartreuse
+    Padding.Left = 12.000000000000000000
+    Padding.Top = 12.000000000000000000
+    Padding.Right = 12.000000000000000000
+    Padding.Bottom = 12.000000000000000000
     Size.Width = 320.000000000000000000
     Size.Height = 240.000000000000000000
     Size.PlatformDefault = False
-    Stroke.Kind = None
-    OnResized = rBackgroundResized
-    object lButtons: TLayout
-      Align = Bottom
-      Position.X = 10.000000000000000000
-      Position.Y = 176.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 54.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-    end
-    object vsContent: TVertScrollBox
+    Stroke.Color = claDarkgreen
+    Stroke.Thickness = 5.000000000000000000
+    XRadius = 15.000000000000000000
+    YRadius = 15.000000000000000000
+    object rContent: TRectangle
       Align = Client
-      HitTest = False
-      Size.Width = 300.000000000000000000
-      Size.Height = 166.000000000000000000
+      Fill.Color = claWhite
+      Size.Width = 296.000000000000000000
+      Size.Height = 216.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
-      Viewport.Width = 300.000000000000000000
-      Viewport.Height = 166.000000000000000000
-      object Text1: TText
+      Stroke.Kind = None
+      XRadius = 5.000000000000000000
+      YRadius = 5.000000000000000000
+      object rContentShadow: TRectangle
         Align = Top
-        AutoSize = True
-        Size.Width = 300.000000000000000000
-        Size.Height = 50.000000000000000000
+        Fill.Color = claGainsboro
+        Size.Width = 296.000000000000000000
+        Size.Height = 4.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.HorzAlign = Leading
+        Stroke.Kind = None
+        XRadius = 2.000000000000000000
+        YRadius = 2.000000000000000000
+        ParentShowHint = False
+        ShowHint = False
+      end
+      object vsContent: TVertScrollBox
+        Align = Client
+        HitTest = False
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Size.Width = 296.000000000000000000
+        Size.Height = 158.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 296.000000000000000000
+        Viewport.Height = 158.000000000000000000
+        object Text1: TText
+          Align = Top
+          AutoSize = True
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 286.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Leading
+        end
+      end
+      object lButtons: TLayout
+        Align = Bottom
+        Position.Y = 162.000000000000000000
+        Size.Width = 296.000000000000000000
+        Size.Height = 54.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        OnResized = lButtonsResized
       end
     end
   end

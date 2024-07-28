@@ -23,11 +23,14 @@ type
   TDialogBoxType = (Information, Confirmation, Error);
 
   TcadDialogBox = class(TFrame)
-    rBackground: TRectangle;
     vsContent: TVertScrollBox;
     lButtons: TLayout;
     Text1: TText;
+    rBackground: TRectangle;
+    rContent: TRectangle;
+    rContentShadow: TRectangle;
     procedure rBackgroundResized(Sender: TObject);
+    procedure lButtonsResized(Sender: TObject);
   private
     FBackgroundColor: TDialogBoxBackgroundColor;
     FDialogType: TDialogBoxType;
@@ -59,8 +62,6 @@ implementation
 {$R *.fmx}
 
 uses
-  uSVGToImages,
-  PuzzleAssets2,
   cTextButton,
   Gamolf.RTL.Joystick,
   uUIItemsList;
@@ -75,7 +76,6 @@ begin
   align := talignlayout.center;
   width := 300;
   height := 300;
-  // TODO : format carré obligatoire car SVG en proportionnel dans la zone d'affichage
   RefreshBackground;
   RefreshButtons;
 end;
@@ -117,6 +117,11 @@ begin
   result := Text1.Text;
 end;
 
+procedure TcadDialogBox.lButtonsResized(Sender: TObject);
+begin
+  RefreshButtons;
+end;
+
 procedure TcadDialogBox.rBackgroundResized(Sender: TObject);
 begin
   RefreshBackground;
@@ -127,29 +132,32 @@ procedure TcadDialogBox.RefreshBackground;
 begin
   case FBackgroundColor of
     TDialogBoxBackgroundColor.Bleu:
-      rBackground.fill.Bitmap.Bitmap.Assign
-        (getBitmapFromSVG(TSVGSVGIndex.CadreBleu, rBackground.width,
-        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale));
+      begin
+        rBackground.Stroke.Color := $FF187DA8;
+        rBackground.fill.Color := $FF1EA7E1;
+        rContentShadow.fill.Color := $FFE2E2E2;
+      end;
     TDialogBoxBackgroundColor.Gris:
-      rBackground.fill.Bitmap.Bitmap.Assign
-        (getBitmapFromSVG(TSVGSVGIndex.CadreGris, rBackground.width,
-        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale));
+      begin
+        rBackground.Stroke.Color := $FF707070;
+        rBackground.fill.Color := $FFCCCCCC;
+        rContentShadow.fill.Color := $FFE2E2E2;
+      end;
     TDialogBoxBackgroundColor.Orange:
-      rBackground.fill.Bitmap.Bitmap.Assign
-        (getBitmapFromSVG(TSVGSVGIndex.CadreOrange, rBackground.width,
-        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale));
+      begin
+        rBackground.Stroke.Color := $FF9F8312;
+        rBackground.fill.Color := $FFFFCC00;
+        rContentShadow.fill.Color := $FFE2E2E2;
+      end;
     TDialogBoxBackgroundColor.Vert:
-      rBackground.fill.Bitmap.Bitmap.Assign
-        (getBitmapFromSVG(TSVGSVGIndex.CadreVert, rBackground.width,
-        rBackground.height, rBackground.fill.Bitmap.Bitmap.BitmapScale));
+      begin
+        rBackground.Stroke.Color := $FF649517;
+        rBackground.fill.Color := $FF80BE1F;
+        rContentShadow.fill.Color := $FFE2E2E2;
+      end;
   else
     raise exception.Create('Unknow background for this dialog box.');
   end;
-
-  rBackground.padding.left := 5 + width * 30 / 276;
-  rBackground.padding.top := 5 + height * 38 / 276;
-  rBackground.padding.right := rBackground.padding.left;
-  rBackground.padding.bottom := 5 + height * 30 / 276;
 end;
 
 procedure TcadDialogBox.RefreshButtons;
