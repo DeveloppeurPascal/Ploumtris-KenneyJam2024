@@ -12,7 +12,7 @@ unit PuzzleAssets2;
 // ****************************************
 // File generator : SVG Folder to Delphi Unit (1.0)
 // Website : https://svgfolder2delphiunit.olfsoftware.fr/
-// Generation date : 28/07/2024 14:59:49
+// Generation date : 28/07/2024 17:21:48
 //
 // Don't do any change on this file.
 // They will be erased by next generation !
@@ -24,32 +24,28 @@ const
   CSVGBtnFocus = 0;
   CSVGBtnOff = 1;
   CSVGBtnOn = 2;
-  CSVGCadreBleu = 3;
-  CSVGCadreGris = 4;
-  CSVGCadreOrange = 5;
-  CSVGCadreVert = 6;
-  CSVGEauDb = 7;
-  CSVGEauGb = 8;
-  CSVGEauGd = 9;
-  CSVGEauGdb = 10;
-  CSVGEauGdh = 11;
-  CSVGEauHb = 12;
-  CSVGEauHd = 13;
-  CSVGEauHdb = 14;
-  CSVGEauHdbg = 15;
-  CSVGEauHg = 16;
-  CSVGEauHgb = 17;
-  CSVGPipeDb = 18;
-  CSVGPipeGb = 19;
-  CSVGPipeGd = 20;
-  CSVGPipeGdb = 21;
-  CSVGPipeHb = 22;
-  CSVGPipeHd = 23;
-  CSVGPipeHdb = 24;
-  CSVGPipeHdbg = 25;
-  CSVGPipeHg = 26;
-  CSVGPipeHgb = 27;
-  CSVGPipeHgd = 28;
+  CSVGEauDb = 3;
+  CSVGEauGb = 4;
+  CSVGEauGd = 5;
+  CSVGEauGdb = 6;
+  CSVGEauGdh = 7;
+  CSVGEauHb = 8;
+  CSVGEauHd = 9;
+  CSVGEauHdb = 10;
+  CSVGEauHdbg = 11;
+  CSVGEauHg = 12;
+  CSVGEauHgb = 13;
+  CSVGPipeDb = 14;
+  CSVGPipeGb = 15;
+  CSVGPipeGd = 16;
+  CSVGPipeGdb = 17;
+  CSVGPipeHb = 18;
+  CSVGPipeHd = 19;
+  CSVGPipeHdb = 20;
+  CSVGPipeHdbg = 21;
+  CSVGPipeHg = 22;
+  CSVGPipeHgb = 23;
+  CSVGPipeHgd = 24;
 
 type
 {$SCOPEDENUMS ON}
@@ -57,10 +53,6 @@ type
     BtnFocus = CSVGBtnFocus,
     BtnOff = CSVGBtnOff,
     BtnOn = CSVGBtnOn,
-    CadreBleu = CSVGCadreBleu,
-    CadreGris = CSVGCadreGris,
-    CadreOrange = CSVGCadreOrange,
-    CadreVert = CSVGCadreVert,
     EauDb = CSVGEauDb,
     EauGb = CSVGEauGb,
     EauGd = CSVGEauGd,
@@ -101,10 +93,6 @@ type
     BtnFocus = CSVGBtnFocus;
     BtnOff = CSVGBtnOff;
     BtnOn = CSVGBtnOn;
-    CadreBleu = CSVGCadreBleu;
-    CadreGris = CSVGCadreGris;
-    CadreOrange = CSVGCadreOrange;
-    CadreVert = CSVGCadreVert;
     EauDb = CSVGEauDb;
     EauGb = CSVGEauGb;
     EauGd = CSVGEauGd;
@@ -203,7 +191,7 @@ end;
 
 initialization
 
-SetLength(SVGSVG, 29);
+SetLength(SVGSVG, 25);
 
 {$TEXTBLOCK NATIVE XML}
 SVGSVG[CSVGBtnFocus] := '''
@@ -214,22 +202,6 @@ SVGSVG[CSVGBtnOff] := '''
 ''';
 SVGSVG[CSVGBtnOn] := '''
 <?xml version="1.0" encoding="UTF-8"?><svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 44"><g id="Calque_1-2"><path d="M8,8h78v28H8V8" fill="#f9c" stroke-width="0"/><path d="M94,0l-8,8H8L0,0h94" fill="#ffd2e8" stroke-width="0"/><path d="M86,8L94,0v44l-8-8V8M0,0l8,8v28L0,44V0" fill="#ffaad4" stroke-width="0"/><path d="M86,36l8,8H0l8-8h78" fill="#f080b8" stroke-width="0"/></g></svg>
-''';
-SVGSVG[CSVGCadreBleu] := '''
-<?xml version="1.0" encoding="UTF-8"?><svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 138"><g id="Calque_1-2"><path d="M121.45,0c11.03,0,16.55,5.52,16.55,16.55v104.9c0,11.03-5.52,16.55-16.55,16.55H16.55c-11.03,0-16.55-5.52-16.55-16.55V16.55C0,5.52,5.52,0,16.55,0h104.9M16.55,5c-7.7,0-11.55,3.85-11.55,11.55v104.9c0,7.7,3.85,11.55,11.55,11.55h104.9c7.7,0,11.55-3.85,11.55-11.55V16.55c0-7.7-3.85-11.55-11.55-11.55H16.55" fill="#187da8" stroke-width="0"/><path d="M16.55,5h104.9c7.7,0,11.55,3.85,11.55,11.55v104.9c0,7.7-3.85,11.55-11.55,11.55H16.55c-7.7,0-11.55-3.85-11.55-11.55V16.55c0-7.7,3.85-11.55,11.55-11.55M123,20.45v-3.9c0-1.03-.52-1.55-1.55-1.55H16.55c-1.03,0-1.55.52-1.55,1.55v105c.03.97.55,1.45,1.55,1.45h104.9c1,0,1.52-.48,1.55-1.45V20.45" fill="#1ea7e1" stroke-width="0"/><path d="M123,20.45c-.03-.97-.55-1.45-1.55-1.45H16.55c-1,0-1.52.48-1.55,1.45v-3.9c0-1.03.52-1.55,1.55-1.55h104.9c1.03,0,1.55.52,1.55,1.55v3.9" fill="#e2e2e2" stroke-width="0"/><path
-d="M123,20.45v101.1c-.03.97-.55,1.45-1.55,1.45H16.55c-1,0-1.52-.48-1.55-1.45V20.45c.03-.97.55-1.45,1.55-1.45h104.9c1,0,1.52.48,1.55,1.45" fill="#fff" stroke-width="0"/></g></svg>
-''';
-SVGSVG[CSVGCadreGris] := '''
-<?xml version="1.0" encoding="UTF-8"?><svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 138"><g id="Calque_1-2"><path d="M15,20.45v-3.9c0-1.03.52-1.55,1.55-1.55h104.9c1.03,0,1.55.52,1.55,1.55v3.9c-.03-.97-.55-1.45-1.55-1.45H16.55c-1,0-1.52.48-1.55,1.45" fill="#e2e2e2" stroke-width="0"/><path d="M15,20.45c.03-.97.55-1.45,1.55-1.45h104.9c1,0,1.52.48,1.55,1.45v101.1c-.03.97-.55,1.45-1.55,1.45H16.55c-1,0-1.52-.48-1.55-1.45V20.45" fill="#fff" stroke-width="0"/><path d="M15,20.45v101.1c.03.97.55,1.45,1.55,1.45h104.9c1,0,1.52-.48,1.55-1.45V16.55c0-1.03-.52-1.55-1.55-1.55H16.55c-1.03,0-1.55.52-1.55,1.55v3.9M16.55,5h104.9c7.7,0,11.55,3.85,11.55,11.55v104.9c0,7.7-3.85,11.55-11.55,11.55H16.55c-7.7,0-11.55-3.85-11.55-11.55V16.55c0-7.7,3.85-11.55,11.55-11.55" fill="#ccc" stroke-width="0"/><path
-d="M16.55,5c-7.7,0-11.55,3.85-11.55,11.55v104.9c0,7.7,3.85,11.55,11.55,11.55h104.9c7.7,0,11.55-3.85,11.55-11.55V16.55c0-7.7-3.85-11.55-11.55-11.55H16.55M121.45,0c11.03,0,16.55,5.52,16.55,16.55v104.9c0,11.03-5.52,16.55-16.55,16.55H16.55c-11.03,0-16.55-5.52-16.55-16.55V16.55C0,5.52,5.52,0,16.55,0h104.9" fill="#707070" stroke-width="0"/></g></svg>
-''';
-SVGSVG[CSVGCadreOrange] := '''
-<?xml version="1.0" encoding="UTF-8"?><svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 138"><g id="Calque_1-2"><path d="M15,20.45v-3.9c0-1.03.52-1.55,1.55-1.55h104.9c1.03,0,1.55.52,1.55,1.55v3.9c-.03-.97-.55-1.45-1.55-1.45H16.55c-1,0-1.52.48-1.55,1.45" fill="#e2e2e2" stroke-width="0"/><path d="M15,20.45c.03-.97.55-1.45,1.55-1.45h104.9c1,0,1.52.48,1.55,1.45v101.1c-.03.97-.55,1.45-1.55,1.45H16.55c-1,0-1.52-.48-1.55-1.45V20.45" fill="#fff" stroke-width="0"/><path d="M15,20.45v101.1c.03.97.55,1.45,1.55,1.45h104.9c1,0,1.52-.48,1.55-1.45V16.55c0-1.03-.52-1.55-1.55-1.55H16.55c-1.03,0-1.55.52-1.55,1.55v3.9M16.55,5h104.9c7.7,0,11.55,3.85,11.55,11.55v104.9c0,7.7-3.85,11.55-11.55,11.55H16.55c-7.7,0-11.55-3.85-11.55-11.55V16.55c0-7.7,3.85-11.55,11.55-11.55" fill="#fc0" stroke-width="0"/><path
-d="M16.55,5c-7.7,0-11.55,3.85-11.55,11.55v104.9c0,7.7,3.85,11.55,11.55,11.55h104.9c7.7,0,11.55-3.85,11.55-11.55V16.55c0-7.7-3.85-11.55-11.55-11.55H16.55M121.45,0c11.03,0,16.55,5.52,16.55,16.55v104.9c0,11.03-5.52,16.55-16.55,16.55H16.55c-11.03,0-16.55-5.52-16.55-16.55V16.55C0,5.52,5.52,0,16.55,0h104.9" fill="#9f8312" stroke-width="0"/></g></svg>
-''';
-SVGSVG[CSVGCadreVert] := '''
-<?xml version="1.0" encoding="UTF-8"?><svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 138"><g id="Calque_1-2"><path d="M123,20.45v-3.9c0-1.03-.52-1.55-1.55-1.55H16.55c-1.03,0-1.55.52-1.55,1.55v105c.03.97.55,1.45,1.55,1.45h104.9c1,0,1.52-.48,1.55-1.45V20.45M16.55,5h104.9c7.7,0,11.55,3.85,11.55,11.55v104.9c0,7.7-3.85,11.55-11.55,11.55H16.55c-7.7,0-11.55-3.85-11.55-11.55V16.55c0-7.7,3.85-11.55,11.55-11.55" fill="#80be1f" stroke-width="0"/><path d="M123,20.45c-.03-.97-.55-1.45-1.55-1.45H16.55c-1,0-1.52.48-1.55,1.45v-3.9c0-1.03.52-1.55,1.55-1.55h104.9c1.03,0,1.55.52,1.55,1.55v3.9" fill="#e2e2e2" stroke-width="0"/><path d="M123,20.45v101.1c-.03.97-.55,1.45-1.55,1.45H16.55c-1,0-1.52-.48-1.55-1.45V20.45c.03-.97.55-1.45,1.55-1.45h104.9c1,0,1.52.48,1.55,1.45" fill="#fff" stroke-width="0"/><path
-d="M16.55,5c-7.7,0-11.55,3.85-11.55,11.55v104.9c0,7.7,3.85,11.55,11.55,11.55h104.9c7.7,0,11.55-3.85,11.55-11.55V16.55c0-7.7-3.85-11.55-11.55-11.55H16.55M121.45,0c11.03,0,16.55,5.52,16.55,16.55v104.9c0,11.03-5.52,16.55-16.55,16.55H16.55c-11.03,0-16.55-5.52-16.55-16.55V16.55C0,5.52,5.52,0,16.55,0h104.9" fill="#649517" stroke-width="0"/></g></svg>
 ''';
 SVGSVG[CSVGEauDb] := '''
 <?xml version="1.0" encoding="UTF-8"?><svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.05 87.9"><g id="Calque_1-2"><path d="M47.45,36.35v.15c.03,1.43.55,2.65,1.55,3.65,1.07,1.07,2.35,1.6,3.85,1.6s2.77-.53,3.8-1.6c1.03-1,1.57-2.22,1.6-3.65v-.15c0-1.5-.53-2.78-1.6-3.85-1.03-1.03-2.3-1.55-3.8-1.55-1.5,0-2.78.52-3.85,1.55-1.03,1.07-1.55,2.35-1.55,3.85M34.6,32.1c-1.1,1.1-1.65,2.43-1.65,4,0,.5.05.97.15,1.4.23.97.73,1.83,1.5,2.6,1.1,1.1,2.43,1.65,4,1.65s2.9-.55,4-1.65c.77-.77,1.27-1.63,1.5-2.6l.15-1.4c0-1.57-.55-2.9-1.65-4-1.1-1.1-2.43-1.65-4-1.65-1.57,0-2.9.55-4,1.65M72,15.9v26.7h-3.85l-.45.05c-11.83.67-19.45,5.8-22.85,15.4l.05-.1c-1.57,3.67-2.33,8.13-2.3,13.4v.55h-26.6v-9.15c1.37-30.5,18.12-46.12,50.25-46.85h5.75M33.95,51.75c0-.77-.27-1.42-.8-1.95-.53-.53-1.18-.8-1.95-.8s-1.42.27-1.95.8c-.53.53-.8,1.18-.8,1.95s.27,1.42.8,1.95c.53.53,1.18.8,1.95.8s1.42-.27,1.95-.8c.53-.53.8-1.18.8-1.95" fill="#1ea7e1" stroke-width="0"/><path
