@@ -41,19 +41,13 @@ uses
 
 procedure TcadPloumtrisTitle.AddBitmap(const ID: tsvgsvgindex);
 var
-  bmp: tbitmap;
   img: TImage;
 begin
-  bmp := getBitmapFromSVG(ID, GridLayout1.ItemWidth, GridLayout1.ItemHeight,
-    Image1.Bitmap.BitmapScale, 0);
-  try
-    img := TImage.create(self);
-    img.parent := GridLayout1;
-    img.HitTest := false;
-    img.Bitmap.assign(bmp);
-  finally
-    bmp.free;
-  end;
+  img := TImage.create(self);
+  img.parent := GridLayout1;
+  img.HitTest := false;
+  img.Bitmap.assign(getBitmapFromSVG(ID, GridLayout1.ItemWidth,
+    GridLayout1.ItemHeight, Image1.Bitmap.BitmapScale));
 end;
 
 procedure TcadPloumtrisTitle.AddEmptyCell;
