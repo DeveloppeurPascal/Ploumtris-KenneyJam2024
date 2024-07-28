@@ -44,6 +44,7 @@ object frmMain: TfrmMain
           Color = xFF167C91
           Offset = 1.000000000000000000
         end>
+      HitTest = False
       Size.Width = 881.000000000000000000
       Size.Height = 480.000000000000000000
       Size.PlatformDefault = False
@@ -132,6 +133,7 @@ object frmMain: TfrmMain
         object rGameTextsBackground: TRectangle
           Align = Contents
           Fill.Color = claWhite
+          HitTest = False
           Opacity = 0.600000023841857900
           Size.Width = 50.000000000000000000
           Size.Height = 25.000000000000000000

@@ -465,6 +465,7 @@ begin
     begin
       // Left pipe
       r := TRectangle.Create(self);
+      r.hittest := false;
       r.parent := lGameZoneLeft;
       r.Width := cpipesize;
       r.height := cpipesize;
@@ -476,6 +477,7 @@ begin
       r.fill.bitmap.bitmap.assign(bmp1);
       // Right pipe
       r := TRectangle.Create(self);
+      r.hittest := false;
       r.parent := lGameZoneRight;
       r.Width := cpipesize;
       r.height := cpipesize;
@@ -489,6 +491,7 @@ begin
 
     // Left pipe bottom
     r := TRectangle.Create(self);
+    r.hittest := false;
     r.parent := lGameZoneLeft;
     r.Width := cpipesize;
     r.height := cpipesize;
@@ -502,6 +505,7 @@ begin
 
     // Right pipe bottom
     r := TRectangle.Create(self);
+    r.hittest := false;
     r.parent := lGameZoneRight;
     r.Width := cpipesize;
     r.height := cpipesize;
@@ -520,6 +524,7 @@ begin
     for i := 0 to CNbCol - 1 do
     begin
       r := TRectangle.Create(self);
+      r.hittest := false;
       r.parent := lGameZoneBottom;
       r.Width := cpipesize;
       r.height := cpipesize;
