@@ -458,43 +458,37 @@ begin
     lGameZone.height := (1 + CNBRow) * cpipesize;
 
     bmp1 := getBitmapFromSVG(TSVGSVGIndex.EauHdb, cpipesize, cpipesize,
-      rBackground.fill.bitmap.bitmap.BitmapScale, 0);
-    try
-      bmp2 := getBitmapFromSVG(TSVGSVGIndex.EauHgb, cpipesize, cpipesize,
-        rBackground.fill.bitmap.bitmap.BitmapScale, 0);
-      try
-        lGameZoneLeft.Width := cpipesize;
-        lGameZoneRight.Width := cpipesize;
-        for i := 0 to CNBRow - 1 do
-        begin
-          // Left pipe
-          r := TRectangle.Create(self);
-          r.parent := lGameZoneLeft;
-          r.Width := cpipesize;
-          r.height := cpipesize;
-          r.Position.x := 0;
-          r.Position.y := r.height * i;
-          r.Stroke.Kind := TBrushKind.None;
-          r.fill.Kind := TBrushKind.bitmap;
-          r.fill.bitmap.WrapMode := twrapmode.TileStretch;
-          r.fill.bitmap.bitmap.assign(bmp1);
-          // Right pipe
-          r := TRectangle.Create(self);
-          r.parent := lGameZoneRight;
-          r.Width := cpipesize;
-          r.height := cpipesize;
-          r.Position.x := 0;
-          r.Position.y := r.height * i;
-          r.Stroke.Kind := TBrushKind.None;
-          r.fill.Kind := TBrushKind.bitmap;
-          r.fill.bitmap.WrapMode := twrapmode.TileStretch;
-          r.fill.bitmap.bitmap.assign(bmp2);
-        end;
-      finally
-        bmp2.free;
-      end;
-    finally
-      bmp1.free;
+      rBackground.fill.bitmap.bitmap.BitmapScale);
+
+    bmp2 := getBitmapFromSVG(TSVGSVGIndex.EauHgb, cpipesize, cpipesize,
+      rBackground.fill.bitmap.bitmap.BitmapScale);
+
+    lGameZoneLeft.Width := cpipesize;
+    lGameZoneRight.Width := cpipesize;
+    for i := 0 to CNBRow - 1 do
+    begin
+      // Left pipe
+      r := TRectangle.Create(self);
+      r.parent := lGameZoneLeft;
+      r.Width := cpipesize;
+      r.height := cpipesize;
+      r.Position.x := 0;
+      r.Position.y := r.height * i;
+      r.Stroke.Kind := TBrushKind.None;
+      r.fill.Kind := TBrushKind.bitmap;
+      r.fill.bitmap.WrapMode := twrapmode.TileStretch;
+      r.fill.bitmap.bitmap.assign(bmp1);
+      // Right pipe
+      r := TRectangle.Create(self);
+      r.parent := lGameZoneRight;
+      r.Width := cpipesize;
+      r.height := cpipesize;
+      r.Position.x := 0;
+      r.Position.y := r.height * i;
+      r.Stroke.Kind := TBrushKind.None;
+      r.fill.Kind := TBrushKind.bitmap;
+      r.fill.bitmap.WrapMode := twrapmode.TileStretch;
+      r.fill.bitmap.bitmap.assign(bmp2);
     end;
 
     // Left pipe bottom
@@ -507,13 +501,9 @@ begin
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
     r.fill.bitmap.WrapMode := twrapmode.TileStretch;
-    bmp1 := getBitmapFromSVG(TSVGSVGIndex.EauHb, cpipesize, cpipesize,
-      rBackground.fill.bitmap.bitmap.BitmapScale, 0);
-    try
-      r.fill.bitmap.bitmap.assign(bmp1);
-    finally
-      bmp1.free;
-    end;
+    r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGSVGIndex.EauHb, cpipesize,
+      cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
+
     // Right pipe bottom
     r := TRectangle.Create(self);
     r.parent := lGameZoneRight;
@@ -524,61 +514,37 @@ begin
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
     r.fill.bitmap.WrapMode := twrapmode.TileStretch;
-    bmp1 := getBitmapFromSVG(TSVGSVGIndex.EauHb, cpipesize, cpipesize,
-      rBackground.fill.bitmap.bitmap.BitmapScale, 0);
-    try
-      r.fill.bitmap.bitmap.assign(bmp1);
-    finally
-      bmp1.free;
-    end;
+    r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGSVGIndex.EauHb, cpipesize,
+      cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
 
     // bottom line
     lGameZoneBottom.height := cpipesize;
     bmp1 := getBitmapFromSVG(TSVGSVGIndex.pipegd, cpipesize, cpipesize,
-      rBackground.fill.bitmap.bitmap.BitmapScale, 0);
-    try
-      for i := 0 to CNbCol - 1 do
-      begin
-        r := TRectangle.Create(self);
-        r.parent := lGameZoneBottom;
-        r.Width := cpipesize;
-        r.height := cpipesize;
-        r.Position.x := r.Width * i;
-        r.Position.y := 0;
-        r.Stroke.Kind := TBrushKind.None;
-        r.fill.Kind := TBrushKind.bitmap;
-        r.fill.bitmap.WrapMode := twrapmode.TileStretch;
-        case i of
-          0:
-            begin
-              bmp2 := getBitmapFromSVG(TSVGSVGIndex.PipeDb, cpipesize,
-                cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale, 0);
-              try
-                r.fill.bitmap.bitmap.assign(bmp2);
-              finally
-                bmp2.free;
-              end;
-            end;
-          CNbCol - 1:
-            begin
-              bmp2 := getBitmapFromSVG(TSVGSVGIndex.pipegb, cpipesize,
-                cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale, 0);
-              try
-                r.fill.bitmap.bitmap.assign(bmp2);
-              finally
-                bmp2.free;
-              end;
-            end;
-        else
-          r.fill.bitmap.bitmap.assign(bmp1);
-        end;
+      rBackground.fill.bitmap.bitmap.BitmapScale);
+    for i := 0 to CNbCol - 1 do
+    begin
+      r := TRectangle.Create(self);
+      r.parent := lGameZoneBottom;
+      r.Width := cpipesize;
+      r.height := cpipesize;
+      r.Position.x := r.Width * i;
+      r.Position.y := 0;
+      r.Stroke.Kind := TBrushKind.None;
+      r.fill.Kind := TBrushKind.bitmap;
+      r.fill.bitmap.WrapMode := twrapmode.TileStretch;
+      case i of
+        0:
+          r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGSVGIndex.PipeDb,
+            cpipesize, cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
+        CNbCol - 1:
+          r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGSVGIndex.pipegb,
+            cpipesize, cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
+      else
+        r.fill.bitmap.bitmap.assign(bmp1);
       end;
-    finally
-      bmp1.free;
     end;
   end;
 
-  // TODO : à compléter
   CurrentGame.init;
   lblScore.Text := '';
   lblScore.Tag := 0;
