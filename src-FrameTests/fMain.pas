@@ -53,16 +53,15 @@ implementation
 uses
   fTextButtons,
   uUIItemsList,
-  uUIElements,
   Gamolf.RTL.Joystick,
-  uJoystickManager,
   fCheckBox,
   fDialogBox,
   fImageButtons,
   fTrackBar,
   PuzzleAssets2,
   Olf.Skia.SVGToBitmap,
-  fPloumtrisTitle;
+  fPloumtrisTitle,
+  Gamolf.RTL.UIElements;
 
 procedure TfrmMain.btnCheckboxClick(Sender: TObject);
 var
@@ -137,45 +136,45 @@ begin
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
-  function AddItem(const btn: TButton): tuiitem;
+  function AddItem(const btn: TButton): TUIElement;
   begin
     result := UIItems.AddUIItem(btn.BoundsRect,
       procedure(const Sender: TObject)
       begin
         if not assigned(Sender) then
           exit;
-        if not(Sender is tuiitem) then
+        if not(Sender is TUIElement) then
           exit;
-        if not assigned((Sender as tuiitem).tagobject) then
+        if not assigned((Sender as TUIElement).tagobject) then
           exit;
-        if not((Sender as tuiitem).tagobject is tcontrol) then
+        if not((Sender as TUIElement).tagobject is tcontrol) then
           exit;
 
-        if assigned(((Sender as tuiitem).tagobject as tcontrol).OnClick) then
-          ((Sender as tuiitem).tagobject as tcontrol)
-            .OnClick(((Sender as tuiitem).tagobject as tcontrol));
+        if assigned(((Sender as TUIElement).tagobject as tcontrol).OnClick) then
+          ((Sender as TUIElement).tagobject as tcontrol)
+            .OnClick(((Sender as TUIElement).tagobject as tcontrol));
       end);
     result.tagobject := btn;
     result.OnPaintProc := procedure(const Sender: TObject)
       begin
         if not assigned(Sender) then
           exit;
-        if not(Sender is tuiitem) then
+        if not(Sender is TUIElement) then
           exit;
-        if not assigned((Sender as tuiitem).tagobject) then
+        if not assigned((Sender as TUIElement).tagobject) then
           exit;
-        if not((Sender as tuiitem).tagobject is tcontrol) then
+        if not((Sender as TUIElement).tagobject is tcontrol) then
           exit;
 
-        if (Sender as tuiitem).IsFocused then
-          ((Sender as tuiitem).tagobject as tcontrol).SetFocus
+        if (Sender as TUIElement).IsFocused then
+          ((Sender as TUIElement).tagobject as tcontrol).SetFocus
         else
-          ((Sender as tuiitem).tagobject as tcontrol).resetFocus;
+          ((Sender as TUIElement).tagobject as tcontrol).resetFocus;
       end;
   end;
 
 var
-  item: tuiitem;
+  item: TUIElement;
 begin
   lblGamepadOnOff.Visible := false;
 
@@ -219,7 +218,7 @@ end;
 
 procedure TfrmMain.Timer1Timer(Sender: TObject);
 begin
-  lblGamepadOnOff.Visible := TGamepadManagerClass.Current.
+  lblGamepadOnOff.Visible := TGamepadDevicesManager.Current.
     ConnectedGamepadCount > 0;
 end;
 
