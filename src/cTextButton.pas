@@ -15,7 +15,7 @@ uses
   FMX.Dialogs,
   FMX.StdCtrls,
   FMX.Objects,
-  uUIElements;
+  Gamolf.RTL.UIElements;
 
 type
   TcadTextButton = class(TFrame)
@@ -31,7 +31,7 @@ type
     FText: string;
     FisDown: boolean;
     FisSelected: boolean;
-    FUIItem: TUIItem;
+    FUIItem: TUIElement;
     FBackgroundColor: TAlphacolor;
     procedure SetText(const Value: string);
     function GetText: string;
@@ -48,7 +48,7 @@ type
       write SetBackgroundColor;
     constructor Create(AOwner: TComponent); override;
     procedure AfterConstruction; override;
-    function GetUIItem: TUIItem;
+    function GetUIItem: TUIElement;
   end;
 
 implementation
@@ -111,7 +111,7 @@ begin
   result := Text1.Text;
 end;
 
-function TcadTextButton.GetUIItem: TUIItem;
+function TcadTextButton.GetUIItem: TUIElement;
 begin
   result := FUIItem;
 end;
