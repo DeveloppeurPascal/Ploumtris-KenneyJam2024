@@ -3,10 +3,21 @@ unit cGameControllerStatus;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Objects, Gamolf.RTL.Joystick, FMX.Ani, FMX.Layouts;
+  FMX.Types,
+  FMX.Graphics,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Dialogs,
+  FMX.StdCtrls,
+  FMX.Objects,
+  Gamolf.RTL.Joystick,
+  FMX.Ani,
+  FMX.Layouts;
 
 type
   TcadGameControllerStatus = class(TFrame)
@@ -26,7 +37,9 @@ implementation
 
 {$R *.fmx}
 
-uses USVGInputPrompts, uSVGToImages;
+uses
+  USVGInputPrompts,
+  uSVGToImages;
 
 procedure TcadGameControllerStatus.AfterConstruction;
 begin
