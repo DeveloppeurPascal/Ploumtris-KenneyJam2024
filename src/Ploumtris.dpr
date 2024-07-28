@@ -33,7 +33,8 @@ uses
   Gamolf.RTL.UIElements in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.UIElements.pas',
   USVGInputPrompts in '..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas',
   USVGPuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas',
-  cGameControllerStatus in 'cGameControllerStatus.pas' {cadGameControllerStatus: TFrame};
+  cGameControllerStatus in 'cGameControllerStatus.pas' {cadGameControllerStatus: TFrame},
+  uScores in 'uScores.pas';
 
 {$R *.res}
 

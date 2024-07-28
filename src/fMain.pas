@@ -21,7 +21,8 @@ uses
   cDialogBox,
   FMX.Controls.Presentation,
   FMX.StdCtrls,
-  cPloumtrisTitle, cGameControllerStatus;
+  cPloumtrisTitle,
+  cGameControllerStatus;
 
 type
 {$SCOPEDENUMS ON}
@@ -115,7 +116,9 @@ uses
   Gamolf.FMX.Joystick,
   uConfig,
   Gamolf.RTL.UIElements,
-  USVGPuzzleAssets2;
+  USVGPuzzleAssets2,
+  Gamolf.RTL.Scores,
+  uScores;
 
 procedure TfrmMain.ButtonCreditsBackClick(Sender: TObject);
 begin
@@ -416,8 +419,14 @@ begin
 end;
 
 procedure TfrmMain.InitGameOverScreen;
+var
+  Scores: TScoreList;
 begin
-  // TODO : faire un backup du score pour alimenter le hall of fames
+  if (CurrentGame.Score > 0) then
+  begin
+    Scores := GetScoresList;
+    Scores.Add('-', CurrentGame.Score);
+  end;
 
   // TODO : afficher la capture de l'écran de jeu en background
   FDialogBox := TcadDialogBox.GetNewInstance(self, TDialogBoxType.Information,
