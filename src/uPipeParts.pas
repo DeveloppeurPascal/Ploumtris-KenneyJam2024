@@ -6,19 +6,19 @@ uses
   System.Generics.Collections,
   System.Classes,
   FMX.Objects,
-  PuzzleAssets2;
+  USVGPuzzleAssets2;
 
 type
   TPipePart = class(TRectangle)
   private
     FGrilleX: integer;
     FGrilleY: integer;
-    FSVGIndex: tsvgsvgindex;
+    FSVGIndex: TSVGPuzzleAssets2Index;
     FVy: single;
     procedure SetHasWater(const Value: boolean);
     procedure SetGrilleX(const Value: integer);
     procedure SetGrilleY(const Value: integer);
-    procedure SetSVGIndex(const Value: tsvgsvgindex);
+    procedure SetSVGIndex(const Value: TSVGPuzzleAssets2Index);
     function GetHasDownConnection: boolean;
     function GetHasLeftConnection: boolean;
     function GetHasRightConnection: boolean;
@@ -34,7 +34,7 @@ type
     procedure RefreshBackgroundImage;
     procedure DoResized; override;
   public
-    property SVGIndex: tsvgsvgindex read FSVGIndex write SetSVGIndex;
+    property SVGIndex: TSVGPuzzleAssets2Index read FSVGIndex write SetSVGIndex;
     property HasLeftConnection: boolean read GetHasLeftConnection;
     property HasRightConnection: boolean read GetHasRightConnection;
     property HasUpConnection: boolean read GetHasUpConnection;
@@ -93,7 +93,7 @@ begin
   inherited;
   FGrilleX := 0;
   FGrilleY := 0;
-  FSVGIndex := tsvgsvgindex.PipeHdbg;
+  FSVGIndex := TSVGPuzzleAssets2Index.PipeHdbg;
   FVy := 0;
   FChecked := false;
   HitTest := false;
@@ -114,45 +114,59 @@ end;
 
 function TPipePart.GetHasDownConnection: boolean;
 begin
-  result := FSVGIndex in [tsvgsvgindex.EauDb, tsvgsvgindex.EauGb,
-    tsvgsvgindex.EauGdb, tsvgsvgindex.EauHb, tsvgsvgindex.EauHdb,
-    tsvgsvgindex.EauHdbg, tsvgsvgindex.EauHgb, tsvgsvgindex.pipeDb,
-    tsvgsvgindex.pipeGb, tsvgsvgindex.pipeGdb, tsvgsvgindex.pipeHb,
-    tsvgsvgindex.pipeHdb, tsvgsvgindex.PipeHdbg, tsvgsvgindex.pipeHgb];
+  result := FSVGIndex in [TSVGPuzzleAssets2Index.EauDb,
+    TSVGPuzzleAssets2Index.EauGb, TSVGPuzzleAssets2Index.EauGdb,
+    TSVGPuzzleAssets2Index.EauHb, TSVGPuzzleAssets2Index.EauHdb,
+    TSVGPuzzleAssets2Index.EauHdbg, TSVGPuzzleAssets2Index.EauHgb,
+    TSVGPuzzleAssets2Index.pipeDb, TSVGPuzzleAssets2Index.pipeGb,
+    TSVGPuzzleAssets2Index.pipeGdb, TSVGPuzzleAssets2Index.pipeHb,
+    TSVGPuzzleAssets2Index.pipeHdb, TSVGPuzzleAssets2Index.PipeHdbg,
+    TSVGPuzzleAssets2Index.pipeHgb];
 end;
 
 function TPipePart.GetHasLeftConnection: boolean;
 begin
-  result := FSVGIndex in [tsvgsvgindex.EauGb, tsvgsvgindex.EauGd,
-    tsvgsvgindex.EauGdb, tsvgsvgindex.EauGdh, tsvgsvgindex.EauHdbg,
-    tsvgsvgindex.EauHg, tsvgsvgindex.EauHgb, tsvgsvgindex.pipeGb,
-    tsvgsvgindex.pipeGd, tsvgsvgindex.pipeGdb, tsvgsvgindex.pipehGd,
-    tsvgsvgindex.PipeHdbg, tsvgsvgindex.pipeHg, tsvgsvgindex.pipeHgb];
+  result := FSVGIndex in [TSVGPuzzleAssets2Index.EauGb,
+    TSVGPuzzleAssets2Index.EauGd, TSVGPuzzleAssets2Index.EauGdb,
+    TSVGPuzzleAssets2Index.EauGdh, TSVGPuzzleAssets2Index.EauHdbg,
+    TSVGPuzzleAssets2Index.EauHg, TSVGPuzzleAssets2Index.EauHgb,
+    TSVGPuzzleAssets2Index.pipeGb, TSVGPuzzleAssets2Index.pipeGd,
+    TSVGPuzzleAssets2Index.pipeGdb, TSVGPuzzleAssets2Index.pipehGd,
+    TSVGPuzzleAssets2Index.PipeHdbg, TSVGPuzzleAssets2Index.pipeHg,
+    TSVGPuzzleAssets2Index.pipeHgb];
 end;
 
 function TPipePart.GetHasRightConnection: boolean;
 begin
-  result := FSVGIndex in [tsvgsvgindex.EauDb, tsvgsvgindex.EauGd,
-    tsvgsvgindex.EauGdb, tsvgsvgindex.EauGdh, tsvgsvgindex.EauHdbg,
-    tsvgsvgindex.EauHd, tsvgsvgindex.EauHdb, tsvgsvgindex.pipeDb,
-    tsvgsvgindex.pipeGd, tsvgsvgindex.pipeGdb, tsvgsvgindex.pipehGd,
-    tsvgsvgindex.PipeHdbg, tsvgsvgindex.pipeHd, tsvgsvgindex.pipeHdb];
+  result := FSVGIndex in [TSVGPuzzleAssets2Index.EauDb,
+    TSVGPuzzleAssets2Index.EauGd, TSVGPuzzleAssets2Index.EauGdb,
+    TSVGPuzzleAssets2Index.EauGdh, TSVGPuzzleAssets2Index.EauHdbg,
+    TSVGPuzzleAssets2Index.EauHd, TSVGPuzzleAssets2Index.EauHdb,
+    TSVGPuzzleAssets2Index.pipeDb, TSVGPuzzleAssets2Index.pipeGd,
+    TSVGPuzzleAssets2Index.pipeGdb, TSVGPuzzleAssets2Index.pipehGd,
+    TSVGPuzzleAssets2Index.PipeHdbg, TSVGPuzzleAssets2Index.pipeHd,
+    TSVGPuzzleAssets2Index.pipeHdb];
 end;
 
 function TPipePart.GetHasUpConnection: boolean;
 begin
-  result := FSVGIndex in [tsvgsvgindex.EauHd, tsvgsvgindex.EauHg,
-    tsvgsvgindex.EauGdh, tsvgsvgindex.EauHb, tsvgsvgindex.EauHdb,
-    tsvgsvgindex.EauHdbg, tsvgsvgindex.EauHgb, tsvgsvgindex.pipeHd,
-    tsvgsvgindex.pipeHg, tsvgsvgindex.pipehGd, tsvgsvgindex.pipeHb,
-    tsvgsvgindex.pipeHdb, tsvgsvgindex.PipeHdbg, tsvgsvgindex.pipeHgb];
+  result := FSVGIndex in [TSVGPuzzleAssets2Index.EauHd,
+    TSVGPuzzleAssets2Index.EauHg, TSVGPuzzleAssets2Index.EauGdh,
+    TSVGPuzzleAssets2Index.EauHb, TSVGPuzzleAssets2Index.EauHdb,
+    TSVGPuzzleAssets2Index.EauHdbg, TSVGPuzzleAssets2Index.EauHgb,
+    TSVGPuzzleAssets2Index.pipeHd, TSVGPuzzleAssets2Index.pipeHg,
+    TSVGPuzzleAssets2Index.pipehGd, TSVGPuzzleAssets2Index.pipeHb,
+    TSVGPuzzleAssets2Index.pipeHdb, TSVGPuzzleAssets2Index.PipeHdbg,
+    TSVGPuzzleAssets2Index.pipeHgb];
 end;
 
 function TPipePart.GetHasWater: boolean;
 begin
-  if SVGIndex in [tsvgsvgindex.EauDb .. tsvgsvgindex.EauHgb] then
+  if SVGIndex in [TSVGPuzzleAssets2Index.EauDb .. TSVGPuzzleAssets2Index.EauHgb]
+  then
     result := true
-  else if SVGIndex in [tsvgsvgindex.pipeDb .. tsvgsvgindex.pipehGd] then
+  else if SVGIndex in [TSVGPuzzleAssets2Index.pipeDb .. TSVGPuzzleAssets2Index.
+    pipehGd] then
     result := false
   else
     raise exception.Create('Unknow water status for ' + ord(SVGIndex).tostring);
@@ -245,50 +259,50 @@ end;
 procedure TPipePart.RotateRight;
 begin
   case FSVGIndex of
-    tsvgsvgindex.pipeDb:
-      SVGIndex := tsvgsvgindex.pipeGb;
-    tsvgsvgindex.pipeGb:
-      SVGIndex := tsvgsvgindex.pipeHg;
-    tsvgsvgindex.pipeGd:
-      SVGIndex := tsvgsvgindex.pipeHb;
-    tsvgsvgindex.pipeGdb:
-      SVGIndex := tsvgsvgindex.pipeHgb;
-    tsvgsvgindex.pipeHb:
-      SVGIndex := tsvgsvgindex.pipeGd;
-    tsvgsvgindex.pipeHd:
-      SVGIndex := tsvgsvgindex.pipeDb;
-    tsvgsvgindex.pipeHdb:
-      SVGIndex := tsvgsvgindex.pipeGdb;
-    tsvgsvgindex.PipeHdbg:
-      SVGIndex := tsvgsvgindex.PipeHdbg;
-    tsvgsvgindex.pipeHg:
-      SVGIndex := tsvgsvgindex.pipeHd;
-    tsvgsvgindex.pipeHgb:
-      SVGIndex := tsvgsvgindex.pipehGd;
-    tsvgsvgindex.pipehGd:
-      SVGIndex := tsvgsvgindex.pipeHdb;
-    tsvgsvgindex.EauDb:
-      SVGIndex := tsvgsvgindex.EauGb;
-    tsvgsvgindex.EauGb:
-      SVGIndex := tsvgsvgindex.EauHg;
-    tsvgsvgindex.EauGd:
-      SVGIndex := tsvgsvgindex.EauHb;
-    tsvgsvgindex.EauGdb:
-      SVGIndex := tsvgsvgindex.EauHgb;
-    tsvgsvgindex.EauGdh:
-      SVGIndex := tsvgsvgindex.EauGdh;
-    tsvgsvgindex.EauHb:
-      SVGIndex := tsvgsvgindex.EauGd;
-    tsvgsvgindex.EauHd:
-      SVGIndex := tsvgsvgindex.EauDb;
-    tsvgsvgindex.EauHdb:
-      SVGIndex := tsvgsvgindex.EauGdb;
-    tsvgsvgindex.EauHdbg:
-      SVGIndex := tsvgsvgindex.EauHdbg;
-    tsvgsvgindex.EauHg:
-      SVGIndex := tsvgsvgindex.EauHd;
-    tsvgsvgindex.EauHgb:
-      SVGIndex := tsvgsvgindex.EauGdh;
+    TSVGPuzzleAssets2Index.pipeDb:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeGb;
+    TSVGPuzzleAssets2Index.pipeGb:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeHg;
+    TSVGPuzzleAssets2Index.pipeGd:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeHb;
+    TSVGPuzzleAssets2Index.pipeGdb:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeHgb;
+    TSVGPuzzleAssets2Index.pipeHb:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeGd;
+    TSVGPuzzleAssets2Index.pipeHd:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeDb;
+    TSVGPuzzleAssets2Index.pipeHdb:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeGdb;
+    TSVGPuzzleAssets2Index.PipeHdbg:
+      SVGIndex := TSVGPuzzleAssets2Index.PipeHdbg;
+    TSVGPuzzleAssets2Index.pipeHg:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeHd;
+    TSVGPuzzleAssets2Index.pipeHgb:
+      SVGIndex := TSVGPuzzleAssets2Index.pipehGd;
+    TSVGPuzzleAssets2Index.pipehGd:
+      SVGIndex := TSVGPuzzleAssets2Index.pipeHdb;
+    TSVGPuzzleAssets2Index.EauDb:
+      SVGIndex := TSVGPuzzleAssets2Index.EauGb;
+    TSVGPuzzleAssets2Index.EauGb:
+      SVGIndex := TSVGPuzzleAssets2Index.EauHg;
+    TSVGPuzzleAssets2Index.EauGd:
+      SVGIndex := TSVGPuzzleAssets2Index.EauHb;
+    TSVGPuzzleAssets2Index.EauGdb:
+      SVGIndex := TSVGPuzzleAssets2Index.EauHgb;
+    TSVGPuzzleAssets2Index.EauGdh:
+      SVGIndex := TSVGPuzzleAssets2Index.EauGdh;
+    TSVGPuzzleAssets2Index.EauHb:
+      SVGIndex := TSVGPuzzleAssets2Index.EauGd;
+    TSVGPuzzleAssets2Index.EauHd:
+      SVGIndex := TSVGPuzzleAssets2Index.EauDb;
+    TSVGPuzzleAssets2Index.EauHdb:
+      SVGIndex := TSVGPuzzleAssets2Index.EauGdb;
+    TSVGPuzzleAssets2Index.EauHdbg:
+      SVGIndex := TSVGPuzzleAssets2Index.EauHdbg;
+    TSVGPuzzleAssets2Index.EauHg:
+      SVGIndex := TSVGPuzzleAssets2Index.EauHd;
+    TSVGPuzzleAssets2Index.EauHgb:
+      SVGIndex := TSVGPuzzleAssets2Index.EauGdh;
   end;
 end;
 
@@ -320,53 +334,53 @@ begin
 
   if Value then
     case FSVGIndex of
-      tsvgsvgindex.pipeDb:
-        SVGIndex := tsvgsvgindex.EauDb;
-      tsvgsvgindex.pipeGb:
-        SVGIndex := tsvgsvgindex.EauGb;
-      tsvgsvgindex.pipeGd:
-        SVGIndex := tsvgsvgindex.EauGd;
-      tsvgsvgindex.pipeGdb:
-        SVGIndex := tsvgsvgindex.EauGdb;
-      tsvgsvgindex.pipeHb:
-        SVGIndex := tsvgsvgindex.EauHb;
-      tsvgsvgindex.pipeHd:
-        SVGIndex := tsvgsvgindex.EauHd;
-      tsvgsvgindex.pipeHdb:
-        SVGIndex := tsvgsvgindex.EauHdb;
-      tsvgsvgindex.PipeHdbg:
-        SVGIndex := tsvgsvgindex.EauHdbg;
-      tsvgsvgindex.pipeHg:
-        SVGIndex := tsvgsvgindex.EauHg;
-      tsvgsvgindex.pipeHgb:
-        SVGIndex := tsvgsvgindex.EauHgb;
-      tsvgsvgindex.pipehGd:
-        SVGIndex := tsvgsvgindex.EauGdh;
+      TSVGPuzzleAssets2Index.pipeDb:
+        SVGIndex := TSVGPuzzleAssets2Index.EauDb;
+      TSVGPuzzleAssets2Index.pipeGb:
+        SVGIndex := TSVGPuzzleAssets2Index.EauGb;
+      TSVGPuzzleAssets2Index.pipeGd:
+        SVGIndex := TSVGPuzzleAssets2Index.EauGd;
+      TSVGPuzzleAssets2Index.pipeGdb:
+        SVGIndex := TSVGPuzzleAssets2Index.EauGdb;
+      TSVGPuzzleAssets2Index.pipeHb:
+        SVGIndex := TSVGPuzzleAssets2Index.EauHb;
+      TSVGPuzzleAssets2Index.pipeHd:
+        SVGIndex := TSVGPuzzleAssets2Index.EauHd;
+      TSVGPuzzleAssets2Index.pipeHdb:
+        SVGIndex := TSVGPuzzleAssets2Index.EauHdb;
+      TSVGPuzzleAssets2Index.PipeHdbg:
+        SVGIndex := TSVGPuzzleAssets2Index.EauHdbg;
+      TSVGPuzzleAssets2Index.pipeHg:
+        SVGIndex := TSVGPuzzleAssets2Index.EauHg;
+      TSVGPuzzleAssets2Index.pipeHgb:
+        SVGIndex := TSVGPuzzleAssets2Index.EauHgb;
+      TSVGPuzzleAssets2Index.pipehGd:
+        SVGIndex := TSVGPuzzleAssets2Index.EauGdh;
     end
   else
     case FSVGIndex of
-      tsvgsvgindex.EauDb:
-        SVGIndex := tsvgsvgindex.pipeDb;
-      tsvgsvgindex.EauGb:
-        SVGIndex := tsvgsvgindex.pipeGb;
-      tsvgsvgindex.EauGd:
-        SVGIndex := tsvgsvgindex.pipeGd;
-      tsvgsvgindex.EauGdb:
-        SVGIndex := tsvgsvgindex.pipeGdb;
-      tsvgsvgindex.EauGdh:
-        SVGIndex := tsvgsvgindex.pipehGd;
-      tsvgsvgindex.EauHb:
-        SVGIndex := tsvgsvgindex.pipeHb;
-      tsvgsvgindex.EauHd:
-        SVGIndex := tsvgsvgindex.pipeHd;
-      tsvgsvgindex.EauHdb:
-        SVGIndex := tsvgsvgindex.pipeHdb;
-      tsvgsvgindex.EauHdbg:
-        SVGIndex := tsvgsvgindex.PipeHdbg;
-      tsvgsvgindex.EauHg:
-        SVGIndex := tsvgsvgindex.pipeHg;
-      tsvgsvgindex.EauHgb:
-        SVGIndex := tsvgsvgindex.pipeHgb;
+      TSVGPuzzleAssets2Index.EauDb:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeDb;
+      TSVGPuzzleAssets2Index.EauGb:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeGb;
+      TSVGPuzzleAssets2Index.EauGd:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeGd;
+      TSVGPuzzleAssets2Index.EauGdb:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeGdb;
+      TSVGPuzzleAssets2Index.EauGdh:
+        SVGIndex := TSVGPuzzleAssets2Index.pipehGd;
+      TSVGPuzzleAssets2Index.EauHb:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeHb;
+      TSVGPuzzleAssets2Index.EauHd:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeHd;
+      TSVGPuzzleAssets2Index.EauHdb:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeHdb;
+      TSVGPuzzleAssets2Index.EauHdbg:
+        SVGIndex := TSVGPuzzleAssets2Index.PipeHdbg;
+      TSVGPuzzleAssets2Index.EauHg:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeHg;
+      TSVGPuzzleAssets2Index.EauHgb:
+        SVGIndex := TSVGPuzzleAssets2Index.pipeHgb;
     end;
 
   if BecameWater then
@@ -411,9 +425,10 @@ begin
   GrilleY := trunc(position.y / width);
 end;
 
-procedure TPipePart.SetSVGIndex(const Value: tsvgsvgindex);
+procedure TPipePart.SetSVGIndex(const Value: TSVGPuzzleAssets2Index);
 begin
-  if Value in [tsvgsvgindex.EauDb .. tsvgsvgindex.pipehGd] then
+  if Value in [TSVGPuzzleAssets2Index.EauDb .. TSVGPuzzleAssets2Index.pipehGd]
+  then
   begin
     FSVGIndex := Value;
     RefreshBackgroundImage;

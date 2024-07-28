@@ -106,8 +106,6 @@ uses
   u_urlOpen,
   uUIItemsList,
   cTextButton,
-  Olf.Skia.SVGToBitmap,
-  PuzzleAssets2,
   uConsts,
   uSVGToImages,
   uPipeParts,
@@ -115,7 +113,8 @@ uses
   uBackgroundMusic,
   Gamolf.FMX.Joystick,
   uConfig,
-  Gamolf.RTL.UIElements;
+  Gamolf.RTL.UIElements,
+  USVGPuzzleAssets2;
 
 procedure TfrmMain.ButtonCreditsBackClick(Sender: TObject);
 begin
@@ -453,11 +452,11 @@ begin
     lGameZone.Width := (1 + CNbCol + 1) * cpipesize;
     lGameZone.height := (1 + CNBRow) * cpipesize;
 
-    bmp1 := getBitmapFromSVG(TSVGSVGIndex.EauHdb, cpipesize, cpipesize,
-      rBackground.fill.bitmap.bitmap.BitmapScale);
+    bmp1 := getBitmapFromSVG(TSVGPuzzleAssets2Index.EauHdb, cpipesize,
+      cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale);
 
-    bmp2 := getBitmapFromSVG(TSVGSVGIndex.EauHgb, cpipesize, cpipesize,
-      rBackground.fill.bitmap.bitmap.BitmapScale);
+    bmp2 := getBitmapFromSVG(TSVGPuzzleAssets2Index.EauHgb, cpipesize,
+      cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale);
 
     lGameZoneLeft.Width := cpipesize;
     lGameZoneRight.Width := cpipesize;
@@ -500,8 +499,8 @@ begin
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
     r.fill.bitmap.WrapMode := twrapmode.TileStretch;
-    r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGSVGIndex.EauHb, cpipesize,
-      cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
+    r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGPuzzleAssets2Index.EauHb,
+      cpipesize, cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
 
     // Right pipe bottom
     r := TRectangle.Create(self);
@@ -514,13 +513,13 @@ begin
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
     r.fill.bitmap.WrapMode := twrapmode.TileStretch;
-    r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGSVGIndex.EauHb, cpipesize,
-      cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
+    r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGPuzzleAssets2Index.EauHb,
+      cpipesize, cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
 
     // bottom line
     lGameZoneBottom.height := cpipesize;
-    bmp1 := getBitmapFromSVG(TSVGSVGIndex.pipegd, cpipesize, cpipesize,
-      rBackground.fill.bitmap.bitmap.BitmapScale);
+    bmp1 := getBitmapFromSVG(TSVGPuzzleAssets2Index.pipegd, cpipesize,
+      cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale);
     for i := 0 to CNbCol - 1 do
     begin
       r := TRectangle.Create(self);
@@ -535,11 +534,13 @@ begin
       r.fill.bitmap.WrapMode := twrapmode.TileStretch;
       case i of
         0:
-          r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGSVGIndex.PipeDb,
-            cpipesize, cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
+          r.fill.bitmap.bitmap.assign
+            (getBitmapFromSVG(TSVGPuzzleAssets2Index.PipeDb, cpipesize,
+            cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
         CNbCol - 1:
-          r.fill.bitmap.bitmap.assign(getBitmapFromSVG(TSVGSVGIndex.pipegb,
-            cpipesize, cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
+          r.fill.bitmap.bitmap.assign
+            (getBitmapFromSVG(TSVGPuzzleAssets2Index.pipegb, cpipesize,
+            cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
       else
         r.fill.bitmap.bitmap.assign(bmp1);
       end;
@@ -658,7 +659,7 @@ var
 begin
   Pipe := TPipePart.Create(self);
   Pipe.parent := lGameZonePlay;
-  Pipe.SVGIndex := TSVGSVGIndex(random(CSVGPipeHgd - CSVGPipeDb + 1) +
+  Pipe.SVGIndex := TSVGPuzzleAssets2Index(random(CSVGPipeHgd - CSVGPipeDb + 1) +
     CSVGPipeDb);
   Pipe.ScreenX := random(CNbCol) * Pipe.Width;
   Pipe.Screeny := 0;

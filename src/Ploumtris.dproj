@@ -353,8 +353,8 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>2</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.2;InternalName=;LegalCopyright=2024 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.gamolf.ploumtris;ProductName=$(MSBuildProjectName);ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>4</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.4;InternalName=;LegalCopyright=2024 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.gamolf.ploumtris;ProductName=$(MSBuildProjectName);ProductVersion=1.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -513,7 +513,6 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\lib-externes\librairies\src\u_urlOpen.pas"/>
-        <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\SVG\PuzzleAssets2.pas"/>
         <DCCReference Include="uConfig.pas"/>
         <DCCReference Include="uUIItemsList.pas"/>
         <DCCReference Include="uSVGToImages.pas"/>
@@ -539,6 +538,8 @@
         </DCCReference>
         <DCCReference Include="..\lib-externes\librairies\src\Olf.RTL.CryptDecrypt.pas"/>
         <DCCReference Include="..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.UIElements.pas"/>
+        <DCCReference Include="..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas"/>
+        <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
