@@ -38,9 +38,9 @@ implementation
 
 uses
   System.TypInfo,
-  PuzzleAssets2,
-  Olf.Skia.SVGToBitmap,
-  uSVGToImages;
+  uSVGToImages,
+  USVGInputPrompts,
+  USVGPuzzleAssets2;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
@@ -50,22 +50,42 @@ end;
 procedure TForm1.ShowAll;
 var
   img: timage;
-  SVGIndex: TSVGSVGIndex;
+  SVGPuzzle: TSVGPuzzleAssets2Index;
+  SVGInputPrompts: TSVGInputPromptsIndex;
   lbl: TLabel;
 begin
-  for SVGIndex := low(TSVGSVGIndex) to high(TSVGSVGIndex) do
+  for SVGPuzzle := low(TSVGPuzzleAssets2Index)
+    to high(TSVGPuzzleAssets2Index) do
   begin
     img := timage.Create(self);
     img.Parent := GridLayout1;
     img.WrapMode := TImageWrapMode.Original;
 
-    img.bitmap.Assign(getBitmapFromSVG(SVGIndex, img.width, img.height,
+    img.bitmap.Assign(getBitmapFromSVG(SVGPuzzle, img.width, img.height,
       img.bitmap.BitmapScale));
 
     lbl := TLabel.Create(self);
     lbl.Parent := img;
     lbl.Align := talignlayout.client;
-    lbl.Text := GetEnumName(TypeInfo(TSVGSVGIndex), ord(SVGIndex));
+    lbl.Text := GetEnumName(TypeInfo(TSVGPuzzleAssets2Index), ord(SVGPuzzle));
+    lbl.TextSettings.HorzAlign := TTextAlign.Center;
+  end;
+
+  for SVGInputPrompts := low(TSVGInputPromptsIndex)
+    to high(TSVGInputPromptsIndex) do
+  begin
+    img := timage.Create(self);
+    img.Parent := GridLayout1;
+    img.WrapMode := TImageWrapMode.Original;
+
+    img.bitmap.Assign(getBitmapFromSVG(SVGInputPrompts, img.width, img.height,
+      img.bitmap.BitmapScale));
+
+    lbl := TLabel.Create(self);
+    lbl.Parent := img;
+    lbl.Align := talignlayout.client;
+    lbl.Text := GetEnumName(TypeInfo(TSVGInputPromptsIndex),
+      ord(SVGInputPrompts));
     lbl.TextSettings.HorzAlign := TTextAlign.Center;
   end;
 end;
