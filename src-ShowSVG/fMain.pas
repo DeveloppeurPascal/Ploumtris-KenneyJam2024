@@ -49,7 +49,6 @@ end;
 
 procedure TForm1.ShowAll;
 var
-  bmp: tbitmap;
   img: timage;
   SVGIndex: TSVGSVGIndex;
   lbl: TLabel;
@@ -60,13 +59,8 @@ begin
     img.Parent := GridLayout1;
     img.WrapMode := TImageWrapMode.Original;
 
-    bmp := getBitmapFromSVG(SVGIndex, img.width, img.height,
-      img.bitmap.BitmapScale, talphacolors.Yellow);
-    try
-      img.bitmap.Assign(bmp);
-    finally
-      bmp.free;
-    end;
+    img.bitmap.Assign(getBitmapFromSVG(SVGIndex, img.width, img.height,
+      img.bitmap.BitmapScale));
 
     lbl := TLabel.Create(self);
     lbl.Parent := img;
