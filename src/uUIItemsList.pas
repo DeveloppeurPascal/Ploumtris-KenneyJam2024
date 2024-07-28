@@ -3,23 +3,23 @@ unit uUIItemsList;
 interface
 
 uses
-  uUIElements;
+  Gamolf.RTL.UIElements;
 
-function UIItems: TUIItemsList;
+function UIItems: TUIElementsList;
 
 implementation
 
 var
-  GUIItems: TUIItemsList;
+  GUIItems: TUIElementsList;
 
-function UIItems: TUIItemsList;
+function UIItems: TUIElementsList;
 begin
   result := GUIItems;
 end;
 
 initialization
 
-GUIItems := TUIItemsList.create;
+GUIItems := TUIElementsList.create;
 
 finalization
 
