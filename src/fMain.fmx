@@ -196,6 +196,24 @@ object frmMain: TfrmMain
       end
     end
   end
+  inline cadHelpBar1: TcadHelpBar
+    Align = Contents
+    HitTest = False
+    Size.Width = 881.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    inherited lHelpBar: TLayout
+      Margins.Top = 10.000000000000000000
+      Position.Y = 410.000000000000000000
+      Size.Width = 861.000000000000000000
+      inherited rBackground: TRectangle
+        Size.Width = 861.000000000000000000
+      end
+      inherited lContent: TLayout
+        Size.Width = 853.000000000000000000
+      end
+    end
+  end
   object GamepadManager1: TGamepadManager
     SynchronizedEvents = True
     OnButtonDown = GamepadManager1ButtonDown
