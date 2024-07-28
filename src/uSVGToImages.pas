@@ -9,8 +9,7 @@ uses
   PuzzleAssets2;
 
 function getBitmapFromSVG(const Index: TSVGSVGIndex;
-  const width, height: single; const BitmapScale: single;
-  const BackgroundColor: TAlphaColor): tbitmap;
+  const width, height: single; const BitmapScale: single): tbitmap;
 
 implementation
 
@@ -18,11 +17,9 @@ uses
   Olf.Skia.SVGToBitmap;
 
 function getBitmapFromSVG(const Index: TSVGSVGIndex;
-  const width, height: single; const BitmapScale: single;
-  const BackgroundColor: TAlphaColor): tbitmap;
+  const width, height: single; const BitmapScale: single): tbitmap;
 var
   MargeHaut, MargeBas, MargeGauche, MargeDroite: single;
-  bmp: tbitmap;
 begin
   MargeHaut := 0;
   MargeDroite := 0;
@@ -115,32 +112,13 @@ begin
         MargeDroite := 100 * ((104 - 94) / 104) / 2;
       end;
   end;
-  bmp := TOlfSVGBitmapList.Bitmap(ord(Index),
-    round(width * (100 - MargeGauche - MargeDroite) / 100),
-    round(height * (100 - MargeHaut - MargeBas) / 100), BitmapScale);
-
-  result := tbitmap.Create(round(width * BitmapScale),
-    round(height * BitmapScale));
-  result.BitmapScale := BitmapScale;
-  result.Clear(BackgroundColor);
-  result.Canvas.BeginScene;
-  try
-    result.Canvas.DrawBitmap(bmp, bmp.BoundsF,
-      trectf.Create((result.width * MargeGauche / 100) / BitmapScale,
-      (result.height * MargeHaut / 100) / BitmapScale,
-      (bmp.width + result.width * MargeGauche / 100) / BitmapScale,
-      (bmp.height + result.height * MargeHaut / 100) / BitmapScale), 1);
-  finally
-    result.Canvas.EndScene;
-  end;
+  result := TOlfSVGBitmapList.Bitmap(ord(Index) + tsvgsvg.Tag, round(width),
+    round(height), MargeHaut, MargeDroite, MargeBas, MargeGauche, BitmapScale);
 end;
 
 procedure RegisterSVGImages;
-var
-  i: Integer;
 begin
-  for i := 0 to length(SVGSVG) - 1 do
-    TOlfSVGBitmapList.AddItemAt(i, SVGSVG[i]);
+  tsvgsvg.Tag := TOlfSVGBitmapList.AddItem(SVGSVG);
 end;
 
 initialization
