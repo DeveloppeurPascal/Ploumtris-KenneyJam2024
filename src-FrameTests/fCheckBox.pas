@@ -32,12 +32,12 @@ implementation
 
 uses
   Gamolf.RTL.Joystick,
-  uUIElements,
-  uUIItemsList;
+  uUIItemsList,
+  Gamolf.RTL.UIElements;
 
 procedure TfrmCheckBox.FormCreate(Sender: TObject);
 var
-  item: tuiitem;
+  item: TUIElement;
 begin
   UIItems.NewLayout;
   item := UIItems.AddUIItem(
