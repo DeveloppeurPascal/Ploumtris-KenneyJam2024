@@ -6,6 +6,7 @@ object cadDialogBox: TcadDialogBox
   object rBackground: TRectangle
     Align = Client
     Fill.Color = claChartreuse
+    HitTest = False
     Padding.Left = 12.000000000000000000
     Padding.Top = 12.000000000000000000
     Padding.Right = 12.000000000000000000
@@ -20,6 +21,7 @@ object cadDialogBox: TcadDialogBox
     object rContent: TRectangle
       Align = Client
       Fill.Color = claWhite
+      HitTest = False
       Size.Width = 296.000000000000000000
       Size.Height = 216.000000000000000000
       Size.PlatformDefault = False
@@ -29,6 +31,7 @@ object cadDialogBox: TcadDialogBox
       object rContentShadow: TRectangle
         Align = Top
         Fill.Color = claGainsboro
+        HitTest = False
         Size.Width = 296.000000000000000000
         Size.Height = 4.000000000000000000
         Size.PlatformDefault = False
@@ -54,6 +57,7 @@ object cadDialogBox: TcadDialogBox
         object Text1: TText
           Align = Top
           AutoSize = True
+          HitTest = False
           Position.X = 5.000000000000000000
           Position.Y = 5.000000000000000000
           Size.Width = 286.000000000000000000
