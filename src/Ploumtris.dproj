@@ -540,6 +540,11 @@
         <DCCReference Include="..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.UIElements.pas"/>
         <DCCReference Include="..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas"/>
         <DCCReference Include="..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas"/>
+        <DCCReference Include="cGameControllerStatus.pas">
+            <Form>cadGameControllerStatus</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -1002,6 +1007,12 @@
                 </DeployFile>
                 <DeployFile LocalName="OSX64\Release\Ploumtris" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="OSX64">
+                        <RemoteName>Ploumtris</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSXARM64\Debug\Ploumtris.dSYM" Configuration="Debug" Class="ProjectOSXDebug">
+                    <Platform Name="OSXARM64">
                         <RemoteName>Ploumtris</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>

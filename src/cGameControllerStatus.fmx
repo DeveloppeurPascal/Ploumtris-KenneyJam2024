@@ -1,0 +1,40 @@
+object cadGameControllerStatus: TcadGameControllerStatus
+  Align = Contents
+  HitTest = False
+  Size.Width = 320.000000000000000000
+  Size.Height = 240.000000000000000000
+  Size.PlatformDefault = False
+  object Layout1: TLayout
+    Align = Top
+    Size.Width = 320.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Rectangle1: TRectangle
+      Align = Right
+      Fill.Bitmap.WrapMode = TileStretch
+      Fill.Kind = Bitmap
+      HitTest = False
+      Position.X = 220.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object FloatAnimation1: TFloatAnimation
+        Duration = 5.000000000000000000
+        Interpolation = Bounce
+        OnFinish = FloatAnimation1Finish
+        PropertyName = 'Opacity'
+        StartValue = 1.000000000000000000
+        StopValue = 0.000000000000000000
+      end
+    end
+  end
+  object GamepadManager1: TGamepadManager
+    SynchronizedEvents = True
+    OnNewGamepadDetected = GamepadManager1NewGamepadDetected
+    OnGamepadLost = GamepadManager1GamepadLost
+    Left = 144
+    Top = 104
+  end
+end

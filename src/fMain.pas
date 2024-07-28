@@ -21,7 +21,7 @@ uses
   cDialogBox,
   FMX.Controls.Presentation,
   FMX.StdCtrls,
-  cPloumtrisTitle;
+  cPloumtrisTitle, cGameControllerStatus;
 
 type
 {$SCOPEDENUMS ON}
@@ -50,6 +50,7 @@ type
     lblScore: TLabel;
     GameTitle: TcadPloumtrisTitle;
     lblVersion: TLabel;
+    cadGameControllerStatus1: TcadGameControllerStatus;
     procedure OlfAboutDialog1URLClick(const AURL: string);
     procedure FormCreate(Sender: TObject);
     procedure GamepadManager1ButtonDown(const GamepadID: Integer;
