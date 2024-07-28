@@ -424,6 +424,8 @@ end;
 procedure TPipePart.SetVy(const Value: single);
 begin
   FVy := Value;
+  if FVy > height then
+    FVy := height - 1;
 end;
 
 procedure TPipePart.StopFalling;
