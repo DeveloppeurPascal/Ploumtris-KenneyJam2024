@@ -96,6 +96,7 @@ begin
   FSVGIndex := tsvgsvgindex.PipeHdbg;
   FVy := 0;
   FChecked := false;
+  HitTest := false;
 end;
 
 destructor TPipePart.Destroy;
