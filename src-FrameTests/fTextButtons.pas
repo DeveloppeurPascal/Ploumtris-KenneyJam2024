@@ -34,9 +34,9 @@ implementation
 
 uses
   Gamolf.RTL.Joystick,
-  uUIElements,
   uUIItemsList,
-  cTextButton;
+  cTextButton,
+  Gamolf.RTL.UIElements;
 
 procedure TfrmTextButtons.ButtonClick(Sender: TObject);
 begin
@@ -46,7 +46,7 @@ end;
 
 procedure TfrmTextButtons.FormCreate(Sender: TObject);
 var
-  item: tuiitem;
+  item: TUIElement;
   i: integer;
   btn: TcadTextButton;
 begin
