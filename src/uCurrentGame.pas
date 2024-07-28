@@ -41,6 +41,7 @@ function CurrentGame: TGame;
 implementation
 
 uses
+  System.SysUtils,
   System.Classes;
 
 var
@@ -94,7 +95,9 @@ end;
 
 function TGame.GetGrid(const x, y: integer): tpipepart;
 begin
-  // TODO : contrôler les valeurs de x et y
+  if (x < 0) or (y < 0) or (x >= CNbCol) or (y >= CNbRow) then
+    raise Exception.Create('Hors zone !');
+
   result := FGrid[x, y];
 end;
 
@@ -128,7 +131,9 @@ end;
 
 procedure TGame.SetGrid(const x, y: integer; const PipePart: tpipepart);
 begin
-  // TODO : contrôler les valeurs de x et y
+  if (x < 0) or (y < 0) or (x >= CNbCol) or (y >= CNbRow) then
+    raise Exception.Create('Hors zone !');
+
   FGrid[x, y] := PipePart;
 end;
 
