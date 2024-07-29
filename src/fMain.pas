@@ -23,7 +23,8 @@ uses
   FMX.StdCtrls,
   cPloumtrisTitle,
   cGameControllerStatus,
-  cHelpBar;
+  cHelpBar,
+  Gamolf.RTL.Joystick.Deprecated;
 
 type
 {$SCOPEDENUMS ON}

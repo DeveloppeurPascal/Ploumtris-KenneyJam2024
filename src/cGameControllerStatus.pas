@@ -17,7 +17,8 @@ uses
   FMX.Objects,
   Gamolf.RTL.Joystick,
   FMX.Ani,
-  FMX.Layouts;
+  FMX.Layouts,
+  Gamolf.RTL.Joystick.Deprecated;
 
 type
   TcadGameControllerStatus = class(TFrame)

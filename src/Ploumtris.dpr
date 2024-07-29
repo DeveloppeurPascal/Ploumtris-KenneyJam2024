@@ -35,7 +35,8 @@ uses
   USVGPuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas',
   cGameControllerStatus in 'cGameControllerStatus.pas' {cadGameControllerStatus: TFrame},
   uScores in 'uScores.pas',
-  cHelpBar in 'cHelpBar.pas' {cadHelpBar: TFrame};
+  cHelpBar in 'cHelpBar.pas' {cadHelpBar: TFrame},
+  Gamolf.RTL.Joystick.Deprecated in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Joystick.Deprecated.pas';
 
 {$R *.res}
 
