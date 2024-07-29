@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils,
   System.Classes,
-  Gamolf.RTL.Joystick;
+  Gamolf.RTL.Joystick,
+  Gamolf.RTL.Joystick.Deprecated;
 
 type
   TDataModule1 = class(TDataModule)

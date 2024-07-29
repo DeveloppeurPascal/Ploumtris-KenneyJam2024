@@ -27,7 +27,8 @@ uses
   cPloumtrisTitle in '..\src\cPloumtrisTitle.pas' {cadPloumtrisTitle: TFrame},
   Gamolf.RTL.UIElements in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.UIElements.pas',
   USVGInputPrompts in '..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas',
-  USVGPuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas';
+  USVGPuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas',
+  Gamolf.RTL.Joystick.Deprecated in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Joystick.Deprecated.pas';
 
 {$R *.res}
 
