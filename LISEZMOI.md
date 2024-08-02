@@ -1,6 +1,6 @@
 # Ploumtris
 
-[This page in english.](README.md)
+[This page in English.](README.md)
 
 Un jeu de type Tetris pour les plombiers qui aiment les jeux vidéo sans fuites d'eau.
 
