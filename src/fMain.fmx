@@ -194,6 +194,18 @@ object frmMain: TfrmMain
     Left = 424
     Top = 224
   end
+  object MainMenu: TMainMenu
+    Left = 456
+    Top = 56
+    object mnuMacOSAppname: TMenuItem
+      Text = 'mnuMacOSAppname'
+      object mnuAbout: TMenuItem
+        Locked = True
+        Text = 'mnuAbout'
+        OnClick = mnuAboutClick
+      end
+    end
+  end
   object GamepadManager1: TDGEGamepadManager
     SynchronizedEvents = True
     OnButtonDown = GamepadManager1ButtonDown

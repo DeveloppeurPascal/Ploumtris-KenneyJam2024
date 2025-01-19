@@ -23,7 +23,8 @@ uses
   FMX.StdCtrls,
   cPloumtrisTitle,
   Gamolf.RTL.GamepadDetected,
-  Gamolf.FMX.HelpBar;
+  Gamolf.FMX.HelpBar,
+  FMX.Menus;
 
 type
 {$SCOPEDENUMS ON}
@@ -54,6 +55,9 @@ type
     lblVersion: TLabel;
     DGEGamepadDetected1: TDGEGamepadDetected;
     DGEFMXHelpBar1: TDGEFMXHelpBar;
+    MainMenu: TMainMenu;
+    mnuMacOSAppname: TMenuItem;
+    mnuAbout: TMenuItem;
     procedure OlfAboutDialog1URLClick(const AURL: string);
     procedure FormCreate(Sender: TObject);
     procedure GamepadManager1ButtonDown(const GamepadID: Integer;
@@ -63,6 +67,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: WideChar;
       Shift: TShiftState);
     procedure GameLoopTimer(Sender: TObject);
+    procedure mnuAboutClick(Sender: TObject);
   private
     FCurrentScreen: TGameScreens;
     FCurrentLayout: TLayout;
@@ -72,7 +77,6 @@ type
     procedure SetScoreOnScreen(const Value: Integer);
   protected
     procedure InitAboutDialogBox;
-    procedure InitMainFormCaption;
     procedure InitHomeScreen;
     procedure CloseHomeScreen;
     procedure InitGameScreen;
@@ -94,6 +98,7 @@ type
     procedure ButtonCreditsBackClick(Sender: TObject);
     procedure SendNewPipe;
   public
+    procedure AfterConstruction; override;
     property CurrentScreen: TGameScreens read FCurrentScreen
       write SetCurrentScreen;
     property ScoreOnScreen: Integer read FScoreOnScreen write SetScoreOnScreen;
@@ -122,6 +127,15 @@ uses
   Gamolf.RTL.Scores,
   uScores,
   USVGInputPrompts;
+
+procedure TfrmMain.AfterConstruction;
+begin
+  inherited;
+{$IF Defined(MACOS) and not Defined(IOS)}
+{$ELSE}
+  FreeAndNil(MainMenu);
+{$ENDIF}
+end;
 
 procedure TfrmMain.ButtonCreditsBackClick(Sender: TObject);
 begin
@@ -165,7 +179,7 @@ begin
   tthread.forcequeue(nil,
     procedure
     begin
-      freeandnil(FDialogBox);
+      FreeAndNil(FDialogBox);
     end);
 end;
 
@@ -176,7 +190,7 @@ begin
   tthread.forcequeue(nil,
     procedure
     begin
-      freeandnil(FDialogBox);
+      FreeAndNil(FDialogBox);
     end);
 end;
 
@@ -228,7 +242,9 @@ var
   i: Integer;
 begin
   InitAboutDialogBox;
-  InitMainFormCaption;
+
+  if assigned(MainMenu) then
+    mnuAbout.Text := 'About ' + OlfAboutDialog1.Titre; // TODO : à traduire
 
   DGEFMXHelpBar1.IconKeyBitmapListIndex := TSVGInputPrompts.Tag;
   DGEFMXHelpBar1.IconGamepadBitmapListIndex := TSVGInputPrompts.Tag;
@@ -289,7 +305,7 @@ begin
   begin
     Key := 0;
     KeyChar := #0;
-    OlfAboutDialog1.Execute;
+    mnuAboutClick(Sender);
   end
   else
     UIItems.KeyDown(Key, KeyChar, Shift);
@@ -686,20 +702,6 @@ begin
     CSVGSteamButtonColorXOutline, 'Quit');
 end;
 
-procedure TfrmMain.InitMainFormCaption;
-begin
-{$IFDEF DEBUG}
-  caption := '[DEBUG] ';
-{$ELSE}
-  caption := '';
-{$ENDIF}
-  caption := caption + OlfAboutDialog1.Titre + ' v' +
-    OlfAboutDialog1.VersionNumero;
-
-  lblVersion.Text := 'v' + OlfAboutDialog1.VersionNumero + '-' +
-    OlfAboutDialog1.VersionDate;
-end;
-
 procedure TfrmMain.InitOptionsScreen;
 var
   item: TUIElement;
@@ -720,6 +722,11 @@ begin
     'Select');
 
   // TODO : à compléter
+end;
+
+procedure TfrmMain.mnuAboutClick(Sender: TObject);
+begin
+  OlfAboutDialog1.Execute;
 end;
 
 procedure TfrmMain.OlfAboutDialog1URLClick(const AURL: string);
