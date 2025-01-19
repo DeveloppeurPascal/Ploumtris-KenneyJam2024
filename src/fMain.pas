@@ -22,9 +22,8 @@ uses
   FMX.Controls.Presentation,
   FMX.StdCtrls,
   cPloumtrisTitle,
-  cGameControllerStatus,
   cHelpBar,
-  Gamolf.RTL.Joystick.Deprecated;
+  Gamolf.RTL.GamepadDetected;
 
 type
 {$SCOPEDENUMS ON}
@@ -53,8 +52,8 @@ type
     lblScore: TLabel;
     GameTitle: TcadPloumtrisTitle;
     lblVersion: TLabel;
-    cadGameControllerStatus1: TcadGameControllerStatus;
     cadHelpBar1: TcadHelpBar;
+    DGEGamepadDetected1: TDGEGamepadDetected;
     procedure OlfAboutDialog1URLClick(const AURL: string);
     procedure FormCreate(Sender: TObject);
     procedure GamepadManager1ButtonDown(const GamepadID: Integer;

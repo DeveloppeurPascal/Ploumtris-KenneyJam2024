@@ -183,19 +183,6 @@ object frmMain: TfrmMain
     Position.Y = 216.000000000000000000
     TabOrder = 11
   end
-  inline cadGameControllerStatus1: TcadGameControllerStatus
-    Align = Contents
-    HitTest = False
-    Size.Width = 881.000000000000000000
-    Size.Height = 480.000000000000000000
-    Size.PlatformDefault = False
-    inherited Layout1: TLayout
-      Size.Width = 881.000000000000000000
-      inherited Rectangle1: TRectangle
-        Position.X = 781.000000000000000000
-      end
-    end
-  end
   inline cadHelpBar1: TcadHelpBar
     Align = Contents
     HitTest = False
@@ -220,5 +207,10 @@ object frmMain: TfrmMain
     OnDirectionPadChange = GamepadManager1DirectionPadChange
     Left = 288
     Top = 120
+  end
+  object DGEGamepadDetected1: TDGEGamepadDetected
+    Duration = 5.000000000000000000
+    Left = 648
+    Top = 96
   end
 end

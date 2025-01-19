@@ -33,10 +33,9 @@ uses
   Gamolf.RTL.UIElements in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.UIElements.pas',
   USVGInputPrompts in '..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas',
   USVGPuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas',
-  cGameControllerStatus in 'cGameControllerStatus.pas' {cadGameControllerStatus: TFrame},
   uScores in 'uScores.pas',
   cHelpBar in 'cHelpBar.pas' {cadHelpBar: TFrame},
-  Gamolf.RTL.Joystick.Deprecated in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.Joystick.Deprecated.pas';
+  Gamolf.RTL.GamepadDetected in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.GamepadDetected.pas';
 
 {$R *.res}
 
