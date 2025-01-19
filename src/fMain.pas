@@ -285,7 +285,13 @@ begin
       end;
     end;
   end;
-  if (Key <> 0) or (KeyChar <> #0) then
+  if (Key = vkF1) and (KeyChar = #0) and (Shift = []) then
+  begin
+    Key := 0;
+    KeyChar := #0;
+    OlfAboutDialog1.Execute;
+  end
+  else
     UIItems.KeyDown(Key, KeyChar, Shift);
   if ((Key = 0) and (KeyChar = ' ')) or ((Key = vkReturn) and (KeyChar = #0))
   then
