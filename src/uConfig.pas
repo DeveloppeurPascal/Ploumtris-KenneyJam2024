@@ -40,7 +40,7 @@ implementation
 uses
   System.Classes,
   System.Types,
-  system.IOUtils,
+  System.IOUtils,
   FMX.Platform,
   Olf.RTL.CryptDecrypt;
 
@@ -52,7 +52,7 @@ var
 constructor TConfig.Create;
 begin
   FParams := TParamsFile.Create;
-  FParams.InitDefaultFileNameV2('Gamolf', 'Ploumtris');
+  FParams.InitDefaultFileNameV2('Gamolf', 'Ploumtris', false);
 {$IF Defined(RELEASE)}
   FParams.onCryptProc := function(Const AParams: string): TStream
     var
