@@ -22,8 +22,8 @@ uses
   FMX.Controls.Presentation,
   FMX.StdCtrls,
   cPloumtrisTitle,
-  cHelpBar,
-  Gamolf.RTL.GamepadDetected;
+  Gamolf.RTL.GamepadDetected,
+  Gamolf.FMX.HelpBar;
 
 type
 {$SCOPEDENUMS ON}
@@ -52,8 +52,8 @@ type
     lblScore: TLabel;
     GameTitle: TcadPloumtrisTitle;
     lblVersion: TLabel;
-    cadHelpBar1: TcadHelpBar;
     DGEGamepadDetected1: TDGEGamepadDetected;
+    DGEFMXHelpBar1: TDGEFMXHelpBar;
     procedure OlfAboutDialog1URLClick(const AURL: string);
     procedure FormCreate(Sender: TObject);
     procedure GamepadManager1ButtonDown(const GamepadID: Integer;
@@ -160,7 +160,7 @@ end;
 
 procedure TfrmMain.CloseCreditsScreen;
 begin
-  cadHelpBar1.CloseHelpBar;
+  DGEFMXHelpBar1.CloseHelpBar;
 
   tthread.forcequeue(nil,
     procedure
@@ -171,7 +171,7 @@ end;
 
 procedure TfrmMain.CloseGameOverScreen;
 begin
-  cadHelpBar1.CloseHelpBar;
+  DGEFMXHelpBar1.CloseHelpBar;
 
   tthread.forcequeue(nil,
     procedure
@@ -182,7 +182,7 @@ end;
 
 procedure TfrmMain.CloseGameScreen;
 begin
-  cadHelpBar1.CloseHelpBar;
+  DGEFMXHelpBar1.CloseHelpBar;
 
   CurrentGame.IsRunning := false;
 
@@ -199,14 +199,14 @@ end;
 
 procedure TfrmMain.CloseHallOfFamesScreen;
 begin
-  cadHelpBar1.CloseHelpBar;
+  DGEFMXHelpBar1.CloseHelpBar;
 
   // TODO : à compléter
 end;
 
 procedure TfrmMain.CloseHomeScreen;
 begin
-  cadHelpBar1.CloseHelpBar;
+  DGEFMXHelpBar1.CloseHelpBar;
 
   tthread.forcequeue(nil,
     procedure
@@ -218,7 +218,7 @@ end;
 
 procedure TfrmMain.CloseOptionsScreen;
 begin
-  cadHelpBar1.CloseHelpBar;
+  DGEFMXHelpBar1.CloseHelpBar;
 
   // TODO : à compléter
 end;
@@ -229,6 +229,9 @@ var
 begin
   InitAboutDialogBox;
   InitMainFormCaption;
+
+  DGEFMXHelpBar1.IconKeyBitmapListIndex := TSVGInputPrompts.Tag;
+  DGEFMXHelpBar1.IconGamepadBitmapListIndex := TSVGInputPrompts.Tag;
 
   FDialogBox := nil;
 
@@ -432,11 +435,9 @@ begin
   FDialogBox.Width := 600;
   FDialogBox.height := 600;
 
-  cadHelpBar1.OpenHelpBar;
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardSpace);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardEscape, 'Select');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorA);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorX, 'Select');
+  DGEFMXHelpBar1.OpenHelpBar;
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Select');
 end;
 
 procedure TfrmMain.InitGameOverScreen;
@@ -457,11 +458,9 @@ begin
   FDialogBox.OnClick := ButtonGameOverBackClick;
   // TODO : rendre la fenêtre un peu plus "sexy"
 
-  cadHelpBar1.OpenHelpBar;
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardSpace);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardEscape, 'Select');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorA);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorX, 'Select');
+  DGEFMXHelpBar1.OpenHelpBar;
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Select');
 end;
 
 procedure TfrmMain.InitGameScreen;
@@ -589,16 +588,13 @@ begin
   CurrentGame.IsRunning := true;
   GameLoop.Enabled := true;
 
-  cadHelpBar1.OpenHelpBar;
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardArrowLeft);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardArrowRight, 'Move');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardSpace, 'Rotate');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardArrowDown, 'Fall');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardEscape, 'Quit');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxDpadRoundHorizontal, 'Move');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorA, 'Rotate');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxDpadRoundDown, 'Fall');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorX, 'Quit');
+  DGEFMXHelpBar1.OpenHelpBar;
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowLeft, 0);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowRight,
+    CSVGXboxDpadRoundHorizontal, 'Move');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA, 'Rotate');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowDown, CSVGXboxDpadRoundDown, 'Fall');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Quit');
 end;
 
 procedure TfrmMain.InitHallOfFamesScreen;
@@ -615,11 +611,9 @@ begin
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
   item.GamePadButtons := [TJoystickButtons.X];
 
-  cadHelpBar1.OpenHelpBar;
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardSpace);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardEscape, 'Select');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorA);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorX, 'Select');
+  DGEFMXHelpBar1.OpenHelpBar;
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Select');
 
   // TODO : à compléter
 end;
@@ -670,14 +664,12 @@ begin
   btn := AddButton(lHomeButtons, 'Credits', btn, ButtonCreditsClick);
   AddButton(lHomeButtons, 'Quit', btn, ButtonQuitClick);
 
-  cadHelpBar1.OpenHelpBar;
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardArrowUp);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardArrowDown, 'Move');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardSpace, 'Select');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardEscape, 'Quit');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxDpadRoundVertical, 'Move');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorA, 'Select');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorX, 'Quit');
+  DGEFMXHelpBar1.OpenHelpBar;
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowUp, 0);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowDown,
+    CSVGXboxDpadRoundVertical, 'Move');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA, 'Select');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Quit');
 end;
 
 procedure TfrmMain.InitMainFormCaption;
@@ -708,11 +700,9 @@ begin
   item.KeyShortcuts.Add(vkHardwareBack, #0, []);
   item.GamePadButtons := [TJoystickButtons.X];
 
-  cadHelpBar1.OpenHelpBar;
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardSpace);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.KeyboardEscape, 'Select');
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorA);
-  cadHelpBar1.AddItem(TSVGInputPromptsIndex.XboxButtonColorX, 'Select');
+  DGEFMXHelpBar1.OpenHelpBar;
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Select');
 
   // TODO : à compléter
 end;

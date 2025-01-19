@@ -34,8 +34,8 @@ uses
   USVGInputPrompts in '..\assets\kenney.nl\InputPrompts\USVGInputPrompts.pas',
   USVGPuzzleAssets2 in '..\assets\kenney.nl\PuzzleAssets2\USVGPuzzleAssets2.pas',
   uScores in 'uScores.pas',
-  cHelpBar in 'cHelpBar.pas' {cadHelpBar: TFrame},
-  Gamolf.RTL.GamepadDetected in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.GamepadDetected.pas';
+  Gamolf.RTL.GamepadDetected in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.RTL.GamepadDetected.pas',
+  Gamolf.FMX.HelpBar in '..\lib-externes\Delphi-Game-Engine\src\Gamolf.FMX.HelpBar.pas';
 
 {$R *.res}
 
