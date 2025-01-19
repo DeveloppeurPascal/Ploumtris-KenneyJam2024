@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/Ploumtris-KenneyJam2024
 ///
 /// ***************************************************************************
-/// File last update : 2025-01-19T18:19:50.000+01:00
-/// Signature : 14e7e9aea4dc3c44e24fbffa9795a922e8a59ba9
+/// File last update : 2025-01-19T18:34:24.000+01:00
+/// Signature : b0a07cede76729075e9f3dca7a0bb7df9b00cdf7
 /// ***************************************************************************
 /// </summary>
 
@@ -864,7 +864,6 @@ procedure TfrmMain.SetScoreOnScreen(const Value: Integer);
 begin
   FScoreOnScreen := Value;
   lblScore.Text := 'Score : ' + FScoreOnScreen.tostring;
-  // TODO : remplacer par un affichage plus graphique
 end;
 
 initialization
