@@ -251,7 +251,8 @@ begin
   DGEFMXHelpBar1.Height := 100;
   DGEFMXHelpBar1.TextSettings.Font.Size :=
     DGEFMXHelpBar1.TextSettings.Font.Size * 2;
-  DGEFMXHelpBar1.TextSettings.FontColor := talphacolors.Mediumblue;
+  DGEFMXHelpBar1.TextSettings.FontColor := talphacolors.Whitesmoke;
+  DGEFMXHelpBar1.BackgroundFill.Color := $FF1A1D4D;
   DGEFMXHelpBar1.HorzAlign := TDGEFMXHelpBarHorzAlign.Center;
 
   FDialogBox := nil;
