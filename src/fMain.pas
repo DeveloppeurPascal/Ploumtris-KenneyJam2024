@@ -255,6 +255,8 @@ begin
   DGEFMXHelpBar1.BackgroundFill.Color := $FF1A1D4D;
   DGEFMXHelpBar1.HorzAlign := TDGEFMXHelpBarHorzAlign.Center;
 
+  lblversion.Text := OlfAboutDialog1.getVersionDate;
+
   FDialogBox := nil;
 
   FCurrentLayout := nil;
