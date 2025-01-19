@@ -248,6 +248,11 @@ begin
 
   DGEFMXHelpBar1.IconKeyBitmapListIndex := TSVGInputPrompts.Tag;
   DGEFMXHelpBar1.IconGamepadBitmapListIndex := TSVGInputPrompts.Tag;
+  DGEFMXHelpBar1.Height := 100;
+  DGEFMXHelpBar1.TextSettings.Font.Size :=
+    DGEFMXHelpBar1.TextSettings.Font.Size * 2;
+  DGEFMXHelpBar1.TextSettings.FontColor := talphacolors.Mediumblue;
+  DGEFMXHelpBar1.HorzAlign := TDGEFMXHelpBarHorzAlign.Center;
 
   FDialogBox := nil;
 
@@ -455,7 +460,7 @@ begin
     OlfAboutDialog1.VersionDate);
   FDialogBox.OnClick := ButtonCreditsBackClick;
   FDialogBox.Width := 600;
-  FDialogBox.height := 600;
+  FDialogBox.Height := 600;
 
   DGEFMXHelpBar1.OpenHelpBar;
   DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGSteamButtonColorAOutline);
@@ -510,7 +515,7 @@ begin
   begin
     // TODO : mettre un TScaleLayout pour adapter automatiquement la taille de la zone de jeu
     lGameZone.Width := (1 + CNbCol + 1) * cpipesize;
-    lGameZone.height := (1 + CNBRow) * cpipesize;
+    lGameZone.Height := (1 + CNBRow) * cpipesize;
 
     bmp1 := getBitmapFromSVG(TSVGPuzzleAssets2Index.EauHdb, cpipesize,
       cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale);
@@ -527,9 +532,9 @@ begin
       r.hittest := false;
       r.parent := lGameZoneLeft;
       r.Width := cpipesize;
-      r.height := cpipesize;
+      r.Height := cpipesize;
       r.Position.X := 0;
-      r.Position.y := r.height * i;
+      r.Position.y := r.Height * i;
       r.Stroke.Kind := TBrushKind.None;
       r.fill.Kind := TBrushKind.bitmap;
       r.fill.bitmap.WrapMode := twrapmode.TileStretch;
@@ -539,9 +544,9 @@ begin
       r.hittest := false;
       r.parent := lGameZoneRight;
       r.Width := cpipesize;
-      r.height := cpipesize;
+      r.Height := cpipesize;
       r.Position.X := 0;
-      r.Position.y := r.height * i;
+      r.Position.y := r.Height * i;
       r.Stroke.Kind := TBrushKind.None;
       r.fill.Kind := TBrushKind.bitmap;
       r.fill.bitmap.WrapMode := twrapmode.TileStretch;
@@ -553,9 +558,9 @@ begin
     r.hittest := false;
     r.parent := lGameZoneLeft;
     r.Width := cpipesize;
-    r.height := cpipesize;
+    r.Height := cpipesize;
     r.Position.X := 0;
-    r.Position.y := r.height * CNBRow;
+    r.Position.y := r.Height * CNBRow;
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
     r.fill.bitmap.WrapMode := twrapmode.TileStretch;
@@ -567,9 +572,9 @@ begin
     r.hittest := false;
     r.parent := lGameZoneRight;
     r.Width := cpipesize;
-    r.height := cpipesize;
+    r.Height := cpipesize;
     r.Position.X := 0;
-    r.Position.y := r.height * CNBRow;
+    r.Position.y := r.Height * CNBRow;
     r.Stroke.Kind := TBrushKind.None;
     r.fill.Kind := TBrushKind.bitmap;
     r.fill.bitmap.WrapMode := twrapmode.TileStretch;
@@ -577,7 +582,7 @@ begin
       cpipesize, cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale));
 
     // bottom line
-    lGameZoneBottom.height := cpipesize;
+    lGameZoneBottom.Height := cpipesize;
     bmp1 := getBitmapFromSVG(TSVGPuzzleAssets2Index.pipegd, cpipesize,
       cpipesize, rBackground.fill.bitmap.bitmap.BitmapScale);
     for i := 0 to CNbCol - 1 do
@@ -586,7 +591,7 @@ begin
       r.hittest := false;
       r.parent := lGameZoneBottom;
       r.Width := cpipesize;
-      r.height := cpipesize;
+      r.Height := cpipesize;
       r.Position.X := r.Width * i;
       r.Position.y := 0;
       r.Stroke.Kind := TBrushKind.None;
@@ -651,19 +656,19 @@ procedure TfrmMain.InitHomeScreen;
   const AButtonPrec: TcadTextButton; const AOnClick: TNotifyEvent)
     : TcadTextButton;
   begin
-    if (AParent.height > 0) then
-      AParent.height := AParent.height + 5;
+    if (AParent.Height > 0) then
+      AParent.Height := AParent.Height + 5;
     result := TcadTextButton.Create(self);
     result.GetUIItem.TagObject := result;
     result.parent := AParent;
     result.Position.X := 0;
     result.Width := AParent.Width;
-    result.height := 54;
-    result.Position.y := AParent.height;
+    result.Height := 54;
+    result.Position.y := AParent.Height;
     result.Text := AText;
     result.OnClick := AOnClick;
     result.BackgroundColor := 0;
-    AParent.height := result.Position.y + result.height;
+    AParent.Height := result.Position.y + result.Height;
     if assigned(AButtonPrec) then
       AButtonPrec.GetUIItem.BottomItem := result.GetUIItem;
   end;
@@ -683,7 +688,7 @@ begin
   item.GamePadButtons := [TJoystickButtons.X];
 
   lHomeButtons.Width := 104;
-  lHomeButtons.height := 0;
+  lHomeButtons.Height := 0;
 
   btn := AddButton(lHomeButtons, 'Play', nil, ButtonPlayClick);
   btn.IsSelected := true;
