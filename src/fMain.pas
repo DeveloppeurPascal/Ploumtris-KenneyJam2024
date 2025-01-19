@@ -436,8 +436,9 @@ begin
   FDialogBox.height := 600;
 
   DGEFMXHelpBar1.OpenHelpBar;
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA);
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Select');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGSteamButtonColorAOutline);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGSteamButtonColorXOutline,
+    'Select');
 end;
 
 procedure TfrmMain.InitGameOverScreen;
@@ -459,8 +460,9 @@ begin
   // TODO : rendre la fenêtre un peu plus "sexy"
 
   DGEFMXHelpBar1.OpenHelpBar;
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA);
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Select');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGSteamButtonColorAOutline);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGSteamButtonColorXOutline,
+    'Select');
 end;
 
 procedure TfrmMain.InitGameScreen;
@@ -589,12 +591,15 @@ begin
   GameLoop.Enabled := true;
 
   DGEFMXHelpBar1.OpenHelpBar;
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowLeft, 0);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowLeft, CSVGSteamDpadLeftOutline);
   DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowRight,
-    CSVGXboxDpadRoundHorizontal, 'Move');
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA, 'Rotate');
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowDown, CSVGXboxDpadRoundDown, 'Fall');
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Quit');
+    CSVGSteamDpadRightOutline, 'Move');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGSteamButtonColorAOutline,
+    'Rotate');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowDown,
+    CSVGSteamDpadDownOutline, 'Fall');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape,
+    CSVGSteamButtonColorXOutline, 'Quit');
 end;
 
 procedure TfrmMain.InitHallOfFamesScreen;
@@ -612,8 +617,9 @@ begin
   item.GamePadButtons := [TJoystickButtons.X];
 
   DGEFMXHelpBar1.OpenHelpBar;
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA);
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Select');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGSteamButtonColorAOutline);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGSteamButtonColorXOutline,
+    'Select');
 
   // TODO : à compléter
 end;
@@ -665,11 +671,13 @@ begin
   AddButton(lHomeButtons, 'Quit', btn, ButtonQuitClick);
 
   DGEFMXHelpBar1.OpenHelpBar;
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowUp, 0);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowUp, CSVGSteamDpadUpOutline);
   DGEFMXHelpBar1.AddItem(CSVGKeyboardArrowDown,
-    CSVGXboxDpadRoundVertical, 'Move');
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA, 'Select');
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Quit');
+    CSVGSteamDpadDownOutline, 'Move');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGSteamButtonColorAOutline,
+    'Select');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape,
+    CSVGSteamButtonColorXOutline, 'Quit');
 end;
 
 procedure TfrmMain.InitMainFormCaption;
@@ -701,8 +709,9 @@ begin
   item.GamePadButtons := [TJoystickButtons.X];
 
   DGEFMXHelpBar1.OpenHelpBar;
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGXboxButtonColorA);
-  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGXboxButtonColorX, 'Select');
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardSpace, CSVGSteamButtonColorAOutline);
+  DGEFMXHelpBar1.AddItem(CSVGKeyboardEscape, CSVGSteamButtonColorXOutline,
+    'Select');
 
   // TODO : à compléter
 end;
