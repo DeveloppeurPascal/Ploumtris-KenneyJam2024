@@ -1,8 +1,50 @@
+﻿/// <summary>
+/// ***************************************************************************
+///
+/// Gamolf FMX Game Starter Kit
+///
+/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+///
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+/// THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+/// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+/// DEALINGS IN THE SOFTWARE.
+///
+/// ***************************************************************************
+///
+/// The "Gamolf FMX Game Starter Kit" is both a "technical" example of a video
+/// game developed in Delphi with everything you need inside and a reusable
+/// project template you can customize for your own games.
+///
+/// The files provided are fully functional. Numerous comments are included in
+/// the sources to explain how they work and what you need to copy, override
+/// or customize to make video games without starting from scratch.
+///
+/// ***************************************************************************
+///
+/// Author(s) :
+/// Patrick PREMARTIN
+///
+/// Site :
+/// https://fmxgamestarterkit.developpeur-pascal.fr/
+///
+/// Project site :
+/// https://github.com/DeveloppeurPascal/Gamolf-FMX-Game-Starter-Kit
+///
+/// ***************************************************************************
+/// File last update : 2024-08-10T10:52:40.032+02:00
+/// Signature : 7a0a291e305a91d93d15f64712f8d08a025ee615
+/// ***************************************************************************
+/// </summary>
+
 unit USVGInputPrompts;
 
 // ****************************************
 // * SVG from folder :
-// * C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\Ploumtris\assets\kenney.nl\InputPrompts\uSVGInputPrompts.pas
+// * C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\DDOS2024-GFGT\assets\kenney_nl\InputPrompts\USVGInputPrompts.pas
 // ****************************************
 //
 // This file contains a list of contants and 
@@ -10,9 +52,9 @@ unit USVGInputPrompts;
 // from the generated array of strings.
 //
 // ****************************************
-// File generator : SVG Folder to Delphi Unit (1.0)
+// File generator : SVG Folder to Delphi Unit v1.0
 // Website : https://svgfolder2delphiunit.olfsoftware.fr/
-// Generation date : 28/07/2024 17:52:21
+// Generation date : 2024-08-10T10:52:40.016Z
 //
 // Don't do any change on this file.
 // They will be erased by next generation !
@@ -21,48 +63,40 @@ unit USVGInputPrompts;
 interface
 
 const
-  CSVGControllerDisconnected = 0;
-  CSVGControllerGeneric = 1;
-  CSVGKeyboardA = 2;
-  CSVGKeyboardArrowDown = 3;
-  CSVGKeyboardArrowLeft = 4;
-  CSVGKeyboardArrowRight = 5;
-  CSVGKeyboardArrowUp = 6;
-  CSVGKeyboardD = 7;
-  CSVGKeyboardEscape = 8;
-  CSVGKeyboardReturn = 9;
-  CSVGKeyboardS = 10;
-  CSVGKeyboardSpace = 11;
-  CSVGKeyboardW = 12;
-  CSVGXboxButtonColorA = 13;
-  CSVGXboxButtonColorB = 14;
-  CSVGXboxButtonColorX = 15;
-  CSVGXboxDpadRoundDown = 16;
-  CSVGXboxDpadRoundHorizontal = 17;
-  CSVGXboxDpadRoundVertical = 18;
+  CSVGKeyboardArrowDown = 0;
+  CSVGKeyboardArrowLeft = 1;
+  CSVGKeyboardArrowRight = 2;
+  CSVGKeyboardArrowUp = 3;
+  CSVGKeyboardEscape = 4;
+  CSVGKeyboardReturn = 5;
+  CSVGKeyboardSpace = 6;
+  CSVGSteamButtonColorAOutline = 7;
+  CSVGSteamButtonColorBOutline = 8;
+  CSVGSteamButtonColorXOutline = 9;
+  CSVGSteamDpadDownOutline = 10;
+  CSVGSteamDpadLeftOutline = 11;
+  CSVGSteamDpadNone = 12;
+  CSVGSteamDpadRightOutline = 13;
+  CSVGSteamDpadUpOutline = 14;
 
 type
 {$SCOPEDENUMS ON}
   TSVGInputPromptsIndex = (
-    ControllerDisconnected = CSVGControllerDisconnected,
-    ControllerGeneric = CSVGControllerGeneric,
-    KeyboardA = CSVGKeyboardA,
     KeyboardArrowDown = CSVGKeyboardArrowDown,
     KeyboardArrowLeft = CSVGKeyboardArrowLeft,
     KeyboardArrowRight = CSVGKeyboardArrowRight,
     KeyboardArrowUp = CSVGKeyboardArrowUp,
-    KeyboardD = CSVGKeyboardD,
     KeyboardEscape = CSVGKeyboardEscape,
     KeyboardReturn = CSVGKeyboardReturn,
-    KeyboardS = CSVGKeyboardS,
     KeyboardSpace = CSVGKeyboardSpace,
-    KeyboardW = CSVGKeyboardW,
-    XboxButtonColorA = CSVGXboxButtonColorA,
-    XboxButtonColorB = CSVGXboxButtonColorB,
-    XboxButtonColorX = CSVGXboxButtonColorX,
-    XboxDpadRoundDown = CSVGXboxDpadRoundDown,
-    XboxDpadRoundHorizontal = CSVGXboxDpadRoundHorizontal,
-    XboxDpadRoundVertical = CSVGXboxDpadRoundVertical);
+    SteamButtonColorAOutline = CSVGSteamButtonColorAOutline,
+    SteamButtonColorBOutline = CSVGSteamButtonColorBOutline,
+    SteamButtonColorXOutline = CSVGSteamButtonColorXOutline,
+    SteamDpadDownOutline = CSVGSteamDpadDownOutline,
+    SteamDpadLeftOutline = CSVGSteamDpadLeftOutline,
+    SteamDpadNone = CSVGSteamDpadNone,
+    SteamDpadRightOutline = CSVGSteamDpadRightOutline,
+    SteamDpadUpOutline = CSVGSteamDpadUpOutline);
 
   TSVGInputPrompts = class
   private
@@ -78,25 +112,21 @@ type
     class procedure SetTagObject(const Value: TObject); static;
     class procedure SetTagString(const Value: string); static;
   public const
-    ControllerDisconnected = CSVGControllerDisconnected;
-    ControllerGeneric = CSVGControllerGeneric;
-    KeyboardA = CSVGKeyboardA;
     KeyboardArrowDown = CSVGKeyboardArrowDown;
     KeyboardArrowLeft = CSVGKeyboardArrowLeft;
     KeyboardArrowRight = CSVGKeyboardArrowRight;
     KeyboardArrowUp = CSVGKeyboardArrowUp;
-    KeyboardD = CSVGKeyboardD;
     KeyboardEscape = CSVGKeyboardEscape;
     KeyboardReturn = CSVGKeyboardReturn;
-    KeyboardS = CSVGKeyboardS;
     KeyboardSpace = CSVGKeyboardSpace;
-    KeyboardW = CSVGKeyboardW;
-    XboxButtonColorA = CSVGXboxButtonColorA;
-    XboxButtonColorB = CSVGXboxButtonColorB;
-    XboxButtonColorX = CSVGXboxButtonColorX;
-    XboxDpadRoundDown = CSVGXboxDpadRoundDown;
-    XboxDpadRoundHorizontal = CSVGXboxDpadRoundHorizontal;
-    XboxDpadRoundVertical = CSVGXboxDpadRoundVertical;
+    SteamButtonColorAOutline = CSVGSteamButtonColorAOutline;
+    SteamButtonColorBOutline = CSVGSteamButtonColorBOutline;
+    SteamButtonColorXOutline = CSVGSteamButtonColorXOutline;
+    SteamDpadDownOutline = CSVGSteamDpadDownOutline;
+    SteamDpadLeftOutline = CSVGSteamDpadLeftOutline;
+    SteamDpadNone = CSVGSteamDpadNone;
+    SteamDpadRightOutline = CSVGSteamDpadRightOutline;
+    SteamDpadUpOutline = CSVGSteamDpadUpOutline;
     class property Tag: integer read FTag write SetTag;
     class property TagBool: Boolean read FTagBool write SetTagBool;
     class property TagFloat: Single read FTagFloat write SetTagFloat;
@@ -173,37 +203,9 @@ end;
 
 initialization
 
-SetLength(SVGInputPrompts, 19);
+SetLength(SVGInputPrompts, 15);
 
 {$TEXTBLOCK NATIVE XML}
-SVGInputPrompts[CSVGControllerDisconnected] := '''
-<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs/>
-  <g>
-<path stroke="none" fill="#FCFCFC" d="M34 38 L23 38 15.35 45.65 Q14.7 46.4 13.75 46.75 L11.85 46.95 Q10.15 46.85 9 45.45 7.85 44.05 8 42.4 L11.15 22.7 Q11.5 20.6 12.7 18.8 13.85 17 15.65 15.8 16.95 14.9 18.5 14.45 20.05 13.95 21.65 14 L42.75 14 Q45.95 14.05 48.7 16 51.4 18 52.4 21 L53.1 24.25 54.75 34.55 Q53.95 34 53 34 L49 34 Q47.75 34 46.9 34.9 L45 36.75 43.15 34.9 Q42.25 34 41 34 L37 34 Q35.75 34 34.9 34.9 34 35.75 34 37 L34 38 M55.9 41.85 Q56.1 42.75 55.9 43.65 55.65 44.75 54.95 45.5 L54.35 46.1 53.25 45 55.15 43.15 55.9 41.85 M44 31 Q44 30.15 43.4 29.55 42.85 29 42 29 41.15 29 40.55 29.55 40 30.15 40 31 40 31.85 40.55 32.4 41.15 33 42 33 42.85 33 43.4 32.4 44 31.85 44 31 M48 27 Q48 26.15 47.4 25.55 46.85 25 46 25 45.15 25 44.55 25.55 44 26.15 44 27 44 27.85 44.55 28.4 45.15 29 46 29 46.85 29 47.4 28.4 48 27.85 48 27 M44 23 Q44 22.15 43.4 21.55 42.85 21 42 21 41.15 21 40.55 21.55 40 22.15 40 23 40 23.85 40.55 24.4 41.15 25 42 25 42.85 25 43.4 24.4 44 23.85 44 23 M40 27 Q40 26.15
-39.4 25.55 38.85 25 38 25 37.15 25 36.55 25.55 36 26.15 36 27 36 27.85 36.55 28.4 37.15 29 38 29 38.85 29 39.4 28.4 40 27.85 40 27 M20 21 L20 25 16 25 16 29 20 29 20 33 24 33 24 29 28 29 28 25 24 25 24 21 20 21"/>
-    <path stroke="none" fill="#FFFFFF" fill-opacity="0" d="M54.75 34.55 L55.15 34.9 Q56 35.75 56 37 L56 41 55.9 41.85 55.15 43.15 53.25 45 54.35 46.1 55.15 46.9 Q56 47.75 56 49 L56 53 Q56 54.25 55.15 55.15 54.25 56 53 56 L49 56 Q47.75 56 46.9 55.15 L45 53.25 43.15 55.15 Q42.25 56 41 56 L37 56 Q35.75 56 34.9 55.15 34 54.25 34 53 L34 49 Q34 47.75 34.9 46.9 L36.75 45 34.9 43.15 Q34 42.25 34 41 L34 38 34 37 Q34 35.75 34.9 34.9 35.75 34 37 34 L41 34 Q42.25 34 43.15 34.9 L45 36.75 46.9 34.9 Q47.75 34 49 34 L53 34 Q53.95 34 54.75 34.55 M37 41 L41 45 37 49 37 53 41 53 45 49 49 53 53 53 53 49 49 45 53 41 53 37 49 37 45 41 41 37 37 37 37 41"/>
-    <path stroke="none" fill="#FFFFFF" d="M37 41 L37 37 41 37 45 41 49 37 53 37 53 41 49 45 53 49 53 53 49 53 45 49 41 53 37 53 37 49 41 45 37 41"/>
-  </g>
-</svg>
-''';
-SVGInputPrompts[CSVGControllerGeneric] := '''
-<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs/>
-  <g>
-<path stroke="none" fill="#FCFCFC" d="M15.65 15.8 Q16.95 14.9 18.5 14.45 20.05 13.95 21.65 14 L42.75 14 Q45.95 14.05 48.7 16 51.4 18 52.4 21 L53.1 24.25 55.85 41.6 Q56.1 42.65 55.9 43.65 55.65 44.75 54.95 45.5 54.1 46.55 52.7 46.9 L50.1 46.65 Q49.5 46.45 48.85 45.85 L47.75 44.75 44.35 41.35 41 38 23 38 15.35 45.65 Q14.7 46.4 13.75 46.75 L11.85 46.95 Q10.15 46.85 9 45.45 7.85 44.05 8 42.4 L11.15 22.7 Q11.5 20.6 12.7 18.8 13.85 17 15.65 15.8 M40 27 Q40 26.15 39.4 25.55 38.85 25 38 25 37.15 25 36.55 25.55 36 26.15 36 27 36 27.85 36.55 28.4 37.15 29 38 29 38.85 29 39.4 28.4 40 27.85 40 27 M20 21 L20 25 16 25 16 29 20 29 20 33 24 33 24 29 28 29 28 25 24 25 24 21 20 21 M44 31 Q44 30.15 43.4 29.55 42.85 29 42 29 41.15 29 40.55 29.55 40 30.15 40 31 40 31.85 40.55 32.4 41.15 33 42 33 42.85 33 43.4 32.4 44 31.85 44 31 M48 27 Q48 26.15 47.4 25.55 46.85 25 46 25 45.15 25 44.55 25.55 44 26.15 44 27 44 27.85 44.55 28.4 45.15 29 46 29 46.85 29 47.4 28.4 48 27.85 48 27 M44 23 Q44 22.15 43.4 21.55
-42.85 21 42 21 41.15 21 40.55 21.55 40 22.15 40 23 40 23.85 40.55 24.4 41.15 25 42 25 42.85 25 43.4 24.4 44 23.85 44 23"/>
-  </g>
-</svg>
-''';
-SVGInputPrompts[CSVGKeyboardA] := '''
-<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs/>
-  <g>
-    <path stroke="none" fill="#FFFFFF" d="M16 8 L48 8 Q56 8 56 16 L56 48 Q56 56 48 56 L16 56 Q8 56 8 48 L8 16 Q8 8 16 8 M38 42 L42 42 34 22 30 22 22 42 26 42 27.6 38 36.4 38 38 42 M32 27 L34.8 34 29.2 34 32 27"/>
-  </g>
-</svg>
-''';
 SVGInputPrompts[CSVGKeyboardArrowDown] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
@@ -236,14 +238,6 @@ SVGInputPrompts[CSVGKeyboardArrowUp] := '''
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGKeyboardD] := '''
-<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs/>
-  <g>
-    <path stroke="none" fill="#FFFFFF" d="M16 8 L48 8 Q56 8 56 16 L56 48 Q56 56 48 56 L16 56 Q8 56 8 48 L8 16 Q8 8 16 8 M28 26 L30.15 26 Q32.5 26.05 34.25 27.8 36 29.55 36 32 36 34.45 34.25 36.25 32.5 37.95 30.15 38 L28 38 28 26 M24 22 L24 42 30.25 42 Q34.25 41.9 37.1 39.1 L38.05 38 Q40 35.4 40 32 40 28.55 38.05 26 L37.1 24.95 Q34.25 22.1 30.25 22 L24 22"/>
-  </g>
-</svg>
-''';
 SVGInputPrompts[CSVGKeyboardEscape] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
@@ -260,14 +254,6 @@ SVGInputPrompts[CSVGKeyboardReturn] := '''
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGKeyboardS] := '''
-<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs/>
-  <g>
-    <path stroke="none" fill="#FFFFFF" d="M34 30 L30 30 Q29.2 30 28.6 29.4 28 28.8 28 28 28 27.2 28.55 26.65 L28.65 26.55 Q29.2 26 30 26 L34.05 26 Q34.8 26 35.35 26.55 L35.45 26.65 Q36 27.2 36 28 L39.85 26.5 39.7 26 Q39.25 24.8 38.25 23.8 L38.2 23.75 Q36.5 22.05 34.15 22 L30 22 Q27.55 22 25.8 23.75 L25.75 23.8 Q24 25.55 24 28 24 30.5 25.75 32.25 27.5 34 30 34 L34 34 Q34.8 34 35.4 34.6 36 35.2 36 36 36 36.8 35.45 37.35 L35.35 37.45 Q34.8 38 34 38 L29.95 38 Q29.2 38 28.65 37.45 L28.55 37.35 Q28 36.8 28 36 L24.2 37.55 24.35 38 Q24.75 39.2 25.75 40.2 L25.8 40.25 Q27.5 41.95 29.85 42 L34 42 Q36.45 42 38.2 40.25 L38.25 40.2 Q40 38.45 40 36 40 33.5 38.25 31.75 36.5 30 34 30 M16 8 L48 8 Q56 8 56 16 L56 48 Q56 56 48 56 L16 56 Q8 56 8 48 L8 16 Q8 8 16 8"/>
-  </g>
-</svg>
-''';
 SVGInputPrompts[CSVGKeyboardSpace] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
@@ -278,62 +264,71 @@ L49 36 48.7 35.3 Q48.4 35 48 35 L45 35 45 33 48 33 Q48.4 33 48.7 32.7 L49 32 48.
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGKeyboardW] := '''
+SVGInputPrompts[CSVGSteamButtonColorAOutline] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
-    <path stroke="none" fill="#FFFFFF" d="M16 8 L48 8 Q56 8 56 16 L56 48 Q56 56 48 56 L16 56 Q8 56 8 48 L8 16 Q8 8 16 8 M31 22 L28 31 25 22 21 22 21 24 27 42 29 42 32 33 35 42 37 42 43 24 43 22 39 22 36 31 33 22 31 22"/>
+    <path stroke="none" fill="#7DB700" d="M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 56 22.05 56 32 M32 27 L29.2 34 34.8 34 32 27 M38 42 L36.4 38 27.6 38 26 42 22 42 30 22 34 22 42 42 38 42 M46.85 17.15 Q40.75 11 32 11 23.3 11 17.15 17.15 11 23.3 11 32 11 40.75 17.15 46.85 23.3 53 32 53 40.75 53 46.85 46.85 53 40.75 53 32 53 23.3 46.85 17.15"/>
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGXboxButtonColorA] := '''
+SVGInputPrompts[CSVGSteamButtonColorBOutline] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
-    <path stroke="none" fill="#7DB700" d="M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 56 22.05 56 32 M38 42 L42 42 34 22 30 22 22 42 26 42 27.6 38 36.4 38 38 42 M32 27 L34.8 34 29.2 34 32 27"/>
+    <path stroke="none" fill="#EF4E29" d="M46.85 17.15 Q40.75 11 32 11 23.3 11 17.15 17.15 11 23.3 11 32 11 40.75 17.15 46.85 23.3 53 32 53 40.75 53 46.85 46.85 53 40.75 53 32 53 23.3 46.85 17.15 M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 56 22.05 56 32 M40 36 Q40 38.45 38.25 40.2 L38.2 40.25 Q36.45 42 34 42 L24 42 24 22 34 22 Q36.45 22 38.2 23.75 L38.25 23.8 Q40 25.55 40 28 40 30.3 38.5 32 40 33.7 40 36 M36 28 Q36 27.2 35.45 26.65 L35.35 26.55 Q34.8 26 34 26 L28 26 28 30 34 30 Q34.8 30 35.4 29.4 L35.45 29.4 Q36 28.85 36 28 M36 36 Q36 35.15 35.45 34.6 L35.4 34.6 Q34.8 34 34 34 L28 34 28 38 34 38 Q34.8 38 35.35 37.45 L35.45 37.35 Q36 36.8 36 36"/>
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGXboxButtonColorB] := '''
+SVGInputPrompts[CSVGSteamButtonColorXOutline] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
-    <path stroke="none" fill="#EF4E29" d="M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 56 22.05 56 32 M37 28 Q37 28.85 36.45 29.4 L36.4 29.4 Q35.8 30 35 30 L29 30 29 26 35 26 Q35.8 26 36.35 26.55 L36.45 26.65 Q37 27.2 37 28 M41 36 Q41 33.7 39.5 32 41 30.3 41 28 41 25.55 39.25 23.8 L39.2 23.75 Q37.45 22 35 22 L25 22 25 42 35 42 Q37.45 42 39.2 40.25 L39.25 40.2 Q41 38.45 41 36 M37 36 Q37 36.8 36.45 37.35 L36.35 37.45 Q35.8 38 35 38 L29 38 29 34 35 34 Q35.8 34 36.4 34.6 L36.45 34.6 Q37 35.15 37 36"/>
+    <path stroke="none" fill="#009FEB" d="M46.85 17.15 Q40.75 11 32 11 23.3 11 17.15 17.15 11 23.3 11 32 11 40.75 17.15 46.85 23.3 53 32 53 40.75 53 46.85 46.85 53 40.75 53 32 53 23.3 46.85 17.15 M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 56 22.05 56 32 M23 25 L23 24 25.25 22 26.4 22 32 28.55 37.65 22 38.75 22 41 24 41 25 35 32 41 39 41 40 38.75 42 37.65 42 32 35.5 26.4 42 25.25 42 23 40 23 39 29 32 23 25"/>
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGXboxButtonColorX] := '''
+SVGInputPrompts[CSVGSteamDpadDownOutline] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
-    <path stroke="none" fill="#009FEB" d="M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 56 22.05 56 32 M23 25 L29 32 23 39 23 40 25.25 42 26.4 42 32 35.5 37.65 42 38.75 42 41 40 41 39 35 32 41 25 41 24 38.75 22 37.65 22 32 28.55 26.4 22 25.25 22 23 24 23 25"/>
+    <path stroke="none" fill="#FFFFFF" d="M28 36 L20 36 Q18.35 36 17.2 34.85 16 33.65 16 32 16 30.35 17.2 29.2 18.35 28 20 28 L28 28 28 20 Q28 18.35 29.15 17.2 30.35 16 32 16 33.65 16 34.8 17.2 36 18.35 36 20 L36 28 44 28 Q45.65 28 46.85 29.2 48 30.35 48 32 48 33.65 46.85 34.85 45.65 36 44 36 L36 36 28 36 M56 32 Q56 41.95 48.95 49 43.55 54.45 36.35 55.65 L32 56 27.7 55.65 Q20.45 54.45 15 49 8 41.95 8 32 8 22 15 15.05 22.05 8 32 8 42 8 48.95 15.05 56 22 56 32 M46.85 46.85 Q53 40.7 53 32 53 23.25 46.85 17.15 40.75 11 32 11 23.3 11 17.15 17.15 11 23.25 11 32 11 40.7 17.15 46.85 23.3 53 32 53 40.75 53 46.85 46.85"/>
+    <path stroke="none" fill="#E73246" d="M28 36 L36 36 36 44 Q36 45.65 34.8 46.85 33.65 48 32 48 30.35 48 29.15 46.85 28 45.65 28 44 L28 36"/>
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGXboxDpadRoundDown] := '''
+SVGInputPrompts[CSVGSteamDpadLeftOutline] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
-    <path stroke="none" fill="#FFFFFF" d="M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 56 22.05 56 32 M44 38 L48 38 Q52 38 52 34 L52 30 Q52 26 48 26 L44 26 Q41.55 25.9 39.85 24.15 38.05 22.4 38 20 L38 16 Q38 12 34 12 L30 12 Q26 12 26 16 L26 20 Q25.95 22.4 24.15 24.15 22.45 25.9 20 26 L16 26 Q12 26 12 30 L12 34 Q12 38 16 38 L20 38 Q22.45 38.1 24.15 39.85 25.95 41.6 26 44 L26 48 Q26 52 30 52 L34 52 Q38 52 38 48 L38 44 Q38.05 41.6 39.85 39.85 41.55 38.1 44 38"/>
-    <path stroke="none" fill="#E73246" d="M44 38 Q41.55 38.1 39.85 39.85 38.05 41.6 38 44 L38 48 Q38 52 34 52 L30 52 Q26 52 26 48 L26 44 Q25.95 41.6 24.15 39.85 22.45 38.1 20 38 L44 38"/>
+    <path stroke="none" fill="#FFFFFF" d="M32 8 Q42 8 48.95 15.05 56 22 56 32 56 41.95 48.95 49 42 56 32 56 22.05 56 15 49 9.55 43.55 8.35 36.3 8 34.2 8 32 8 29.75 8.35 27.65 9.55 20.45 15 15.05 22.05 8 32 8 M17.15 17.15 Q11 23.25 11 32 11 40.7 17.15 46.85 23.3 53 32 53 40.75 53 46.85 46.85 53 40.7 53 32 53 23.25 46.85 17.15 40.75 11 32 11 23.3 11 17.15 17.15 M28 28 L28 20 Q28 18.35 29.15 17.15 30.35 16 32 16 33.65 16 34.8 17.15 36 18.35 36 20 L36 28 44 28 Q45.65 28 46.8 29.2 48 30.35 48 32 48 33.65 46.8 34.85 45.65 36 44 36 L36 36 36 44 Q36 45.65 34.8 46.8 33.65 48 32 48 30.35 48 29.15 46.8 28 45.65 28 44 L28 36 28 28"/>
+    <path stroke="none" fill="#E73246" d="M28 28 L28 36 20 36 Q18.35 36 17.15 34.85 16 33.65 16 32 16 30.35 17.15 29.2 18.35 28 20 28 L28 28"/>
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGXboxDpadRoundHorizontal] := '''
+SVGInputPrompts[CSVGSteamDpadNone] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
-    <path stroke="none" fill="#FFFFFF" d="M38 20 L38 16 Q38 12 34 12 L30 12 Q26 12 26 16 L26 20 Q25.95 22.4 24.15 24.15 22.45 25.9 20 26 L16 26 Q12 26 12 30 L12 34 Q12 38 16 38 L20 38 Q22.45 38.1 24.15 39.85 25.95 41.6 26 44 L26 48 Q26 52 30 52 L34 52 Q37.9 52 38 48.25 L38 44 Q38.05 41.6 39.85 39.85 41.55 38.1 44 38 L48 38 Q52 38 52 34 L52 30 Q52 26 48 26 L44 26 Q41.55 25.9 39.85 24.15 38.05 22.4 38 20 M56 32 Q56 42 48.95 48.95 44.2 53.8 38 55.3 L32 56 Q22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 56 22.05 56 32"/>
-    <path stroke="none" fill="#E73246" d="M38 20 Q38.05 22.4 39.85 24.15 41.55 25.9 44 26 L48 26 Q52 26 52 30 L52 34 Q52 38 48 38 L44 38 Q41.55 38.1 39.85 39.85 38.05 41.6 38 44 L38 20 M26 44 Q25.95 41.6 24.15 39.85 22.45 38.1 20 38 L16 38 Q12 38 12 34 L12 30 Q12 26 16 26 L20 26 Q22.45 25.9 24.15 24.15 25.95 22.4 26 20 L26 44"/>
+    <path stroke="none" fill="#FFFFFF" d="M46.85 17.15 Q40.75 11 32 11 23.3 11 17.15 17.15 11 23.3 11 32 11 40.75 17.15 46.85 23.3 53 32 53 40.75 53 46.85 46.85 53 40.75 53 32 53 23.3 46.85 17.15 M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 20.45 9.55 27.7 8.35 L32 8 36.35 8.35 Q43.55 9.55 48.95 15 56 22.05 56 32 M32 16 Q33.65 16 34.8 17.15 36 18.35 36 20 L36 28 44 28 Q45.65 28 46.85 29.15 48 30.35 48 32 48 33.65 46.85 34.8 45.65 36 44 36 L36 36 36 44 Q36 45.65 34.8 46.8 33.65 48 32 48 30.35 48 29.15 46.8 28 45.65 28 44 L28 36 20 36 Q18.35 36 17.2 34.8 16 33.65 16 32 16 30.35 17.2 29.15 18.35 28 20 28 L28 28 28 20 Q28 18.35 29.15 17.15 30.35 16 32 16"/>
   </g>
 </svg>
 ''';
-SVGInputPrompts[CSVGXboxDpadRoundVertical] := '''
+SVGInputPrompts[CSVGSteamDpadRightOutline] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
-    <path stroke="none" fill="#FFFFFF" d="M44 26 Q41.55 25.9 39.85 24.15 38.05 22.4 38 20 L38 16 Q38 12 34 12 L30 12 Q26 12 26 16 L26 20 Q25.95 22.4 24.15 24.15 22.45 25.9 20 26 L16 26 Q12 26 12 30 L12 34 Q12 38 16 38 L20 38 Q22.45 38.1 24.15 39.85 25.95 41.6 26 44 L26 48 Q26 52 30 52 L34 52 Q38 52 38 48 L38 44 Q38.05 41.6 39.85 39.85 41.55 38.1 44 38 L48 38 Q52 38 52 34 L52 30 Q52 26.15 48.25 26 L44 26 M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 22.05 8 32 8 42 8 48.95 15 53.75 19.8 55.3 26 56 28.85 56 32"/>
-    <path stroke="none" fill="#E73246" d="M20 26 Q22.45 25.9 24.15 24.15 25.95 22.4 26 20 L26 16 Q26 12 30 12 L34 12 Q38 12 38 16 L38 20 Q38.05 22.4 39.85 24.15 41.55 25.9 44 26 L20 26 M44 38 Q41.55 38.1 39.85 39.85 38.05 41.6 38 44 L38 48 Q38 52 34 52 L30 52 Q26 52 26 48 L26 44 Q25.95 41.6 24.15 39.85 22.45 38.1 20 38 L44 38"/>
+    <path stroke="none" fill="#E73246" d="M36 28 L44 28 Q45.65 28 46.85 29.2 48 30.35 48 32 48 33.65 46.85 34.85 45.65 36 44 36 L36 36 36 28"/>
+    <path stroke="none" fill="#FFFFFF" d="M36 28 L36 36 36 44 Q36 45.65 34.85 46.8 33.65 48 32 48 30.35 48 29.2 46.8 28 45.65 28 44 L28 36 20 36 Q18.35 36 17.2 34.85 16 33.65 16 32 16 30.35 17.2 29.2 18.35 28 20 28 L28 28 28 20 Q28 18.35 29.2 17.15 30.35 16 32 16 33.65 16 34.85 17.15 36 18.35 36 20 L36 28 M32 8 Q41.95 8 49 15.05 54.45 20.45 55.65 27.65 56 29.75 56 32 L55.65 36.3 Q54.45 43.55 49 49 41.95 56 32 56 22 56 15.05 49 8 41.95 8 32 8 22 15.05 15.05 22 8 32 8 M46.85 17.15 Q40.7 11 32 11 23.25 11 17.15 17.15 11 23.25 11 32 11 40.7 17.15 46.85 23.25 53 32 53 40.7 53 46.85 46.85 53 40.7 53 32 53 23.25 46.85 17.15"/>
+  </g>
+</svg>
+''';
+SVGInputPrompts[CSVGSteamDpadUpOutline] := '''
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g>
+    <path stroke="none" fill="#FFFFFF" d="M46.85 17.15 Q40.75 11 32 11 23.3 11 17.15 17.15 11 23.3 11 32 11 40.75 17.15 46.85 23.3 53 32 53 40.75 53 46.85 46.85 53 40.75 53 32 53 23.3 46.85 17.15 M56 32 Q56 42 48.95 48.95 42 56 32 56 22.05 56 15 48.95 8 42 8 32 8 22.05 15 15 20.45 9.55 27.7 8.35 L32 8 36.35 8.35 Q43.55 9.55 48.95 15 56 22.05 56 32 M36 28 L44 28 Q45.65 28 46.85 29.15 48 30.35 48 32 48 33.65 46.85 34.8 45.65 36 44 36 L36 36 36 44 Q36 45.65 34.8 46.8 33.65 48 32 48 30.35 48 29.15 46.8 28 45.65 28 44 L28 36 20 36 Q18.35 36 17.2 34.8 16 33.65 16 32 16 30.35 17.2 29.15 18.35 28 20 28 L28 28 36 28"/>
+    <path stroke="none" fill="#E73246" d="M36 28 L28 28 28 20 Q28 18.35 29.15 17.15 30.35 16 32 16 33.65 16 34.8 17.15 36 18.35 36 20 L36 28"/>
   </g>
 </svg>
 ''';
