@@ -123,15 +123,17 @@ begin
         MargeDroite := 100 * ((104 - 94) / 104) / 2;
       end;
   end;
-  result := TOlfSVGBitmapList.Bitmap(ord(Index) + TSVGPuzzleAssets2.Tag,
+  result := TOlfSVGBitmapList.Bitmap(TSVGPuzzleAssets2.Tag, ord(Index),
     round(width), round(height), MargeHaut, MargeDroite, MargeBas, MargeGauche,
     BitmapScale);
 end;
 
 procedure RegisterSVGImages;
 begin
-  TSVGPuzzleAssets2.Tag := TOlfSVGBitmapList.AddItem(SVGPuzzleAssets2);
-  TSVGInputPrompts.Tag := TOlfSVGBitmapList.AddItem(SVGInputPrompts);
+  TSVGPuzzleAssets2.Tag := TOlfSVGBitmapList.AddAList;
+  TOlfSVGBitmapList.AddItem(TSVGPuzzleAssets2.Tag, SVGPuzzleAssets2);
+  TSVGInputPrompts.Tag := TOlfSVGBitmapList.AddAList;
+  TOlfSVGBitmapList.AddItem(TSVGInputPrompts.Tag, SVGInputPrompts);
 end;
 
 initialization
