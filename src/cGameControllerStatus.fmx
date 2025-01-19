@@ -30,7 +30,7 @@ object cadGameControllerStatus: TcadGameControllerStatus
       end
     end
   end
-  object GamepadManager1: TGamepadManager
+  object GamepadManager1: TDGEGamepadManager
     SynchronizedEvents = True
     OnNewGamepadDetected = GamepadManager1NewGamepadDetected
     OnGamepadLost = GamepadManager1GamepadLost

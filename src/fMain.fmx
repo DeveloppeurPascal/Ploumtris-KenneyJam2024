@@ -214,7 +214,7 @@ object frmMain: TfrmMain
       end
     end
   end
-  object GamepadManager1: TGamepadManager
+  object GamepadManager1: TDGEGamepadManager
     SynchronizedEvents = True
     OnButtonDown = GamepadManager1ButtonDown
     OnDirectionPadChange = GamepadManager1DirectionPadChange

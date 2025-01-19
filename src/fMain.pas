@@ -38,7 +38,7 @@ type
     lOptionsScreen: TLayout;
     lCreditsScreen: TLayout;
     lHallOfFamesScreen: TLayout;
-    GamepadManager1: TGamepadManager;
+    GamepadManager1: TDGEGamepadManager;
     lHomeButtons: TLayout;
     rBackground: TRectangle;
     lGameZone: TLayout;

@@ -24,7 +24,7 @@ type
   TcadGameControllerStatus = class(TFrame)
     Rectangle1: TRectangle;
     FloatAnimation1: TFloatAnimation;
-    GamepadManager1: TGamepadManager;
+    GamepadManager1: TDGEGamepadManager;
     Layout1: TLayout;
     procedure GamepadManager1NewGamepadDetected(const GamepadID: Integer);
     procedure FloatAnimation1Finish(Sender: TObject);
