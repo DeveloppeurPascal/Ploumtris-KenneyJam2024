@@ -13,8 +13,8 @@ object frmMain: TfrmMain
   DesignerMasterStyle = 0
   object OlfAboutDialog1: TOlfAboutDialog
     Titre = 'Ploumtris'
-    VersionNumero = '1.1'
-    VersionDate = '20240728'
+    VersionNumero = '1.2'
+    VersionDate = '20250119'
     MultiResBitmap = <
       item
       end>
@@ -22,7 +22,8 @@ object frmMain: TfrmMain
     ImageIndex = 0
     URL = 'https://ploumtris.gamolf.fr'
     onURLClick = OlfAboutDialog1URLClick
-    Copyright = '2024 Patrick Pr'#233'martin'
+    Copyright = '(c) 2024-2025 Patrick Pr'#233'martin'
+    ReplaceMainFormCaption = True
     Left = 464
     Top = 120
   end
@@ -183,6 +184,16 @@ object frmMain: TfrmMain
     Position.Y = 216.000000000000000000
     TabOrder = 11
   end
+  object DGEFMXHelpBar1: TDGEFMXHelpBar
+    IconMarginRight = 5.000000000000000000
+    TextMarginRight = 20.000000000000000000
+    BackgroundOpacity = 0.600000023841857900
+    BackgroundXRadius = 15.000000000000000000
+    BackgroundYRadius = 10.000000000000000000
+    Height = 50.000000000000000000
+    Left = 424
+    Top = 224
+  end
   object GamepadManager1: TDGEGamepadManager
     SynchronizedEvents = True
     OnButtonDown = GamepadManager1ButtonDown
@@ -194,15 +205,5 @@ object frmMain: TfrmMain
     Duration = 5.000000000000000000
     Left = 648
     Top = 96
-  end
-  object DGEFMXHelpBar1: TDGEFMXHelpBar
-    IconMarginRight = 5.000000000000000000
-    TextMarginRight = 20.000000000000000000
-    BackgroundOpacity = 0.600000023841857900
-    BackgroundXRadius = 15.000000000000000000
-    BackgroundYRadius = 10.000000000000000000
-    Height = 50.000000000000000000
-    Left = 424
-    Top = 224
   end
 end
